@@ -10,10 +10,22 @@ import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelc
 function Contact() {
   var navigate = useNavigate();
 
+  const [problemData, setProblemData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+ 
   const handleAddProblem = () => {
-    // Navigate to a form page to add a problem
-    navigate('/add-problem');
-  };
+    window.location.href = '/contact/ProblemForm';
+};
+
+  function handleSearch() {
+    // Implement search logic here
+    // For example, filter productData based on searchQuery
+    const filteredProblems = problemData.filter(problem => 
+      problem.product_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setProblemData(filteredProblems);
+  }
 
   return (
     <div>
@@ -55,8 +67,17 @@ function Contact() {
                 </div>
                
             </div>
-     
-     
+            <div class="QaddBtn">
+             <Link to="/Contact/AddProblem">
+                  <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add a Problem
+                  </button></div>
+            </Link>
+
+              <div class="QStoreSearch">
+                <input type="text" class="QSearch" onClick={handleSearch} placeholder="Search disease" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+              </div>
+            </div>
+            <h1> </h1>
     </div>
   
 
