@@ -4,6 +4,7 @@ import Header from './components/header/Header';
 import SignUp from './pages/signup/SignUp';
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
+import Predictions from './pages/predictions/Predictions';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
     <Route path="/signup" element={<SignUp />} />
     <Route path="/login" element={<Login />} />
     <Route path="/" element={<Home />} />
+    <Route path="/predictions" element={<Predictions />} />
     </Routes>
   </BrowserRouter>
   );
