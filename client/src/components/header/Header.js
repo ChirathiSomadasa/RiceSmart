@@ -75,7 +75,7 @@ function Header() {
                 <HeaderNavButton id="" activeId={activePage} name="Home" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="about" activeId={activePage} name="About Us" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="predictions" activeId={activePage} name="predictions" onClick={(id) => { navItemClick(id) }} />
-                <HeaderNavButton id="service" activeId={activePage} name=" h1" onClick={(id) => { navItemClick(id) }} />
+                <HeaderNavButton id="predictionResult" activeId={activePage} name=" My Predictions" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="store" activeId={activePage} name="h2" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="contact" activeId={activePage} name="h3" onClick={(id) => { navItemClick(id) }} />
 

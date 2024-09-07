@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Predictions.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-function Predictions() {
+function EditResult() {
     const validRiceVarieties = [
         'basmati', 
         'jasmine', 
@@ -19,6 +19,9 @@ function Predictions() {
         'kakulu'
     ];
 
+    // Retrieve the state passed from the previous page
+    const { state: existingData } = useLocation();
+
     const [yieldData, setYieldData] = useState({ 
         variety: '', 
         estimatedYield: '', 
@@ -31,6 +34,12 @@ function Predictions() {
 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (existingData) {
+            setYieldData(existingData);
+        }
+    }, [existingData]);
 
     const handleYieldChange = (e) => {
         const { name, value } = e.target;
@@ -76,7 +85,6 @@ function Predictions() {
             return;
         }
 
-        // Determine status and recommendation based on input data
         let calculatedStatus = '';
         let calculatedRecommendation = '';
 
@@ -91,7 +99,6 @@ function Predictions() {
             calculatedRecommendation = 'Review agricultural practices, consider new irrigation methods, and prepare for weather variability.';
         }
 
-        // Combine all data to pass to the results page
         const resultData = {
             ...yieldData,
             status: calculatedStatus,
@@ -104,7 +111,7 @@ function Predictions() {
                     'Content-Type': 'application/json',
                 },
             });
-            navigate('/predictionResult', { state: resultData }); 
+            navigate('/predictionResult', { state: resultData });
 
         } catch (error) {
             console.error('There was an error submitting the form!', error); 
@@ -267,12 +274,10 @@ function Predictions() {
                         <button className='yiled_button' type='submit'>SUBMIT</button>
 
                     </form>
-
-                   
                 </div>
             </div>
         </div>
     );
 }
 
-export default Predictions;
+export default EditResult;
