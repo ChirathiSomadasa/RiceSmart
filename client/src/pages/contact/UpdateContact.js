@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import './ProblemForm.css';
+import { useParams, useNavigate } from "react-router-dom";
+import './UpdateContact.css';
 import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/14.jpeg';
 
-function AddProblem() {
+function UpdateContact() {
     const navigate = useNavigate();
+    const {id} = useParams()
 
     const [contactData, setContactData] = useState([]);
     const [disease, setDisease] = useState('');
@@ -15,38 +16,28 @@ function AddProblem() {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
 
-    const handleSubmit = async (e) => {
+    useEffect(() => {
+        axios.get(`http://localhost:5001/getContact/${id}`)
+            .then(res => {
+                const problem = res.data;
+                setDisease(problem.disease);
+                setDescription(problem.description);
+                setCategory(problem.category);
+                setLocation(problem.location);
+            })
+            .catch(err => console.log(err));
+    }, [id]);
+ 
+    const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5001/AddProblem", { disease, description, category, location });
-            setSuccessMessage('Problem added successfully!');
-            setDisease('');
-            setDescription('');
-            setCategory('');
-            setLocation('');
+            await axios.put(`http://localhost:5001/UpdateContact/${id}`, { disease, description, category, location });
+            setSuccessMessage('Problem updated successfully!');
             setTimeout(() => navigate('/contact'), 2000); // Redirect after success
         } catch (err) {
-            setError('Error adding problem. Please try again.');
+            setError('Error updating problem. Please try again.');
         }
     };
-        /*
-        try {
-            const response = await axios.post("http://localhost:3000/contact/add", QformData);
-            if (response.data.status === "success") {
-                setSuccessMessage('Problem added successfully!');
-                setDisease('');
-                setDescription('');
-                setCategory('');
-                setLocation('');
-                navigate('/contact');  // Redirect to the contact page to see the added problem
-            } else {
-                setError(response.data.message);
-            }
-        } catch (error) {
-            setError("Error adding problem. Please try again.");
-        }
-            */
-
 
     return (
         <div className='QAddProblemForm'>
@@ -55,18 +46,18 @@ function AddProblem() {
             </div>
             <div className='QForm'>
                 <div className="PAformout">
-                    <form className="PAproductForm" onSubmit={handleSubmit}>
-                        <h2 className="PAtopic">Add Problem</h2>
+                    <form className="PAproductForm" onSubmit={handleUpdate}>
+                        <h2 className="PAtopic">Update Problem</h2>
                         <div className="PAform-group">
-                            <label>Disease:</label>
+                            <label>Edit Disease:</label>
                             <input type="text" className="PAinarea" placeholder='Enter Disease' value={disease} onChange={(e) => setDisease(e.target.value)} required />
                         </div>
                         <div className="PAform-group">
-                            <label>Description:</label>
+                            <label>Edit Description:</label>
                             <textarea className="PAinarea" placeholder='Enter Description' value={description} onChange={(e) => setDescription(e.target.value)} required />
                         </div>
                         <div className="PAform-group">
-                            <label>Category:</label>
+                            <label>Edit Category:</label>
                             <select id="productCategory" className="PAinarea" placeholder='Select Category' value={category} onChange={(e) => setCategory(e.target.value)} required>
                                  
                                 <option>During Harvesting Time</option>
@@ -76,10 +67,10 @@ function AddProblem() {
                             </select>
                         </div>
                         <div className="PAform-group">
-                            <label>Location:</label>
+                            <label>Edit Location:</label>
                             <input type="text" className="PAinarea" placeholder='Enter Location' value={location} onChange={(e) => setLocation(e.target.value)} />
                         </div>
-                        <button type="submit" className="PAbtn">Submit</button>
+                        <button type="submit" className="PAbtn">Update</button>
                     </form>
                     {error && <p>{error}</p>}
                     {successMessage && <p>{successMessage}</p>}
@@ -91,4 +82,4 @@ function AddProblem() {
     );
 }
 
-export default AddProblem;
+export default UpdateContact;

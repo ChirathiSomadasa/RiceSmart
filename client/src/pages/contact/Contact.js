@@ -1,13 +1,14 @@
- import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { json,Link } from 'react-router-dom';
 import './Contact.css';
- import axios from 'axios';
+import axios from 'axios';
+import { MdDeleteOutline } from "react-icons/md";
 import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
 function Contact() {
-  const [contactData, setContactData] = useState([{}]);
+  const [contactData, setContactData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
  
   const handleAddProblem = () => {
@@ -16,11 +17,16 @@ function Contact() {
 
 useEffect(() => {
 
+  axios.get('http://localhost:5001/')
+  .then(result => setContactData(result.data))
+  .catch(err => console.log(err))
+},[]);
+/*
   axios.post("http://localhost:5001/contact/get", {}).then((response) => {
     var data = response.data;
     setContactData(data);
   });
-
+*/
   /*
    fetch("/api").then(
     response => response.json()
@@ -31,12 +37,19 @@ useEffect(() => {
    )
   */
 
-},[]);
+   const handleDelete = (id) => {
+    axios.delete(`http://localhost:5001/deleteContact/${id}`)
+        .then(() => {
+            setContactData(contactData.filter(contact => contact._id !== id));
+        })
+        .catch(err => console.log(err));
+};
+
 
   function handleSearch() {
     // Implement search logic here
     // For example, filter productData based on searchQuery
-    const filteredContacts = contactData.filter(contact => 
+    const filteredContacts = contactData.filter(contact=> 
       contact.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setContactData(filteredContacts);
@@ -94,19 +107,23 @@ useEffect(() => {
                 <input type="text" class="QSearch" onClick={handleSearch} placeholder="Search disease" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
               </div>
             </div>
-            
-
-             <div class="QuestionList">
-                {contactData.map((result) =>
-                                    
-                    <div class="Sdetails">
-                    <p>{result.disease}</p>
-                    <p>{result.description}</p>
-                    <p>{result.category}</p>
-                    <p>{result.location}</p>
-                    </div>
-                )}
+            <div class="QContactStore">
+    {
+        contactData.map((contact) => (
+            <div class="QContactCard" key={contact._id}>
+                <h3>{contact.disease}</h3>
+                <p><strong>Description:</strong> {contact.description}</p>
+                <p><strong>Category:</strong> {contact.category}</p>
+                <p><strong>Location:</strong> {contact.location}</p>
+                <div class="QCardActions">
+                    <Link to={`/contact/UpdateContact/${contact._id}`} className="QUpdateBtn">Edit</Link>
+                    <button className="QUpdateBtn" onClick={() => handleDelete(contact._id)}>Delete</button>
                 </div>
+            </div>
+        ))
+    }
+</div>
+
     </div>
   
 
