@@ -4,9 +4,28 @@ import { Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import './SignUp.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function SignUp() {
   var navigate = useNavigate();
+
+  const onFinish = (values) => {
+    axios
+      .post('http://localhost:5001/user/register', values)
+      .then(function (response) {
+        var data = response.data;
+        var status = data.status;
+        if (status === 'success') {
+          navigate('/login');
+        } else {
+          alert(JSON.stringify(data));
+        }
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  };
+
 
   const validatePhoneNumber = (rule, value, callback) => {
     const phoneNumberPattern = /^\d{10}$/; // Regular expression for 10-digit phone number
@@ -48,7 +67,8 @@ function SignUp() {
       <div className="authentication">
         <div className="authentication-form card p-2">
           <h1 className="card-title">CREATE AN ACCOUNT</h1>
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={onFinish}>
+            
             <Form.Item
               label="First Name"
               name="first_name"
@@ -64,6 +84,8 @@ function SignUp() {
             >
               <Input className="signup_input" placeholder="First Name" />
             </Form.Item>
+
+
             <Form.Item
               label="Last Name"
               name="last_name"
@@ -79,6 +101,8 @@ function SignUp() {
             >
               <Input className="signup_input" placeholder="Last Name" />
             </Form.Item>
+
+
             <Form.Item
               label="Contact Number"
               name="mobile_number"
@@ -94,6 +118,8 @@ function SignUp() {
             >
               <Input className="signup_input" placeholder="Contact Number" />
             </Form.Item>
+
+
             <Form.Item
               label="Email"
               name="email"
@@ -109,6 +135,23 @@ function SignUp() {
             >
               <Input className="signup_input" placeholder="Email" />
             </Form.Item>
+
+
+            <Form.Item
+              label="City"
+              name="city"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your City!',
+                },
+                
+              ]}
+            >
+              <Input className="signup_input" placeholder="City" />
+            </Form.Item>
+
+
             <Form.Item
               label="Password"
               name="password"
@@ -147,8 +190,7 @@ function SignUp() {
             >
               <Input.Password className="signup_input" placeholder="Confirm Password" type="password" />
             </Form.Item>
-            <button className="primary-button" htmltype="submit">SIGN UP</button>
-
+            <button className="primary-button" type="submit" >SignUp</button>
             <p className="para">
               Already have an account?<Link to="/login" className="anchor">LOGIN</Link>
             </p>

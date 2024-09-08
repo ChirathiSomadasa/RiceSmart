@@ -35,6 +35,7 @@ router.route("/register").post((req, res) => {
     var lastName = req.body.last_name;
     var mobileNumber = req.body.mobile_number;
     var email = req.body.email;
+    var city = req.body.city;
     var password = req.body.password;
 
     //validate details
@@ -42,6 +43,7 @@ router.route("/register").post((req, res) => {
         lastName == null || lastName == "" ||
         mobileNumber == null || mobileNumber == "" ||
         email == null || email == "" ||
+        city == null || city == "" ||
         password == null || password == "") {
 
         res.send({ "status": "required_failed", "message": "Please send required details." });
@@ -60,6 +62,7 @@ router.route("/register").post((req, res) => {
             user.last_name = lastName;
             user.mobile_number = mobileNumber;
             user.email = email;
+            user.city = city;
             user.password = password;
 
             user.save().then(() => {
@@ -69,7 +72,7 @@ router.route("/register").post((req, res) => {
             });
 
         } else {
-            res.send({ "status": "already_email", "message": "This email is already." });
+            res.send({ "status": "already_email", "message": "This email is already taken." });
         }
 
     }).catch((e) => {

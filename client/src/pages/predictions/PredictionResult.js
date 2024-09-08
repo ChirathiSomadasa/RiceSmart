@@ -50,6 +50,10 @@ function PredictionResult() {
     return (
         <div className='result'>
             <h1>Prediction Results</h1>
+            <div className='filter_bar'>
+                <input className='search_bar' placeholder="Search" type="text"/>
+                <button className='report_yield'>Generate Report</button>
+            </div>
             <div className='result_data'>
                 {predictions.length === 0 ? (
                     <p>No prediction results available.</p>
@@ -101,6 +105,7 @@ function PredictionResult() {
                     ))
                 )}
             </div>
+
         </div>
     );
 }

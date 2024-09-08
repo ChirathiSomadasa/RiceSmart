@@ -5,11 +5,13 @@ import axios from 'axios';
 
 function Predictions() {
     const validRiceVarieties = [
-        'basmati', 
-        'jasmine', 
-        'arborio', 
-        'carnaroli', 
-        'sona masoori', 
+        'basmathi', 
+        'kurulu thuda', 
+        'heenati', 
+        'haramas', 
+        'rathhal', 
+        'maavee',
+        'pachchaperumal',
         'red rice', 
         'black rice', 
         'sticky Rice',
@@ -17,6 +19,7 @@ function Predictions() {
         'keeri samba',
         'nadu',
         'kakulu'
+
     ];
 
     const [yieldData, setYieldData] = useState({ 
@@ -30,6 +33,7 @@ function Predictions() {
     });
 
     const [errors, setErrors] = useState({});
+    const [resultData, setResultData] = useState(null); // State for status and recommendation
     const navigate = useNavigate();
 
     const handleYieldChange = (e) => {
@@ -104,12 +108,20 @@ function Predictions() {
                     'Content-Type': 'application/json',
                 },
             });
-            navigate('/predictionResult', { state: resultData }); 
+            setResultData(resultData);
+            console.log('Result Data:', resultData);
+
 
         } catch (error) {
-            console.error('There was an error submitting the form!', error); 
-            console.error('Error details:', error.response?.data || error.message);
+            console.error('Error during form submission:', error);
             alert('Failed to submit prediction');
+        }
+    };
+
+    const handleOkClick = () => {
+        if (resultData) {
+            console.log('Navigating with result data:', resultData);
+            navigate('/predictionResult', { state: resultData });
         }
     };
 
@@ -129,7 +141,7 @@ function Predictions() {
                         <h4>1. Variety (Type of Rice)</h4>
                             <ul>
                                 <li><p><b>What to do: </b>Enter the name of the rice variety you're growing.</p></li>
-                                <li><p><b>Valid options: </b>You can only use one of these types.</p><p>Basmati, Jasmine, Arborio, Carnaroli, Sona Masoori, Red Rice, Black Rice, Sticky Rice, Samba, Keeri Samba, Nadu, Kakulu.</p></li>
+                                <li><p><b>Valid options: </b>You can use these types.</p><p>basmathi, kurulu thuda, heenati, haramas, rathhal,maavee,pachchaperumal, red Rice, black Rice, Sticky Rice, Samba, Keeri Samba, Nadu, Kakulu.</p></li>
                                 <li><p><b>Example: </b>If you are growing Samba rice, enter "Samba".</p></li>
                             </ul>
                         
@@ -267,12 +279,17 @@ function Predictions() {
                         <button className='yiled_button' type='submit'>SUBMIT</button>
 
                     </form>
-
+                    {resultData && (
+                        <div className='result_display'>
+                            <h3>Status: {resultData.status}</h3>
+                            <p>Recommendation: {resultData.recommendation}</p>
+                            <div className='result_btn'><button className='ok_button' onClick={handleOkClick}>OK</button></div>
+                        </div>
+                    )}
                    
                 </div>
             </div>
         </div>
     );
 }
-
 export default Predictions;
