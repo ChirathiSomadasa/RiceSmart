@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 
-var ContactSchema = new Schema(
+var ContactSchema = new mongoose.Schema(
     {
         disease: { type: String, required: true },
         description: { type: String, required: true },
@@ -13,7 +13,7 @@ var ContactSchema = new Schema(
 );
 
  
-var ContactModel = mongoose.model("contact", ContactSchema);
+var ContactModel = mongoose.model("contacts", ContactSchema);
 module.exports = ContactModel;
 
  
