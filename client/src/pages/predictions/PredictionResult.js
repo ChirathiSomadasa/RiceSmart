@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './PredictionResult.css';
+import { useAuthEmail, useAuthPassword } from '../../auth'
 
 function PredictionResult() {
+
+    const authEmail = useAuthEmail();
+    const authPassword = useAuthPassword();
+
     const [predictions, setPredictions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -13,7 +18,32 @@ function PredictionResult() {
         // Fetch all predictions from the backend
         const fetchPredictions = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/prediction/api/predictions');
+                const response = await axios.post('http://localhost:5001/prediction/api/predictions/',{auth_email:authEmail,auth_password:authPassword});
+
+                for(var i = 0; i < response.data.data.length; i++){
+                    var item = response.data.data[i];
+                    
+                    let calculatedStatus = '';
+                    let calculatedRecommendation = '';
+
+                    if (item.estimatedYield > 3000 && item.yieldVariability < 10) {
+                        calculatedStatus = 'Good';
+                        calculatedRecommendation = 'Continue with the current practices.';
+                    } else if (item.estimatedYield >= 2000 && item.estimatedYield <= 3000 && item.yieldVariability >= 10) {
+                        calculatedStatus = 'Moderate';
+                        calculatedRecommendation = 'Consider improving irrigation and monitoring weather conditions.';
+                    } else {
+                        calculatedStatus = 'Poor';
+                        calculatedRecommendation = 'Review agricultural practices, consider new irrigation methods, and prepare for weather variability.';
+                    }
+
+                    item.status = calculatedStatus;
+                    item.recommendation = calculatedRecommendation;
+
+                }
+
+                console.log(response.data.data);
+                
                 setPredictions(response.data.data);
                 setLoading(false);
             } catch (err) {

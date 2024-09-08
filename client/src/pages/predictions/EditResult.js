@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Predictions.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function EditResult() {
@@ -32,9 +32,49 @@ function EditResult() {
         weatherConditions: '', 
     });
 
+    const { id } = useParams();
     const [errors, setErrors] = useState({});
     const [resultData, setResultData] = useState(null); // State for status and recommendation
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Fetch all predictions from the backend
+        const fetchPredictions = async () => {
+            try {
+                const response = await axios.get('http://localhost:5001/prediction/api/predictions/'+id);
+
+                for(var i = 0; i < response.data.data.length; i++){
+                    var item = response.data.data[i];
+                    
+                    let calculatedStatus = '';
+                    let calculatedRecommendation = '';
+
+                    if (item.estimatedYield > 3000 && item.yieldVariability < 10) {
+                        calculatedStatus = 'Good';
+                        calculatedRecommendation = 'Continue with the current practices.';
+                    } else if (item.estimatedYield >= 2000 && item.estimatedYield <= 3000 && item.yieldVariability >= 10) {
+                        calculatedStatus = 'Moderate';
+                        calculatedRecommendation = 'Consider improving irrigation and monitoring weather conditions.';
+                    } else {
+                        calculatedStatus = 'Poor';
+                        calculatedRecommendation = 'Review agricultural practices, consider new irrigation methods, and prepare for weather variability.';
+                    }
+
+                    item.status = calculatedStatus;
+                    item.recommendation = calculatedRecommendation;
+
+                }
+
+                setYieldData(response.data.data);
+                
+            } catch (err) {
+                //setError('Failed to load predictions');
+                //setLoading(false);
+            }
+        };
+
+        fetchPredictions();
+    }, []);
 
     const handleYieldChange = (e) => {
         const { name, value } = e.target;
@@ -103,7 +143,7 @@ function EditResult() {
         };
 
         try {
-            await axios.post('http://localhost:5001/prediction/api/predictions', yieldData, {
+            await axios.post('http://localhost:5001/prediction/api/predictions/'+id, yieldData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

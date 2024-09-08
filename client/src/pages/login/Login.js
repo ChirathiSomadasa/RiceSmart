@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 function Login() {
+
+  const [cookies, setCookies, removeCookies] = useCookies(['auth_email', 'auth_password']);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const onFinish = (values) => {
+  const onFinishLogin = (values) => {
     setLoading(true);
 
     // Send form data to backend API
@@ -25,7 +28,8 @@ function Login() {
           // Save token or user data in localStorage or context
           localStorage.setItem('email', response.data.email); // Example: saving user email
           // You can add more user information in localStorage if necessary
-          
+          setCookies("auth_email", response.data.email);
+          setCookies("auth_password", response.data.password);
           navigate('/'); // Redirect to the dashboard or homepage after successful login
         } else if (status === 'invalid_user') {
           const message = data.message;
@@ -46,7 +50,7 @@ function Login() {
         <div className='authentication-form-login card p-2'>
           <h1 className='card-title'>LOGIN</h1>
 
-          <Form layout='vertical' onFinish={onFinish}>
+          <Form layout='vertical' onFinish={onFinishLogin}>
             <Form.Item
               label='Email'
               name='email'

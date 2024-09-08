@@ -5,6 +5,16 @@ var Prediction = require("../models/prediction");
 
 // Create a new prediction
 router.post('/api/predictions', async (req, res) => {
+
+    if(req.current_user == null){
+        res.status(200).json({
+            message: 'Auth failed'
+        });
+        return;
+    }
+
+    req.body.user_id = req.current_user.user_id;
+
     try {
         const newPrediction = new Prediction(req.body);
         await newPrediction.save();
@@ -19,13 +29,37 @@ router.post('/api/predictions', async (req, res) => {
             error: error.message
         });
     }
+    
 });
 
+router.get('/api/predictions/:id', async (req, res) => {
+    try {
+        const predictions = await Prediction.findById(req.params.id);
+        res.status(200).json({
+            message: 'Predictions retrieved successfully',
+            data: predictions
+        });
+    } catch (error) {
+        console.error('Error retrieving predictions:', error);
+        res.status(500).json({
+            message: 'Error retrieving predictions',
+            error: error.message
+        });
+    }
+});
 
 // Get all predictions
-router.get('/api/predictions', async (req, res) => {
+router.post('/api/predictions', async (req, res) => {
+
+    if(req.current_user == null){
+        res.status(200).json({
+            message: 'Auth failed'
+        });
+        return;
+    }
+
     try {
-        const predictions = await Prediction.find();
+        const predictions = await Prediction.find({user_id:req.current_user.user_id});
         res.status(200).json({
             message: 'Predictions retrieved successfully',
             data: predictions
@@ -41,7 +75,7 @@ router.get('/api/predictions', async (req, res) => {
 
 
 // Update a prediction by ID
-router.put('/api/predictions/:id', async (req, res) => {
+router.post('/api/predictions/:id', async (req, res) => {
     try {
         const updatedPrediction = await Prediction.findByIdAndUpdate(
             req.params.id,

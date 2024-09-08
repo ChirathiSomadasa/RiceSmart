@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //authentication
 app.use((req, res, next) => {
 
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = req.body.auth_email;
+    const password = req.body.auth_password;
     
     if (email != null && password != null) {
 

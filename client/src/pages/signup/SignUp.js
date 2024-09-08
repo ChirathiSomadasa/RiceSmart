@@ -9,7 +9,7 @@ import axios from 'axios';
 function SignUp() {
   var navigate = useNavigate();
 
-  const onFinish = (values) => {
+  const onFinishSignIn = (values) => {
     axios
       .post('http://localhost:5001/user/register', values)
       .then(function (response) {
@@ -67,7 +67,7 @@ function SignUp() {
       <div className="authentication">
         <div className="authentication-form card p-2">
           <h1 className="card-title">CREATE AN ACCOUNT</h1>
-          <Form layout="vertical" onFinish={onFinish}>
+          <Form layout="vertical" onFinish={onFinishSignIn}>
             
             <Form.Item
               label="First Name"

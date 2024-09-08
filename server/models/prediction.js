@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var predictShcema = new Schema(
     {
+        user_id:{type:String,required:true},
         variety:{type:String,required:true},
         estimatedYield:{type:String,required:true},
         yieldVariability:{type:String,required:true},
