@@ -1,19 +1,14 @@
  import { useEffect, useState } from 'react';
 import React from 'react';
-import { Form, Input, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { json,Link } from 'react-router-dom';
 import './Contact.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+ import axios from 'axios';
 import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
 function Contact() {
-  var navigate = useNavigate();
-
-  const [problemData, setProblemData] = useState([]);
+  const [contactData, setContactData] = useState([{}]);
   const [searchQuery, setSearchQuery] = useState("");
-
  
   const handleAddProblem = () => {
     window.location.href = '/contact/ProblemForm';
@@ -21,21 +16,33 @@ function Contact() {
 
 useEffect(() => {
 
-  axios.post("http://localhost:5000/contact/get", {}).then((response) => {
+  axios.post("http://localhost:5001/contact/get", {}).then((response) => {
     var data = response.data;
-    setProblemData(data);
+    setContactData(data);
   });
+
+  /*
+   fetch("/api").then(
+    response => response.json()
+   ).then(
+    data => {
+      setContactData(data)
+    }
+   )
+  */
 
 },[]);
 
   function handleSearch() {
     // Implement search logic here
     // For example, filter productData based on searchQuery
-    const filteredProblems = problemData.filter(problem => 
-      problem.category.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredContacts = contactData.filter(contact => 
+      contact.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setProblemData(filteredProblems);
+    setContactData(filteredContacts);
   }
+
+   
 
   return (
     <div>
@@ -90,21 +97,14 @@ useEffect(() => {
             
 
              <div class="QuestionList">
-                {problemData.map((result) =>
-                  
-                  <div key={result._id} className="gallery">
-                  
+                {contactData.map((result) =>
+                                    
                     <div class="Sdetails">
                     <p>{result.disease}</p>
                     <p>{result.description}</p>
                     <p>{result.category}</p>
                     <p>{result.location}</p>
-
                     </div>
-                    
-                    
-                  </div>
-
                 )}
                 </div>
     </div>

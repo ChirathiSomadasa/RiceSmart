@@ -3,7 +3,8 @@ const cors = require("cors");  // Import CORS middleware
 const bodyParser = require("body-parser");  // Import body-parser middleware
 require('dotenv').config();
 const dbConfig = require("./config/dbConfig");
-
+const mongoose = require("mongoose");
+const ContactModel = require('./models/contact')
 const app = express();
 
 // Middleware setup
@@ -13,11 +14,13 @@ app.use(bodyParser.urlencoded({ extended: true }));  // Parse URL-encoded bodies
 
 const port = process.env.PORT || 5001;
 
-app.listen(port, () => console.log(`Node server started at port ${port}`));
+app.listen(port, () => 
+    console.log(`Node server started at port ${port}`));
 
 
 // Import the model
 const Prediction = require('./models/prediction');
+const Contact = require('./models/contact');
 
 // POST route to handle form submission
 app.post('/api/predictions', async (req, res) => {
@@ -34,7 +37,19 @@ app.post('/api/predictions', async (req, res) => {
 
 });
 
+ 
 
-app.get('/', (req, res) => {
-    res.send('Server is running');
-});
+app.get('/getContact', (req, res) => {
+    ContactModel.find({}).then(function(contacts){
+        res.json(contacts)
+    }).catch(function(err){
+        res.json(err)
+    })
+ });
+
+app.post("/api/addContact",async(req,res) => {
+    const contact = req.body;
+    const newContact = new ContactModel(contact);
+    await newContact.save();
+    res.json(contact);
+})
