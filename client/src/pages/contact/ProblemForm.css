@@ -7,10 +7,9 @@
 .PAproductForm{
     max-width: 600px;
     margin: 10px auto;
-    padding: 35px;
+    padding: 30px;
     background-color: #3b2d2d2f;
-    border-radius: 10px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', seri
  }
 
@@ -38,14 +37,40 @@ label {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-left: 250px;
+    margin-left: 200px;
  }
 button[type="submit"] {
     background-color: #090b0c;
 
 }
- 
-button:hover {
-    background-color: #9e9999;
 
-}
+.Qaddproblem_photo {
+
+    width: 500px;
+    height: 443px;
+    float: left;
+    padding-top: 10px;
+  
+  }
+  .Qaddproblem_photo img {
+
+    width: 120%;
+    height: 467px;
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .QAddProblemForm{
+    padding-top: 50px;
+        width: 1200px;
+        height: 450px;
+        margin: auto;
+    
+  }
+
+  .QForm{
+    float:left;
+    width: 580px;
+    height: 400px;
+    padding-left: 100px;    
+    }

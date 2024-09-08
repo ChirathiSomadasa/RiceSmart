@@ -76,10 +76,10 @@
 }
 
   
-   .Qadd-problem-button {
+.Qadd-problem-button {
     display: block;
     width: fit-content;
-    background-color: #095f0c; /* Green background */
+    background-color: #034106; /* Green background */
     color: white; /* White text */
     font-size: 15px; /* Larger text size */
     border-radius: 10px; /* Rounded corners */
@@ -92,26 +92,23 @@
     border: none;
     padding-left: 10px;
     padding-right: 10px;
-    }
+    cursor: pointer;
+}
   
-  .Qadd-problem-button:hover {
-    background-color: rgba(71, 206, 112, 0.904); /* Darker green on hover */
-  }
-
-  .QaddBtn{
+.QaddBtn{
     margin-top: 10px;
     width : 100%;
     height: 60px;
-   }
+}
 
-   .QStoreSearch{
+.QStoreSearch{
     float: left;
     margin-top: 40px;
     margin-left: 700px;
     margin-right: 50px;
-   }
+}
 
-   .QSearch{
+.QSearch{
     padding: 10px;
     border-radius: 10px;
     outline: none;
@@ -119,7 +116,7 @@
     width: 250px;
     margin-left: 30px;
     background-color: #77777744;
-  }
+}
   
 
  

@@ -4,6 +4,7 @@ import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import './Contact.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
@@ -18,11 +19,20 @@ function Contact() {
     window.location.href = '/contact/ProblemForm';
 };
 
+useEffect(() => {
+
+  axios.post("http://localhost:5000/contact/get", {}).then((response) => {
+    var data = response.data;
+    setProblemData(data);
+  });
+
+},[]);
+
   function handleSearch() {
     // Implement search logic here
     // For example, filter productData based on searchQuery
     const filteredProblems = problemData.filter(problem => 
-      problem.product_name.toLowerCase().includes(searchQuery.toLowerCase())
+      problem.category.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setProblemData(filteredProblems);
   }
@@ -77,7 +87,26 @@ function Contact() {
                 <input type="text" class="QSearch" onClick={handleSearch} placeholder="Search disease" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
               </div>
             </div>
-            <h1> </h1>
+            
+
+             <div class="QuestionList">
+                {problemData.map((result) =>
+                  
+                  <div key={result._id} className="gallery">
+                  
+                    <div class="Sdetails">
+                    <p>{result.disease}</p>
+                    <p>{result.description}</p>
+                    <p>{result.category}</p>
+                    <p>{result.location}</p>
+
+                    </div>
+                    
+                    
+                  </div>
+
+                )}
+                </div>
     </div>
   
 
