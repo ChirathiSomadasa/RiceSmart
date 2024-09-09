@@ -1,40 +1,57 @@
 const express = require("express");
-const cors = require("cors");  // Import CORS middleware
-const bodyParser = require("body-parser");  // Import body-parser middleware
+const cors = require("cors");
+const bodyParser = require("body-parser");
 require('dotenv').config();
 const dbConfig = require("./config/dbConfig");
+var predictionRoute = require("./routes/prediction_route");
+var userRoute = require("./routes/user_route");
+var User = require("./models/User");
 
 const app = express();
 
-// Middleware setup
-app.use(cors());  // Enable CORS for all routes
-app.use(bodyParser.json());  // Parse JSON bodies
-app.use(bodyParser.urlencoded({ extended: true }));  // Parse URL-encoded bodies
+app.use(cors());  
+app.use(bodyParser.json());  
+app.use(bodyParser.urlencoded({ extended: true }));  
 
-const port = process.env.PORT || 5001;
+//authentication
+app.use((req, res, next) => {
 
-app.listen(port, () => console.log(`Node server started at port ${port}`));
+    const email = req.body.auth_email;
+    const password = req.body.auth_password;
+    
+    if (email != null && password != null) {
 
+        User.findOne({ email: email, password: password }).then((doc) => {
 
-// Import the model
-const Prediction = require('./models/prediction');
-
-// POST route to handle form submission
-app.post('/api/predictions', async (req, res) => {
-    try {
-        const newPrediction = new Prediction(req.body);
-        await newPrediction.save();
-        res.status(200).json({ message: 'Prediction saved successfully!' });
-        console.log('Prediction saved successfully:', newPrediction);
-
-    } catch (error) {
-        console.error('Error saving prediction:', error); // Log the error
-        res.status(500).json({ error: 'Failed to save prediction', details: error.message });
+            if (doc == null) {
+                res.send({ "status": "invalid_user", "message": "This user is invalid." });
+                return;
+            }
+            
+            req.current_user = { "user_id": doc._id, "user": doc };
+            next();
+            return;
+    
+        }).catch((e) => {
+            res.send("error - " + e);
+            return;
+        });
+    
+    } else {
+        req.current_user = null;
+        next();
     }
 
 });
 
+// Use the prediction route
+app.use("/prediction", predictionRoute);
+app.use("/user", userRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is running');
 });
+
+const port = process.env.PORT || 5001;
+
+app.listen(port, () => console.log(`Node server started at port ${port}`));
