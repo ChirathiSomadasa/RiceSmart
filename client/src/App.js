@@ -7,6 +7,7 @@ import Home from './pages/home/Home';
 import Predictions from './pages/predictions/Predictions';
 import PredictionResult from './pages/predictions/PredictionResult';
 import EditResult from './pages/predictions/EditResult';
+import SignOut from './pages/signout/SignOut';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
     <Route path="/predictions" element={<Predictions />} />
     <Route path="/predictionResult" element={<PredictionResult />} />
     <Route path="/EditResult/:id" element={<EditResult />} />
+    <Route path="/signout" element={<SignOut />} />
     </Routes>
   </BrowserRouter>
   );

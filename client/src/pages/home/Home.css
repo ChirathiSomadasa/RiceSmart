@@ -78,3 +78,35 @@
     object-fit: cover;
 }
 
+.about-image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/yield/about.jpg);
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    
+}
+
+.about-text {
+    width: 90%;
+    height: 50%;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+
+}
+
+.about-text h1 {
+    font-size: 36px;
+    font-family: 'times new roman';
+}
+
+.about-text p {
+
+    font-size: 18px;
+    font-family: 'times new roman';
+}

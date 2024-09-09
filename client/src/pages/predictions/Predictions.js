@@ -143,7 +143,7 @@ function Predictions() {
             <div>
                 <div className='predic_parallax'>
                     <div className='hero_text'>
-                        <h1>Smart Farming, Better Yields</h1>
+                        <h1>Empowering Farmers with Smart Yield Predictions</h1>
                     </div>
                 </div>
             

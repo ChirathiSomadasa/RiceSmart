@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './PredictionResult.css';
 import { useAuthEmail, useAuthPassword } from '../../auth'
+import jsPDF from 'jspdf';
+import Logo from '../../images/logo.png';  
+import 'jspdf-autotable';
 
 function PredictionResult() {
 
@@ -12,6 +15,7 @@ function PredictionResult() {
     const [predictions, setPredictions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [searchQuery, setSearchQuery] = useState(''); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,7 +60,7 @@ function PredictionResult() {
     }, []);
 
     const handleEdit = (id) => {
-        // Redirect to the edit page (you need to implement this page)
+       
         navigate(`/EditResult/${id}`);
     };
 
@@ -69,6 +73,170 @@ function PredictionResult() {
         }
     };
 
+    const handleGenerateReport = () => {
+        let goodCount = 0;
+        let moderateCount = 0;
+        let poorCount = 0;
+    
+        predictions.forEach(prediction => {
+            if (prediction.status === 'Good') goodCount++;
+            if (prediction.status === 'Moderate') moderateCount++;
+            if (prediction.status === 'Poor') poorCount++;
+        });
+    
+        const doc = new jsPDF();
+    
+        // Set background color only for the logo section
+        doc.setFillColor(0, 0, 0);
+        doc.rect(0, 0, 210, 50, 'F');  // Black background for logo section
+    
+        // Load and add logo asynchronously
+        const img = new Image();
+        img.src = Logo;
+        img.onload = () => {
+            const logoWidth = 50;
+            const logoHeight = 25;
+            doc.addImage(img, 'PNG', 80, 10, logoWidth, logoHeight);
+    
+            // Add Title and Subtitle
+            const pageWidth = doc.internal.pageSize.getWidth();
+            doc.setFontSize(18);
+            const title = 'Prediction Status Report';
+            const textWidth = doc.getTextWidth(title);
+            const textX = (pageWidth - textWidth) / 2;
+            doc.setTextColor(255, 255, 255); // White text color for title
+            doc.text(title, textX, 45);
+    
+            doc.setFontSize(12);
+            const subtitle = 'Summary of the number of status relating to poor, moderate, and good';
+            const subtitleWidth = doc.getTextWidth(subtitle);
+            const subtitleX = (pageWidth - subtitleWidth) / 2;
+            doc.setTextColor(0, 0, 0); // Black text color for subtitle
+            doc.text(subtitle, subtitleX, 60);
+    
+            // Add table with black header background and white text color for header
+            doc.autoTable({
+                head: [['Status', 'Count']],
+                body: [
+                    ['Good', goodCount],
+                    ['Moderate', moderateCount],
+                    ['Poor', poorCount],
+                ],
+                startY: 70,
+                styles: {
+                    textColor: [0, 0, 0], // Default black text for table body
+                },
+                headStyles: {
+                    fillColor: [0, 0, 0],  // Black background for header
+                    textColor: [255, 255, 255],  // White text for header
+                },
+            });
+    
+            // Save the PDF after logo and table are rendered
+            doc.save('Prediction_Status_Report.pdf');
+        };
+    
+        img.onerror = () => {
+            console.error('Failed to load the logo image.');
+        };
+    };
+    
+
+    const handleCurrentGenerateReport = () => {
+        // Use filteredPredictions to generate report based on search or full data
+        const dataToGenerate = filteredPredictions.length > 0 ? filteredPredictions : predictions;
+        
+        const doc = new jsPDF();
+    
+        // Set the black background for the header section
+        doc.setFillColor(0, 0, 0);
+        doc.rect(0, 0, 210, 50, 'F'); 
+    
+        // Load and add the logo
+        const img = new Image();
+        img.src = Logo;
+    
+        img.onload = () => {
+            const logoWidth = 50;
+            const logoHeight = 25;
+            doc.addImage(img, 'PNG', 80, 10, logoWidth, logoHeight);
+    
+            // Title and Subtitle
+            const pageWidth = doc.internal.pageSize.getWidth();
+            doc.setFontSize(18);
+            const title = 'Yield Prediction Summary Report';
+            const textWidth = doc.getTextWidth(title);
+            const textX = (pageWidth - textWidth) / 2;
+            doc.setTextColor(255, 255, 255); // White text color for title
+            doc.text(title, textX, 45);
+    
+            doc.setFontSize(12);
+            const subtitle = 'Overview of yield predictions based on current data.';
+            const subtitleWidth = doc.getTextWidth(subtitle);
+            const subtitleX = (pageWidth - subtitleWidth) / 2;
+            doc.setTextColor(0, 0, 0); // Black text color for subtitle
+            doc.text(subtitle, subtitleX, 60);
+    
+            // Add a table for yield prediction details
+            const tableBody = dataToGenerate.map(prediction => [
+                prediction.variety,
+                prediction.estimatedYield,
+                prediction.yieldVariability,
+                prediction.geographicLocation,
+                prediction.status,
+                prediction.recommendation
+            ]);
+    
+            // Table with headers
+            doc.autoTable({
+                head: [['Crop Variety', 'Estimated Yield (kg/ha)', 'Yield Variability (kg/ha)', 'Geographic Location', 'Status', 'Recommendation']],
+                body: tableBody,
+                startY: 70,
+                styles: {
+                    textColor: [0, 0, 0], // Default black text for table body
+                },
+                headStyles: {
+                    fillColor: [0, 0, 0],  // Black background for header
+                    textColor: [255, 255, 255],  // White text for header
+                },
+            });
+    
+            // Save the PDF after generating
+            doc.save('Yield_Prediction_Report.pdf');
+        };
+    
+        img.onerror = () => {
+            console.error('Failed to load the logo image.');
+        };
+    };
+    
+
+
+
+
+
+
+
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const filteredPredictions = predictions.filter(prediction => {
+        const query = searchQuery.toLowerCase();
+
+        // Convert numerical values to strings for comparison
+        const estimatedYieldStr = prediction.estimatedYield.toString();
+        const yieldVariabilityStr = prediction.yieldVariability.toString();
+
+        return (
+            prediction.variety.toLowerCase().includes(query) ||
+            prediction.status.toLowerCase().includes(query) ||
+            prediction.geographicLocation.toLowerCase().includes(query) ||
+            estimatedYieldStr.includes(query) || // Search in Estimated Yield
+            yieldVariabilityStr.includes(query)  // Search in Yield Variability
+        );
+    });
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -78,17 +246,25 @@ function PredictionResult() {
     }
 
     return (
-        <div className='result'>
+         <div className='result'>
             <h1>Prediction Results</h1>
             <div className='filter_bar'>
-                <input className='search_bar' placeholder="Search" type="text"/>
-                <button className='report_yield'>Generate Report</button>
+                <input 
+                    className='search_bar' 
+                    placeholder="Search" 
+                    type="text"  
+                    value={searchQuery} 
+                    onChange={handleSearch} 
+                />
+                <button className='report_yield' onClick={handleGenerateReport}>Generate Report</button>
+
+                <button className='report_yield' onClick={handleCurrentGenerateReport}>Generate Current Report</button>
             </div>
             <div className='result_data'>
-                {predictions.length === 0 ? (
+                {filteredPredictions.length === 0 ? (
                     <p>No prediction results available.</p>
                 ) : (
-                    predictions.map(prediction => (
+                    filteredPredictions.map(prediction => (  // Use filteredPredictions here
                         <div key={prediction._id} className='prediction_card'>
                             <table>
                                 <tbody>
@@ -127,10 +303,8 @@ function PredictionResult() {
                                 </tbody>
                             </table>
                             
-                                
-                                <div className='result_div'>Do you want to Edit Yield Prediction Results?<button className='edit_btn' onClick={() => handleEdit(prediction._id)}>Edit</button></div>
-                                <div className='result_div'>Do you want to Delete Yield Prediction Results?  <button className='delete_btn' onClick={() => handleDelete(prediction._id)}>Delete</button></div>
-                
+                            <div className='result_div'>Do you want to Edit Yield Prediction Results?<button className='edit_btn' onClick={() => handleEdit(prediction._id)}>Edit</button></div>
+                            <div className='result_div'>Do you want to Delete Yield Prediction Results?  <button className='delete_btn' onClick={() => handleDelete(prediction._id)}>Delete</button></div>
                         </div>
                     ))
                 )}
