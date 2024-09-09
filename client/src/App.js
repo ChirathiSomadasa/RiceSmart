@@ -7,6 +7,7 @@ import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import ProblemForm from './pages/contact/ProblemForm';
 import UpdateContact from './pages/contact/UpdateContact';
+import AddSolution from './pages/contact/AddSolution';
 
    
 function App() {
@@ -20,6 +21,8 @@ function App() {
     <Route path="/" element={<Home />} />
     <Route path="/contact/ProblemForm" element={<ProblemForm/>}/>
     <Route path="/contact/UpdateContact/:id" element={<UpdateContact/>}/>
+    <Route path="/contact/AddSolution/:id" element={<AddSolution/>}/>
+
 
   
     </Routes>

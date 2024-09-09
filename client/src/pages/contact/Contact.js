@@ -3,7 +3,7 @@ import React from 'react';
 import { json,Link } from 'react-router-dom';
 import './Contact.css';
 import axios from 'axios';
-import { MdDeleteOutline,MdEdit } from "react-icons/md";
+import { MdDeleteOutline,MdEdit,MdOutlineLocationOn } from "react-icons/md";
 import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
@@ -22,21 +22,7 @@ useEffect(() => {
   .then(result => setContactData(result.data))
   .catch(err => console.log(err))
 },[]);
-/*
-  axios.post("http://localhost:5001/contact/get", {}).then((response) => {
-    var data = response.data;
-    setContactData(data);
-  });
-*/
-  /*
-   fetch("/api").then(
-    response => response.json()
-   ).then(
-    data => {
-      setContactData(data)
-    }
-   )
-  */
+
 
 const handleDelete = (id) => {
     // Display a confirmation popup
@@ -77,8 +63,19 @@ const handleDelete = (id) => {
 
 
 };
-   
 
+const handleSolution = (id) => {
+  // Redirect to the edit page
+  window.location.href = `/contact/AddSolution/${id}`;
+
+
+};
+ 
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    handleSearch();  // Trigger search when "Enter" key is pressed
+  }
+}
   return (
     <div>
       <div className='Qparallax'>
@@ -126,25 +123,35 @@ const handleDelete = (id) => {
             </Link>
 
               <div class="QStoreSearch">
-                <input type="text" class="QSearch" onClick={handleSearch} placeholder="Search disease" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                <input type="text" class="QSearch" onClick={handleSearch} value={searchQuery} 
+                onChange={(e) => setSearchQuery(e.target.value)}  // Update search query state
+                onKeyPress={handleKeyPress}  // Listen for "Enter" key press
+                placeholder="Search by category..." />
               </div>
             </div>
             <div class="QContactStore">
     {
         contactData.map((contact) => (
             <div class="QContactCard" key={contact._id}>
-                <h3>{contact.disease}</h3>
+                <h7>{contact.category}</h7>
                 <MdEdit className="QEditIcon" onClick={() => handleEdit(contact._id)} />                
-                <p><strong>Symptoms:</strong> {contact.description}</p>
-                <p><strong>Category:</strong> {contact.category}</p>
-                <p><strong>Location:</strong> {contact.location}</p>
+                <p><strong>Disease    :</strong> {contact.disease}</p>
+                <p><strong>Symptoms   :</strong> {contact.description}</p>
+                <p><MdOutlineLocationOn className="QlocationIcon"/>{contact.location}</p>
+                 <div>
+                  <h4>Solutions:</h4>
+                  { 
+                    contact.solutions.map((sol, index) => (
+                      <ul>
+                      <li key={index}> {sol.solution}</li>
+                      </ul>
+                    ))
+                   }
+                </div>
                 <div class="QCardActions">
-                <Link to="/Contact/AddProblem">
-                  <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add Solution
+                  <div><button type="primary"  onClick={() => handleSolution(contact._id)} className="QSolutionbtn">Add Solution
                   </button></div>
-            </Link>
-                    <MdDeleteOutline className="QdeleteIcon" onClick={() => handleDelete(contact._id)} />
-
+                  <MdDeleteOutline className="QdeleteIcon" onClick={() => handleDelete(contact._id)} />
                 </div>
             </div>
         ))

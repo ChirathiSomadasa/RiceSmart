@@ -37,8 +37,6 @@ app.post('/api/predictions', async (req, res) => {
 
 });
 
- 
-
 app.get('/ ', (req, res) => {
     ContactModel.find({})
     .then(contacts => res.json(contacts))
@@ -87,8 +85,6 @@ app.post("/AddProblem",async(req,res) => {
     res.json(contact);
     */
 });
-
-
 // Fetch all problems
 app.get("/", async (req, res) => {
     try {
@@ -130,3 +126,38 @@ app.get('/getContact/:id', async (req, res) => {
         res.status(500).json({ error: 'Error fetching problem' });
     }
 });
+
+app.put('/addSolution/:id', async (req, res) => {
+    const { id } = req.params;
+    const { solution } = req.body;
+
+    try {
+        const contact = await ContactModel.findById(id);
+        if (!contact) {
+            return res.status(404).json({ error: 'Problem not found' });
+        }
+
+        // Push new solution to the solutions array
+        contact.solutions.push({ solution });
+
+        await contact.save();
+        res.status(200).json({ message: 'Solution added successfully', data: contact });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error adding solution. Please try again.' });
+    }
+});
+
+app.get('/getSolution/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const contact = await ContactModel.findById(id).populate('solutions'); // Populate solutions field
+        res.status(200).json(contact);
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching problem' });
+    }
+});
+
+
+
+

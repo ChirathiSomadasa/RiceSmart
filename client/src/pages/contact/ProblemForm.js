@@ -24,7 +24,7 @@ function AddProblem() {
             setDescription('');
             setCategory('');
             setLocation('');
-            setTimeout(() => navigate('/contact'), 2000); // Redirect after success
+            navigate('/contact'); // Redirect after success
         } catch (err) {
             setError('Error adding problem. Please try again.');
         }
@@ -67,8 +67,8 @@ function AddProblem() {
                         </div>
                         <div className="PAform-group">
                             <label>Category:</label>
-                            <select id="productCategory" className="PAinarea" placeholder='Select Category' value={category} onChange={(e) => setCategory(e.target.value)} required>
-                                 
+                            <select id="productCategory" className="PAinarea"   value={category} onChange={(e) => setCategory(e.target.value)} required>
+                                <option>Select Category</option>
                                 <option>During Harvesting Time</option>
                                 <option>During Sowing Time</option>
                                 <option>During Crop Cultivation</option>

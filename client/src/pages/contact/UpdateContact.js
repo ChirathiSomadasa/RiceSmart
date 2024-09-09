@@ -34,7 +34,7 @@ function UpdateContact() {
         try {
             await axios.put(`http://localhost:5001/UpdateContact/${id}`, { disease, description, category, location });
             setSuccessMessage('Problem updated successfully!');
-            setTimeout(() => navigate('/contact'), 2000); // Redirect after success
+            navigate('/contact'); // Redirect after success
         } catch (err) {
             setError('Error updating problem. Please try again.');
         }
