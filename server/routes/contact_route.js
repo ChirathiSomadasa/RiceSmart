@@ -4,161 +4,87 @@ const Contact = require("../models/contact");
 
  
 
-// Route to get problems based on category or fetch all if category is not provided
-router.route("/get").post((req, res) => {
-    var category = req.body.category;
-    if (category != null) {
-        Contact.find().where("category").equals(category).exec().then((result) => {
-            res.send(result);
-        });
-    } else {
-        Contact.find().sort({ date_updated: 1 }).exec().then((result) => {
-            res.send(result);
-        });
+// Fetch all contacts
+router.get('/api', async (req, res) => {
+    try {
+        const contacts = await ContactModel.find({});
+        res.status(200).json(contacts);
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching problems' });
     }
 });
 
-// Route to get a specific problem by ID
-router.route("/get_problem").post(async (req, res) => {
-    if (req.current_user != null) {
-        const userId = req.current_user.user_id;
-        const problemId = req.body.problem_id;
-
-        // Validate data
-        if (problemId == null || problemId == "") {
-            res.send({ status: "required_failed", "message": "Required values are not received." });
-            return;
-        }
-        
-        Contact.findOne({ _id: problemId }).then((result) => {
-            res.send({ status: "success", Contact: result });
-        }).catch((error) => {
-            res.send({ status: "invalid_problem_id", message: "Please enter valid problem ID." });
-        });
-
-    } else {
-        res.send({ status: "auth_failed", message: "User authentication required." });
+// Add a problem
+router.post("/api/AddProblem", async (req, res) => {
+    try {
+        const newProblem = new ContactModel(req.body);
+        await newProblem.save();
+        res.status(200).json({ message: 'Problem added successfully!', data: newProblem });
+    } catch (err) {
+        res.status(500).json({ error: 'Error adding problem' });
     }
 });
 
-// Route for admins to get all problems
-router.route("/admin_get").post((req, res) => {
-    if (req.current_user != null) {
-        const userType = req.current_user.user.type;
-
-        if (userType == "admin") {
-            Problem.find().then((result) => {
-                res.send({ status: "success", data: result });
-            });
-        } else {
-            res.send({ status: "access_denied", message: "Can not access." });
-        }
-
-    } else {
-        res.send({ status: "auth_failed", message: "User authentication required." });
+// Update a problem
+router.put("/api/UpdateContact/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const updatedProblem = await ContactModel.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(updatedProblem);
+    } catch (err) {
+        res.status(500).json({ error: 'Error updating problem' });
     }
 });
 
-// Route to add a new problem
-router.route("/add").post((req, res) => {
-    if (req.current_user != null) {
-        const userType = req.current_user.user.type;
-
-        if (userType == "admin") {
-            const disease = req.body.disease;
-            const desc = req.body.description;
-            const category = req.body.category;
-            const location = req.body.location;
-
-            const problem = new Problem({
-                disease: disease,
-                description: desc,
-                category: category,
-                location: location,
-                
-            });
-
-            problem.save().then(() => {
-                res.send({ status: "success", message: "Problem added." });
-            }).catch((e) => {
-                res.send("error - " + e);
-            });
-
-        } else {
-            res.send({ status: "access_denied", message: "Can not access." });
-        }
-
-    } else {
-        res.send({ status: "auth_failed", message: "User authentication required." });
+// Delete a problem
+router.delete("/api/deleteContact/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        await ContactModel.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Problem deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ error: 'Error deleting problem' });
     }
 });
 
-// Route to delete a problem
-router.route("/delete").post((req, res) => {
-    if (req.current_user != null) {
-        const userType = req.current_user.user.type;
-
-        if (userType == "admin") {
-            const problemId = req.body.problem_id;
-
-            if (problemId == null || problemId == "") {
-                res.send({ status: "required_failed", message: "Required values are not received." });
-                return;
-            }
-
-            Problem.findOneAndDelete({ _id: problemId }).then(() => {
-                res.send({ status: "success", message: "Problem deleted." });
-            }).catch((error) => {
-                res.send({ status: "failed", message: error });
-            });
-
-        } else {
-            res.send({ status: "access_denied", message: "Can not access." });
-        }
-
-    } else {
-        res.send({ status: "auth_failed", message: "User authentication required." });
+// Fetch a single problem by ID
+router.get('/api/getContact/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const contact = await ContactModel.findById(id);
+        res.status(200).json(contact);
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching problem' });
     }
 });
 
-// Route to update a problem's details
-router.route("/update").post((req, res) => {
-    if (req.current_user != null) {
-        const userType = req.current_user.user.type;
+// Add a solution to a problem
+router.put('/api/addSolution/:id', async (req, res) => {
+    const { id } = req.params;
+    const { solution } = req.body;
 
-        if (userType == "admin") {
-            const problemId = req.body.problem_id;
-            const disease = req.body.disease;
-            const desc = req.body.description;
-            const category = req.body.category;
-            const location = req.body.location;
-
-            if (problemId == null || problemId == "" ||
-                disease == null || disease == "" ||
-                category == null || category == "" ||
-                location == null || location == "") {
-                res.send({ status: "required_failed", message: "Required values are not received." });
-                return;
-            }
-
-            Problem.findOneAndUpdate({ _id: problemId }, {
-                disease: disease,
-                description: desc,
-                category: category,
-                location: location,
-                
-            }).then(() => {
-                res.send({ status: "success", message: "Problem updated." });
-            }).catch((e) => {
-                res.send(e);
-            });
-
-        } else {
-            res.send({ status: "access_denied", message: "Can not access." });
+    try {
+        const contact = await ContactModel.findById(id);
+        if (!contact) {
+            return res.status(404).json({ error: 'Problem not found' });
         }
 
-    } else {
-        res.send({ status: "auth_failed", message: "User authentication required." });
+        contact.solutions.push({ solution });
+        await contact.save();
+        res.status(200).json({ message: 'Solution added successfully', data: contact });
+    } catch (err) {
+        res.status(500).json({ error: 'Error adding solution. Please try again.' });
+    }
+});
+
+// Fetch solutions for a problem
+router.get('/api/getSolution/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const contact = await ContactModel.findById(id).populate('solutions');
+        res.status(200).json(contact);
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching problem' });
     }
 });
 
