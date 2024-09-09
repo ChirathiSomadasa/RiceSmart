@@ -3,13 +3,14 @@ import React from 'react';
 import { json,Link } from 'react-router-dom';
 import './Contact.css';
 import axios from 'axios';
-import { MdDeleteOutline } from "react-icons/md";
+import { MdDeleteOutline,MdEdit } from "react-icons/md";
 import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
 function Contact() {
   const [contactData, setContactData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
  
   const handleAddProblem = () => {
     window.location.href = '/contact/ProblemForm';
@@ -37,12 +38,27 @@ useEffect(() => {
    )
   */
 
-   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5001/deleteContact/${id}`)
-        .then(() => {
-            setContactData(contactData.filter(contact => contact._id !== id));
-        })
-        .catch(err => console.log(err));
+const handleDelete = (id) => {
+    // Display a confirmation popup
+    if (window.confirm("Are you sure you want to delete it?")) {
+        // If confirmed, proceed with the deletion
+        axios.delete(`http://localhost:5001/deleteContact/${id}`)
+            .then(() => {
+                // After successful deletion, update state
+                setContactData(contactData.filter(contact => contact._id !== id));
+                
+                // Display success message
+                alert("Problem deleted successfully.");
+            })
+            .catch(err => {
+                console.log(err);
+                // Optionally display an error message
+                alert("Failed to delete the problem. Please try again.");
+            });
+    } else {
+        // If the user cancels the deletion, you can log or handle it here
+        console.log("Deletion cancelled.");
+    }
 };
 
 
@@ -55,6 +71,12 @@ useEffect(() => {
     setContactData(filteredContacts);
   }
 
+  const handleEdit = (id) => {
+    // Redirect to the edit page
+    window.location.href = `/contact/UpdateContact/${id}`;
+
+
+};
    
 
   return (
@@ -99,7 +121,7 @@ useEffect(() => {
             </div>
             <div class="QaddBtn">
              <Link to="/Contact/AddProblem">
-                  <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add a Problem
+                  <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add Disease
                   </button></div>
             </Link>
 
@@ -112,12 +134,17 @@ useEffect(() => {
         contactData.map((contact) => (
             <div class="QContactCard" key={contact._id}>
                 <h3>{contact.disease}</h3>
-                <p><strong>Description:</strong> {contact.description}</p>
+                <MdEdit className="QEditIcon" onClick={() => handleEdit(contact._id)} />                
+                <p><strong>Symptoms:</strong> {contact.description}</p>
                 <p><strong>Category:</strong> {contact.category}</p>
                 <p><strong>Location:</strong> {contact.location}</p>
                 <div class="QCardActions">
-                    <Link to={`/contact/UpdateContact/${contact._id}`} className="QUpdateBtn">Edit</Link>
-                    <button className="QUpdateBtn" onClick={() => handleDelete(contact._id)}>Delete</button>
+                <Link to="/Contact/AddProblem">
+                  <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add Solution
+                  </button></div>
+            </Link>
+                    <MdDeleteOutline className="QdeleteIcon" onClick={() => handleDelete(contact._id)} />
+
                 </div>
             </div>
         ))

@@ -6,6 +6,8 @@ import SignUp from './pages/signup/SignUp';
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import ProblemForm from './pages/contact/ProblemForm';
+import UpdateContact from './pages/contact/UpdateContact';
+
    
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
     <Route path="/login" element={<Login />} />
     <Route path="/" element={<Home />} />
     <Route path="/contact/ProblemForm" element={<ProblemForm/>}/>
+    <Route path="/contact/UpdateContact/:id" element={<UpdateContact/>}/>
+
   
     </Routes>
   </BrowserRouter>

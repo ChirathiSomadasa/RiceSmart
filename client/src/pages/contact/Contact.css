@@ -132,6 +132,7 @@
   background-color: #f9f9f9;
   width: 80%; /* Make the card width occupy most of the row */
   padding: 20px;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -160,36 +161,51 @@
   margin-top: 15px;
 }
 
-.QUpdateBtn {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  text-decoration: none;
-}
-
-.QUpdateBtn:hover {
-  background-color: #45a049;
-}
-
-button.QUpdateBtn {
-  background-color: #f44336;
-}
-
-button.QUpdateBtn:hover {
-  background-color: #e60000;
-}
-
 h3 {
   color: #4CAF50;
   margin-bottom: 30px;
 }
+.QdeleteIcon {
+  font-size: 24px; /* Size of the icon */
+  color: #ff4d4f; /* Red color */
+  cursor: pointer; /* Show pointer on hover */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.QdeleteIcon:hover {
+  color: #ac1513; /* Lighter red on hover */
+}
 
   
+.QContactCard {
+  position: relative; /* Allow positioning of child elements */
+  border: 1px solid #ddd; /* Card border */
+  padding: 20px; /* Padding inside the card */
+  margin-bottom: 20px; /* Space between cards */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Card shadow */
+  background-color: #fff; /* White background */
+}
+
+.QEditIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px; /* Icon size */
+  color: #053f75; /* Blue color for the edit icon */
+  cursor: pointer; /* Show pointer on hover */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+
+.QCardActions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between; /* Space between the edit and delete buttons */
+  align-items: center;
+}
+
  
+ 
+
  

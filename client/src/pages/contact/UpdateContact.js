@@ -26,6 +26,7 @@ function UpdateContact() {
                 setLocation(problem.location);
             })
             .catch(err => console.log(err));
+            
     }, [id]);
  
     const handleUpdate = async (e) => {
@@ -47,18 +48,18 @@ function UpdateContact() {
             <div className='QForm'>
                 <div className="PAformout">
                     <form className="PAproductForm" onSubmit={handleUpdate}>
-                        <h2 className="PAtopic">Update Problem</h2>
+                        <h2 className="PAtopic">Update Disease</h2>
                         <div className="PAform-group">
-                            <label>Edit Disease:</label>
-                            <input type="text" className="PAinarea" placeholder='Enter Disease' value={disease} onChange={(e) => setDisease(e.target.value)} required />
+                            <label>Disease:</label>
+                            <input type="text" className="PAinarea" value={disease} onChange={(e) => setDisease(e.target.value)} required />
                         </div>
                         <div className="PAform-group">
-                            <label>Edit Description:</label>
-                            <textarea className="PAinarea" placeholder='Enter Description' value={description} onChange={(e) => setDescription(e.target.value)} required />
+                            <label>Description:</label>
+                            <textarea className="PAinarea" value={description} onChange={(e) => setDescription(e.target.value)} required />
                         </div>
                         <div className="PAform-group">
-                            <label>Edit Category:</label>
-                            <select id="productCategory" className="PAinarea" placeholder='Select Category' value={category} onChange={(e) => setCategory(e.target.value)} required>
+                            <label>Category:</label>
+                            <select id="productCategory" className="PAinarea"  value={category} onChange={(e) => setCategory(e.target.value)} required>
                                  
                                 <option>During Harvesting Time</option>
                                 <option>During Sowing Time</option>
@@ -67,8 +68,8 @@ function UpdateContact() {
                             </select>
                         </div>
                         <div className="PAform-group">
-                            <label>Edit Location:</label>
-                            <input type="text" className="PAinarea" placeholder='Enter Location' value={location} onChange={(e) => setLocation(e.target.value)} />
+                            <label>Location:</label>
+                            <input type="text" className="PAinarea"  value={location} onChange={(e) => setLocation(e.target.value)} />
                         </div>
                         <button type="submit" className="PAbtn">Update</button>
                     </form>

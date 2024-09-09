@@ -56,7 +56,7 @@ function AddProblem() {
             <div className='QForm'>
                 <div className="PAformout">
                     <form className="PAproductForm" onSubmit={handleSubmit}>
-                        <h2 className="PAtopic">Add Problem</h2>
+                        <h2 className="PAtopic">Add Disease</h2>
                         <div className="PAform-group">
                             <label>Disease:</label>
                             <input type="text" className="PAinarea" placeholder='Enter Disease' value={disease} onChange={(e) => setDisease(e.target.value)} required />
