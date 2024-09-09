@@ -18,7 +18,7 @@ function PredictionResult() {
         // Fetch all predictions from the backend
         const fetchPredictions = async () => {
             try {
-                const response = await axios.post('http://localhost:5001/prediction/api/predictions/',{auth_email:authEmail,auth_password:authPassword});
+                const response = await axios.post('http://localhost:5001/prediction/api/getpredictions/',{auth_email:authEmail,auth_password:authPassword});
 
                 for(var i = 0; i < response.data.data.length; i++){
                     var item = response.data.data[i];

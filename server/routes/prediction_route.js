@@ -49,7 +49,7 @@ router.get('/api/predictions/:id', async (req, res) => {
 });
 
 // Get all predictions
-router.post('/api/predictions', async (req, res) => {
+router.post('/api/getpredictions', async (req, res) => {
 
     if(req.current_user == null){
         res.status(200).json({

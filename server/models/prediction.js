@@ -9,8 +9,7 @@ var predictShcema = new Schema(
         yieldVariability:{type:String,required:true},
         geographicLocation:{type:String,required:true},
         irrigationPractices:{type:String,required:true},
-        weatherConditions:{type:String,required:true},
-        
+        weatherConditions:{type:String,required:true}
     }
 );
 
