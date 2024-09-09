@@ -17,12 +17,12 @@
 .hero_text {
     text-align: center;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     font-family: 'Times New Roman';
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .yiled_data{
@@ -180,8 +180,7 @@
 
 width:500px;
 height: 150px;
-background-color: #ffffff3f;
-background-image: linear-gradient(rgba(255, 255, 255, 0.234),#effceb);
+background-color: #e2ffe7;
 padding: 45px;
 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
@@ -193,12 +192,11 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .ok_button{
 
+
     margin: 0;
     width: 100px;
     height: 40px;
     background-color: black;
-    border-radius: 10px;
     color: white;
     cursor: pointer;
-    font-weight: bold;
 }

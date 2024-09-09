@@ -8,6 +8,11 @@ import Home from './pages/home/Home';
 import ProblemForm from './pages/contact/ProblemForm';
 import UpdateContact from './pages/contact/UpdateContact';
 import AddSolution from './pages/contact/AddSolution';
+import Predictions from './pages/predictions/Predictions';
+import PredictionResult from './pages/predictions/PredictionResult';
+import EditResult from './pages/predictions/EditResult';
+import SignOut from './pages/signout/SignOut';
+
 
    
 function App() {
@@ -22,9 +27,10 @@ function App() {
     <Route path="/contact/ProblemForm" element={<ProblemForm/>}/>
     <Route path="/contact/UpdateContact/:id" element={<UpdateContact/>}/>
     <Route path="/contact/AddSolution/:id" element={<AddSolution/>}/>
-
-
-  
+    <Route path="/predictions" element={<Predictions />} />
+    <Route path="/predictionResult" element={<PredictionResult />} />
+    <Route path="/EditResult/:id" element={<EditResult />} />
+    <Route path="/signout" element={<SignOut />} />
     </Routes>
   </BrowserRouter>
   );

@@ -41,13 +41,35 @@ function Home() {
                     <div className='welcome_photo'><img src={WelcomeImage} alt="welcome" /></div>
                 </div>
 
-                
+                <div className="about-image">
+                    <div className="about-text">
+                        <h1>About Us</h1><br></br>
+
+                        <p>RiceSmart is a comprehensive platform designed to revolutionize yield prediction and crop management for farmers. By integrating historical data with real-time field inputs such as location, soil quality, climate conditions, crop variety, and farming techniques, the system helps users make informed decisions about planting, harvesting, 
+                            and ploughing. Farmers can quickly determine whether current conditions are favorable for their crops, enhancing productivity and reducing risks. <br></br><br></br>
+                            <br></br><br></br>
+                            Farmers can quickly determine whether current conditions are favorable for their crops, enhancing productivity and reducing risks.
+                             RiceSmart also generates detailed reports on farm success rates, offering a clear picture of overall crop health across various regions.
+                             The platform goes beyond yield prediction by providing disease management tools that allow users to report issues related to crop diseases. 
+                             Farmers can fill out forms with detailed descriptions of symptoms and GPS locations, 
+                             enabling the platform to map disease spread and issue emergency alerts to local agriculture agents and affected users. 
+                          <br></br><br></br>
+                          Additionally, RiceSmart fosters a collaborative environment where users can share solutions, whether it’s through home remedies, 
+                          fertilizer suggestions, or pest control tips. To further assist farmers, the platform offers tailored recommendations for fertilizer and pesticide use, 
+                          including refill and disposal options, making it easier to manage resources sustainably. With its holistic approach, RiceSmart empowers farmers 
+                          to boost their yield while addressing challenges in a proactive and efficient manner.
+                        </p>
+
+                    </div>
+                </div>
                
             </div>
 
 
 
         </div>
+
+        
 
     );
 }
