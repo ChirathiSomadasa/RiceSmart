@@ -20,6 +20,7 @@ function AddProblem() {
         try {
             const response = await axios.post("http://localhost:5001/AddProblem", { disease, description, category, location });
             setSuccessMessage('Problem added successfully!');
+            alert('Problem added successfully!!!');
             setDisease('');
             setDescription('');
             setCategory('');
@@ -27,6 +28,7 @@ function AddProblem() {
             navigate('/contact'); // Redirect after success
         } catch (err) {
             setError('Error adding problem. Please try again.');
+            alert('Error adding problem. Please try again.');
         }
     };
         /*
@@ -51,10 +53,7 @@ function AddProblem() {
     return (
         <div className='QAddProblemForm'>
             <div className='Qaddproblem_photo'>
-                <img src={serviceImage} alt="Qaddproblem" />
-            </div>
-            <div className='QForm'>
-                <div className="PAformout">
+                <br></br><br></br>
                     <form className="PAproductForm" onSubmit={handleSubmit}>
                         <h2 className="PAtopic">Add Disease</h2>
                         <div className="PAform-group">
@@ -79,13 +78,14 @@ function AddProblem() {
                             <label>Location:</label>
                             <input type="text" className="PAinarea" placeholder='Enter Location' value={location} onChange={(e) => setLocation(e.target.value)} />
                         </div>
+                        <br></br>
                         <button type="submit" className="PAbtn">Submit</button>
                     </form>
                     {error && <p>{error}</p>}
                     {successMessage && <p>{successMessage}</p>}
                 </div>
             </div>
-        </div>
+        
 
         
     );

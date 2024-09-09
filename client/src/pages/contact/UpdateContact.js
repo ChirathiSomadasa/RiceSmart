@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
 import './UpdateContact.css';
-import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/14.jpeg';
 
 function UpdateContact() {
     const navigate = useNavigate();
@@ -34,32 +33,31 @@ function UpdateContact() {
         try {
             await axios.put(`http://localhost:5001/UpdateContact/${id}`, { disease, description, category, location });
             setSuccessMessage('Problem updated successfully!');
-            navigate('/contact'); // Redirect after success
+            navigate('/contact/ManageDisease'); // Redirect after success
+            alert('Problem updated successfully!!!')
         } catch (err) {
             setError('Error updating problem. Please try again.');
+            alert('Error updating problem. Please try again.');
         }
     };
 
     return (
-        <div className='QAddProblemForm'>
-            <div className='Qaddproblem_photo'>
-                <img src={serviceImage} alt="Qaddproblem" />
-            </div>
-            <div className='QForm'>
-                <div className="PAformout">
-                    <form className="PAproductForm" onSubmit={handleUpdate}>
-                        <h2 className="PAtopic">Update Disease</h2>
-                        <div className="PAform-group">
+        <div className='PUpdateProblemForm'>
+            <div className='PUaddproblem_photo'>
+                <br></br><br></br>
+                    <form className="PUproductForm" onSubmit={handleUpdate}>
+                        <h2 className="PUtopic">Update Disease</h2>
+                        <div className="PUform-group">
                             <label>Disease:</label>
-                            <input type="text" className="PAinarea" value={disease} onChange={(e) => setDisease(e.target.value)} required />
+                            <input type="text" className="PUinarea" value={disease} onChange={(e) => setDisease(e.target.value)} required />
                         </div>
-                        <div className="PAform-group">
+                        <div className="PUform-group">
                             <label>Description:</label>
-                            <textarea className="PAinarea" value={description} onChange={(e) => setDescription(e.target.value)} required />
+                            <textarea className="PUinarea" value={description} onChange={(e) => setDescription(e.target.value)} required />
                         </div>
-                        <div className="PAform-group">
+                        <div className="PUform-group">
                             <label>Category:</label>
-                            <select id="productCategory" className="PAinarea"  value={category} onChange={(e) => setCategory(e.target.value)} required>
+                            <select id="productCategory" className="PUinarea"  value={category} onChange={(e) => setCategory(e.target.value)} required>
                                  
                                 <option>During Harvesting Time</option>
                                 <option>During Sowing Time</option>
@@ -67,17 +65,16 @@ function UpdateContact() {
                                 <option>Other</option>
                             </select>
                         </div>
-                        <div className="PAform-group">
+                        <div className="PUform-group">
                             <label>Location:</label>
-                            <input type="text" className="PAinarea"  value={location} onChange={(e) => setLocation(e.target.value)} />
+                            <input type="text" className="PUinarea"  value={location} onChange={(e) => setLocation(e.target.value)} />
                         </div>
-                        <button type="submit" className="PAbtn">Update</button>
+                        <button type="submit" className="PUbtn">Update</button>
                     </form>
                     {error && <p>{error}</p>}
                     {successMessage && <p>{successMessage}</p>}
                 </div>
             </div>
-        </div>
 
         
     );

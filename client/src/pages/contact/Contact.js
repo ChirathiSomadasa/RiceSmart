@@ -4,6 +4,7 @@ import { json,Link } from 'react-router-dom';
 import './Contact.css';
 import axios from 'axios';
 import { MdDeleteOutline,MdEdit,MdOutlineLocationOn } from "react-icons/md";
+import { jsPDF } from "jspdf";
 import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
@@ -16,6 +17,10 @@ function Contact() {
     window.location.href = '/contact/ProblemForm';
 };
 
+const handleDisease = () => {
+  window.location.href = '/contact/ManageDisease';
+};
+
 useEffect(() => {
 
   axios.get('http://localhost:5001/')
@@ -23,29 +28,6 @@ useEffect(() => {
   .catch(err => console.log(err))
 },[]);
 
-
-const handleDelete = (id) => {
-    // Display a confirmation popup
-    if (window.confirm("Are you sure you want to delete it?")) {
-        // If confirmed, proceed with the deletion
-        axios.delete(`http://localhost:5001/deleteContact/${id}`)
-            .then(() => {
-                // After successful deletion, update state
-                setContactData(contactData.filter(contact => contact._id !== id));
-                
-                // Display success message
-                alert("Problem deleted successfully.");
-            })
-            .catch(err => {
-                console.log(err);
-                // Optionally display an error message
-                alert("Failed to delete the problem. Please try again.");
-            });
-    } else {
-        // If the user cancels the deletion, you can log or handle it here
-        console.log("Deletion cancelled.");
-    }
-};
 
 
   function handleSearch() {
@@ -57,12 +39,6 @@ const handleDelete = (id) => {
     setContactData(filteredContacts);
   }
 
-  const handleEdit = (id) => {
-    // Redirect to the edit page
-    window.location.href = `/contact/UpdateContact/${id}`;
-
-
-};
 
 const handleSolution = (id) => {
   // Redirect to the edit page
@@ -76,6 +52,60 @@ function handleKeyPress(event) {
     handleSearch();  // Trigger search when "Enter" key is pressed
   }
 }
+
+const generateReport = () => {
+  const doc = new jsPDF();
+  doc.text("Disease Report", 10, 10);
+  doc.text("All Available Products in the store : ", 10, 18);
+
+ 
+  // Add header
+const header = [['Disease Name', 'Category', 'Description', 'Location', 'Solutions']];
+
+  // Add some sample data (replace with your actual product data)
+const data = [];
+
+ // Populate data array with product data
+ contactData.forEach(contact => {
+     data.push([
+      contact.disease,
+      contact.category,
+      contact.description,
+      contact.location,
+      contact.solutions,
+          
+     ]);
+  });
+
+  // Set table style
+  const styles = {
+        fontSize: 10,
+        cellPadding: 2
+     
+  };
+
+  // Set table column widths
+  const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto' ];
+
+  // Auto-generate table
+  doc.autoTable({
+     head: header,
+     body: data,
+     startY: 20, // Start y-position of the table
+     styles: styles,
+     columnStyles: {
+      0: { fontStyle: 'bold' } // Make the first column bold
+     },
+     columnWidth: columnWidths,
+     margin: { top: 30 } // Add margin between header and table
+  });  
+  
+ 
+
+     
+     doc.save("Product Report.pdf"); // Save the PDF
+      
+};
   return (
     <div>
       <div className='Qparallax'>
@@ -116,25 +146,32 @@ function handleKeyPress(event) {
                 </div>
                
             </div>
-            <div class="QaddBtn">
-             <Link to="/Contact/AddProblem">
-                  <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add Disease
-                  </button></div>
-            </Link>
-
+           
               <div class="QStoreSearch">
                 <input type="text" class="QSearch" onClick={handleSearch} value={searchQuery} 
                 onChange={(e) => setSearchQuery(e.target.value)}  // Update search query state
                 onKeyPress={handleKeyPress}  // Listen for "Enter" key press
                 placeholder="Search by category..." />
               </div>
+              <div class="QaddBtn">
+             <Link to="/Contact/AddProblem">
+                  <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add Disease
+                  </button></div>
+             </Link>
+            <Link to="/Contact/ManageDisease">
+                  <div><button type="primary" onClick={handleDisease} className="Qmanagebtn">Manage Disease
+                  </button></div>
+            </Link>
+            <Link >
+                  <div><button type="primary" onClick={generateReport} className="Qgeneratebtn">Generate Report
+                  </button></div>
+            </Link>
             </div>
             <div class="QContactStore">
     {
         contactData.map((contact) => (
             <div class="QContactCard" key={contact._id}>
-                <h7>{contact.category}</h7>
-                <MdEdit className="QEditIcon" onClick={() => handleEdit(contact._id)} />                
+                <h7>{contact.category}</h7>                
                 <p><strong>Disease    :</strong> {contact.disease}</p>
                 <p><strong>Symptoms   :</strong> {contact.description}</p>
                 <p><MdOutlineLocationOn className="QlocationIcon"/>{contact.location}</p>
@@ -151,7 +188,6 @@ function handleKeyPress(event) {
                 <div class="QCardActions">
                   <div><button type="primary"  onClick={() => handleSolution(contact._id)} className="QSolutionbtn">Add Solution
                   </button></div>
-                  <MdDeleteOutline className="QdeleteIcon" onClick={() => handleDelete(contact._id)} />
                 </div>
             </div>
         ))

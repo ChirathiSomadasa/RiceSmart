@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
-import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/14.jpeg';
-
+//import './AddSolution.css';
+ 
+ 
 function AddSolution() {
     const navigate = useNavigate();
     const {id} = useParams()
@@ -27,6 +28,7 @@ function AddSolution() {
     try {
         await axios.put(`http://localhost:5001/addSolution/${id}`, { solution });
         setSuccessMessage('Solution added successfully!');
+        alert('Solution added successfully!');
         setSolution(''); // Clear the form after submission
 
         // Fetch the updated contact data to display the new solution
@@ -35,17 +37,15 @@ function AddSolution() {
         navigate('/contact')
     } catch (err) {
         setError('Error adding solution. Please try again.');
+        alert('Error adding solution. Please try again.');
     }
 };
 
 
     return (
         <div className='QAddProblemForm'>
-            <div className='Qaddproblem_photo'>
-                <img src={serviceImage} alt="Qaddproblem" />
-            </div>
-            <div className='QForm'>
-                <div className="PAformout">
+            <div className='Aaddproblem_photo'>
+                 <br></br><br></br>
                     <form className="PAproductForm" onSubmit={handleSolution}>
                         <h2 className="PAtopic">Add Solution</h2>
                         <div className="PAform-group">
@@ -63,7 +63,7 @@ function AddSolution() {
                     {successMessage && <p>{successMessage}</p>}
                 </div>
             </div>
-        </div>
+        
 
         
     );
