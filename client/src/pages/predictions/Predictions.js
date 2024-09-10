@@ -138,7 +138,7 @@ function Predictions() {
     };
 
     if (authEmail == null || authPassword == null) {
-        return ("No login");
+        return (<div className='pre_log'>You must log into the system in order to add a prediction</div>);
     } else {
         return (
             <div>
@@ -188,7 +188,7 @@ function Predictions() {
                             <h4>1. Variety (Type of Rice)</h4>
                             <ul>
                                 <li><p><b>What to do: </b>Enter the name of the rice variety you're growing.</p></li>
-                                <li><p><b>Valid options: </b>You can use these types.</p><p>basmathi, kurulu thuda, heenati, haramas, rathhal,maavee,pachchaperumal, red Rice, black Rice, Sticky Rice, Samba, Keeri Samba, Nadu, Kakulu.</p></li>
+                                <li><p><b>Format: </b>You can use these types.</p><p>basmathi, kurulu thuda, heenati, haramas, rathhal,maavee,pachchaperumal, red Rice, black Rice, Sticky Rice, Samba, Keeri Samba, Nadu, Kakulu.</p></li>
                                 <li><p><b>Example: </b>If you are growing Samba rice, enter "samba".</p></li>
                             </ul>
 
@@ -304,6 +304,10 @@ function Predictions() {
                                 <option value='Flood irrigation'>Flood irrigation</option>
                                 <option value='Sprinkler irrigation'>Sprinkler irrigation</option>
                                 <option value='Surface irrigation'>Surface irrigation</option>
+                                <option value='Localized irrigation'>Localized irrigation</option>
+                                <option value='Centre Pivot irrigation'>Centre Pivot irrigation</option>
+                                <option value='Sub irrigation'>Sub irrigation</option>
+                                <option value='Manual irrigation'>Manual irrigation</option>
                             </select>
                             <br />
 
