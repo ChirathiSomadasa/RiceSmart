@@ -142,3 +142,9 @@ app.use("/user", userRoute);
 // Start the server
 const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Node server started at port ${port}`));
+
+
+const diseaseLocationRoutes = require('./routes/map/diseaseLocation');
+app.use('/api', diseaseLocationRoutes);
+const locationNotificationRoutes = require('./routes/map/notification');
+app.use('/api_loc', locationNotificationRoutes);

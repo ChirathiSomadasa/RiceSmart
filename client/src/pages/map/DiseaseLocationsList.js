@@ -18,7 +18,7 @@ const DiseaseLocationsList = () => {
 
         } catch (err) {
             console.error(err);
-            setError('Errorrrrrrr fetching locations');
+            setError(`Error fetching locations: ${err.message}`); // Display specific error message
             setLoading(false);
         }
         };
