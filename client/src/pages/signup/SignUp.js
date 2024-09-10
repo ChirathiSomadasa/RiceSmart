@@ -190,7 +190,7 @@ function SignUp() {
             >
               <Input.Password className="signup_input" placeholder="Confirm Password" type="password" />
             </Form.Item>
-            <button className="primary-button" type="submit" >SignUp</button>
+            <button className="primary-button" type="submit" >SIGN UP</button>
             <p className="para">
               Already have an account?<Link to="/login" className="anchor">LOGIN</Link>
             </p>

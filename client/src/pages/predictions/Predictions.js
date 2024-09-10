@@ -304,6 +304,10 @@ function Predictions() {
                                 <option value='Flood irrigation'>Flood irrigation</option>
                                 <option value='Sprinkler irrigation'>Sprinkler irrigation</option>
                                 <option value='Surface irrigation'>Surface irrigation</option>
+                                <option value='Localized irrigation'>Localized irrigation</option>
+                                <option value='Centre Pivot irrigation'>Centre Pivot irrigation</option>
+                                <option value='Sub irrigation'>Sub irrigation</option>
+                                <option value='Manual irrigation'>Manual irrigation</option>
                             </select>
                             <br />
 
