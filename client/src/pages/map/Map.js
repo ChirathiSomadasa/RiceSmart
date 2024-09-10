@@ -38,8 +38,8 @@ function HeatmapLayer({ points }) {
         maxZoom: 0,
         gradient: {
           // 0.1: 'blue',
-          .5: 'green',
-          .6: 'yellow',
+          .2: 'green',
+          .3: 'orange',
           1: 'red'
         }
       }).addTo(map);
