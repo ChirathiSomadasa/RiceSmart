@@ -1,6 +1,7 @@
 .result h1{
 
     text-align: center;
+    font-weight: 600;
 
 }
 
@@ -47,6 +48,7 @@ th{
     margin-left: 255px;
     font-weight: bold;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .delete_btn{
@@ -59,6 +61,7 @@ th{
     border: none;
     font-weight: bold;
     border-radius: 10px;
+    cursor: pointer;
 
 }
 
@@ -76,20 +79,41 @@ th{
     width:300px;
     height: 40px;
     background-color: rgb(229, 229, 229);
-    border-radius: 10px;
+    border-radius: 20px;
     padding-left: 20px;
     margin-left: 50px;
     margin-top: 10px;
+}
+
+.search_container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fff;
+    width: 300px;
+}
+
+.search_icon {
+    color: #666;
+    margin-right: 10px;
+}
+
+.search_bar {
+    border: none;
+    outline: none;
+    flex: 1;
 }
 
 .report_yield{
 
     width:200px;
     height: 45px;
-    background-color: rgb(209, 247, 204);
+    background-color: #e2fad9;
     color: black;
     font-weight: bold;
     margin-left: 50px;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
 }

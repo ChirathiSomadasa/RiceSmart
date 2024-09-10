@@ -6,7 +6,6 @@ import axios from 'axios';
 import { MdOutlineLocationOn } from "react-icons/md";
 import { jsPDF } from "jspdf";
 import Logo from '../../images/logo.png';  
-
 import serviceImage from '../../images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
