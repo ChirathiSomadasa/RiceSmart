@@ -3,9 +3,9 @@ import React from 'react';
 import { json,Link } from 'react-router-dom';
 import './Contact.css';
 import axios from 'axios';
-import { MdDeleteOutline,MdEdit,MdOutlineLocationOn } from "react-icons/md";
+import { MdOutlineLocationOn } from "react-icons/md";
 import { jsPDF } from "jspdf";
-import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
+import serviceImage from '../../images/Contact/Qwelcome.jpg';  // Make sure to place your image in the public/images folder or src/images folder
 
 
 function Contact() {
