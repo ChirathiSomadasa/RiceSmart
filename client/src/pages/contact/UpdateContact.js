@@ -59,10 +59,10 @@ function UpdateContact() {
                             <label>Category:</label>
                             <select id="productCategory" className="PUinarea"  value={category} onChange={(e) => setCategory(e.target.value)} required>
                                  
-                                <option>During Harvesting Time</option>
-                                <option>During Sowing Time</option>
-                                <option>During Crop Cultivation</option>
-                                <option>Other</option>
+                            <option>Sowing Season</option>
+                                <option>Growing Season</option>
+                                <option>Harvesting Season</option>
+                                <option>Resting Season</option>
                             </select>
                         </div>
                         <div className="PUform-group">

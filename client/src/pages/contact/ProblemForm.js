@@ -33,23 +33,6 @@ function AddProblem() {
             alert('Error adding problem. Please try again.');
         }
     };
-        /*
-        try {
-            const response = await axios.post("http://localhost:3000/contact/add", QformData);
-            if (response.data.status === "success") {
-                setSuccessMessage('Problem added successfully!');
-                setDisease('');
-                setDescription('');
-                setCategory('');
-                setLocation('');
-                navigate('/contact');  // Redirect to the contact page to see the added problem
-            } else {
-                setError(response.data.message);
-            }
-        } catch (error) {
-            setError("Error adding problem. Please try again.");
-        }
-            */
 
         if(authEmail == null || authPassword == null){
             return("No login");
@@ -73,10 +56,10 @@ function AddProblem() {
                             <label>Category:</label>
                             <select id="productCategory" className="PAinarea"   value={category} onChange={(e) => setCategory(e.target.value)} required>
                                 <option>Select Category</option>
-                                <option>During Harvesting Time</option>
-                                <option>During Sowing Time</option>
-                                <option>During Crop Cultivation</option>
-                                <option>Other</option>
+                                <option>Sowing Season</option>
+                                <option>Growing Season</option>
+                                <option>Harvesting Season</option>
+                                <option>Resting Season</option>
                             </select>
                         </div>
                         <div className="PAform-group">

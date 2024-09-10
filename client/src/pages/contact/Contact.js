@@ -34,7 +34,8 @@ useEffect(() => {
     // Implement search logic here
     // For example, filter productData based on searchQuery
     const filteredContacts = contactData.filter(contact=> 
-      contact.category.toLowerCase().includes(searchQuery.toLowerCase())
+      contact.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      contact.disease.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setContactData(filteredContacts);
   }
@@ -153,7 +154,7 @@ const data = [];
                 onKeyPress={handleKeyPress}  // Listen for "Enter" key press
                 placeholder="Search by category..." />
               </div>
-              <div class="QaddBtn">
+               <div class="QaddBtn">
              <Link to="/Contact/AddProblem">
                   <div><button type="primary" onClick={handleAddProblem} className="Qadd-problem-button">Add Disease
                   </button></div>
@@ -171,10 +172,13 @@ const data = [];
     {
         contactData.map((contact) => (
             <div class="QContactCard" key={contact._id}>
-                <h7>{contact.category}</h7>                
-                <p><strong>Disease    :</strong> {contact.disease}</p>
-                <p><strong>Symptoms   :</strong> {contact.description}</p>
-                <p><MdOutlineLocationOn className="QlocationIcon"/>{contact.location}</p>
+                <h7>{contact.category}</h7> 
+                <br></br>               
+                <p><strong>Disease</strong> <br>
+                </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.disease}</p>
+                <p><strong>Symptoms   </strong><br></br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.description}</p><br></br>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}<MdOutlineLocationOn className="QlocationIcon"/></p>
                  <div>
                   <h4>Solutions:</h4>
                   { 
