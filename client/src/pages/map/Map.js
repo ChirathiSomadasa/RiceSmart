@@ -1,105 +1,145 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
+import 'leaflet.heat';
+import 'leaflet/dist/leaflet.css';
+
+import DiseaseLocationsList from './DiseaseLocationsList';
+
 
 // Fix for missing marker icons in Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 
+
+// L.Icon.Default.mergeOptions({
+//   iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+//   iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+//   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+// });
+
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+  iconRetinaUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png',
 });
 
 
-const getCircleOptions = (dangerLevel) => {
-    const colors = {
-      high: { color: 'red', radius: 1000 },
-      medium: { color: 'orange', radius: 700 },
-      low: { color: 'yellow', radius: 500 },
-      safe: { color: 'green', radius: 300 },
-    };
-  
-    return colors[dangerLevel] || colors.safe; // Default to 'safe' if dangerLevel is not found
-};
+
+// Custom component to add heat layer
+function HeatmapLayer({ points }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (points.length > 0) {
+      const heat = L.heatLayer(points, {
+        radius: 20,   // Adjust the radius for the heatmap spots
+        // blur: 0,
+        maxZoom: 0,
+        gradient: {
+          // 0.1: 'blue',
+          .5: 'green',
+          .6: 'yellow',
+          1: 'red'
+        }
+      }).addTo(map);
+
+      return () => {
+        map.removeLayer(heat);  // Clean up the layer on unmount or change
+      };
+    }
+  }, [map, points]);
+
+  return null;
+}
 
 
 
-
+// DB location visualized in Map
 function Map() {
-//   const position = [6.9271, 79.8612]; // Coordinates for Colombo, Sri Lanka
-  const position = [7.945, 80.821]; // Approximate center of Sri Lanka
+  // const position = [7.945, 80.821]; // Approximate center of Sri Lanka
+  const position = [7.2906, 80.6337]; // Centered on Kandy, Sri Lanka
+
   const [locations, setLocations] = useState([]);
 
 
-                                    /// get location from DB
-//   useEffect(() => {
-//     fetch('/api/locations')
-//       .then(response => response.json())
-//       .then(data => setLocations(data))
-//       .catch(err => console.error('Error fetching locations:', err));
-//   }, []);
+  // Helper function to fetch coordinates for a location name
+  const getCoordinatesForLocation = async (locationName) => {
+    try {
+      const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${locationName}`);
+      if (response.data && response.data.length > 0) {
+        const { lat, lon } = response.data[0];
+        return [parseFloat(lat), parseFloat(lon)];
+      }
+      return null;
+    } catch (error) {
+      console.error('Error fetching coordinates:', error);
+      return null;
+    }
+  };
 
 
-
-                                // Mock data for demonstration
-                                // You should replace this with a real fetch call to your API
+  // Fetch disease locations from the backend and convert names to coordinates
   useEffect(() => {
-    setLocations([
-        { name: 'Anuradhapura', coordinates: [8.3114, 80.4037], dangerLevel: 'high' },
-        { name: 'Polonnaruwa', coordinates: [7.9507, 81.0253], dangerLevel: 'medium' }
-    ]);
-  }, []);
+    const fetchLocations = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/api/disease_loc'); // Adjust the API endpoint if needed
+        const fetchedLocations = response.data;
+
+        // Convert each location name to coordinates
+        const locationsWithCoordinates = await Promise.all(fetchedLocations.map(async (location) => {
+          const coordinates = await getCoordinatesForLocation(location.location);
+          if (coordinates) {
+            // return { ...location, coordinates };
+            return { ...location, coordinates, intensity: location.intensity || 0.5 }; // Add intensity for the heatmap
+          }
+          return null;
+        }));
+
+        // Filter out any locations that couldn't be geocoded
+        setLocations(locationsWithCoordinates.filter(loc => loc !== null));
+        console.log('Fetched and geocoded locations:', locationsWithCoordinates);
+      } catch (err) {
+        console.error('Error fetching disease locations:', err);
+      }
+    };
+
+    fetchLocations();
+  }, []); // Empty dependency array ensures this runs once when the component mounts
+
+
+  const heatmapPoints = locations.map(location => [...location.coordinates, location.intensity]);
 
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
-        <MapContainer center={position} zoom={9} style={{ height: '500px', width: '800px' }}>
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh', padding: '50px' }}>
+      <MapContainer center={position} zoom={9} style={{ height: '500px', width: '800px', border: '2px solid #ccc', borderRadius: '10px' }}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+
+        {/* Add markers dynamically based on fetched data */}
+        {locations.map((location, index) => (
+          <Marker key={index} position={location.coordinates}>
+            <Popup>
+              {location.location} <br />
+              {location.disease} - 
+              Intensity: {location.intensity}
+            </Popup>
+          </Marker>
+        ))}
 
 
-        {locations.map((location, index) => {
-          const { color, radius } = getCircleOptions(location.dangerLevel);
+        {/* Add Heatmap Layer */}
+        <HeatmapLayer points={heatmapPoints} />
 
-          return (
-            <React.Fragment key={index}>
-              <Circle
-                center={location.coordinates}
-                pathOptions={{ color: color, fillColor: color, fillOpacity: 0.3 }}
-                radius={radius}
-              />
-              <Marker position={location.coordinates}>
-                <Popup>
-                  {location.name} - Danger Level: {location.dangerLevel}
-                </Popup>
-              </Marker>
-            </React.Fragment>
-          );
-        })}
+      </MapContainer>
 
+      <div style={{ marginLeft: '20px', paddingLeft: '10px', border: '2px solid #ccc', width: '500px', height: '500px', overflowY: 'auto', borderRadius: '10px' }}>
+        <DiseaseLocationsList />
+      </div>
 
-
-
-            {/* {locations.map(location => (
-            <Marker key={location._id} position={location.coordinates}> 
-                <Popup>
-                    {location.name} // Mock data for demonstration
-                </Popup>
-            </Marker>
-            ))} */}
-
-            {/* <Marker position={position}>
-                <Popup>
-                    Colombo, Sri Lanka
-                </Popup>
-            </Marker> */}
-
-
-        </MapContainer>
     </div>
   );
 }
