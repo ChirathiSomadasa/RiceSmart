@@ -262,7 +262,7 @@ const generateReport = () => {
                   </button></div>
              </Link>
             <Link to="/Contact/ManageDisease">
-                  <div><button type="primary" onClick={handleDisease} className="Qmanagebtn">Manage Disease
+                  <div><button type="primary" onClick={handleDisease} className="Qmanagebtn">My Diseases
                   </button></div>
             </Link>
             <Link >
