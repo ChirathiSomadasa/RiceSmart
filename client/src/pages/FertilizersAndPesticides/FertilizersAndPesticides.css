@@ -1,0 +1,107 @@
+.fertilizer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background: #62CD1436
+}
+
+.fertilizer-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.fertilizer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.fertilizer-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fertilizer-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.fertilizer-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.fertilizer-item p {
+    font-size: 1rem;
+    color: #777;
+}
+
+.fertilizer-item:hover {
+    transform: translateY(-5px);
+}
+
+.action-buttons {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.action-buttons button {
+    background-color: #6C63FF; /* Purple color */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons button:hover {
+    background-color: #5846d6; /* Darker purple */
+}
+
+.fertilizer-item {
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.fertilizer-item.enlarged {
+    transform: scale(2); /* Adjust scale to your preference */
+    z-index: 1000; /* Ensure the enlarged item stays on top */
+}
+
+.fertilizer-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.fertilizer-item h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.fertilizer-item p {
+    font-size: 1rem;
+}
+
