@@ -7,6 +7,7 @@ import jsPDF from 'jspdf';
 import Logo from '../../images/logo.png';  
 import 'jspdf-autotable';
 
+
 function PredictionResult() {
 
     const authEmail = useAuthEmail();
@@ -17,6 +18,7 @@ function PredictionResult() {
     const [error, setError] = useState('');
     const [searchQuery, setSearchQuery] = useState(''); 
     const navigate = useNavigate();
+    
 
     useEffect(() => {
         // Fetch all predictions from the backend
@@ -209,12 +211,6 @@ function PredictionResult() {
             console.error('Failed to load the logo image.');
         };
     };
-    
-
-
-
-
-
 
 
     const handleSearch = (event) => {
@@ -256,7 +252,7 @@ function PredictionResult() {
                     value={searchQuery} 
                     onChange={handleSearch} 
                 />
-                <button className='report_yield' onClick={handleGenerateReport}>Generate Report</button>
+                <button className='report_yield' onClick={handleGenerateReport}>Generate Status Report</button>
 
                 <button className='report_yield' onClick={handleCurrentGenerateReport}>Generate Current Report</button>
             </div>
