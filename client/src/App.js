@@ -14,7 +14,8 @@ import PredictionResult from './pages/predictions/PredictionResult';
 import EditResult from './pages/predictions/EditResult';
 import SignOut from './pages/signout/SignOut';
 
-
+import Map from './pages/map/Map';
+import NotificationBell from './pages/map/NotificationBell'
    
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
     <Route path="/predictionResult" element={<PredictionResult />} />
     <Route path="/EditResult/:id" element={<EditResult />} />
     <Route path="/signout" element={<SignOut />} />
+
+    <Route path="/map" element={<Map />} />
+    <Route path="/notification" element={<NotificationBell />} />
     </Routes>
   </BrowserRouter>
   );
