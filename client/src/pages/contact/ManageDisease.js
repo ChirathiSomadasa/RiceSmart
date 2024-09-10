@@ -49,7 +49,8 @@ const handleDelete = (id) => {
     // Implement search logic here
     // For example, filter productData based on searchQuery
     const filteredContacts = contactData.filter(contact=> 
-      contact.category.toLowerCase().includes(searchQuery.toLowerCase())
+      contact.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      contact.disease.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setContactData(filteredContacts);
   }
@@ -70,6 +71,7 @@ function handleKeyPress(event) {
 if(authEmail == null || authPassword == null){
   return("No login");
   
+  
 }else{
   return (
     <div>
@@ -82,6 +84,7 @@ if(authEmail == null || authPassword == null){
             
             <div class="SContactStore">
     <br></br><br></br>
+            <h2>Manage Diseases Results</h2>
             <table className="SContactTable">
         <thead>
           <tr>

@@ -23,7 +23,9 @@
 
 }
 
- 
+h2{
+  text-align: center;
+} 
 
 .Qwelcome {
 
@@ -92,7 +94,7 @@
     cursor: pointer; /* Show pointer on hover */
     transition: color 0.3s ease; /* Smooth color transition */
     margin-top: 30px;
-    padding-left: 10px;
+    padding-left: 50px;
 
 
 }
