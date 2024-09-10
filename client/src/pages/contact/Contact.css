@@ -79,8 +79,8 @@
 .Qadd-problem-button {
     display: block;
     width: fit-content;
-    background-color: #85e69dd8; /* Green background */
-    color: white; /* White text */
+    background-color: #9fdfaf; /* Green background */
+    color: rgb(10, 4, 4); /* White text */
     font-size: 15px; /* Larger text size */
     border-radius: 10px; /* Rounded corners */
     margin-left: 100px;
@@ -90,16 +90,16 @@
     padding: 8px;
     outline: none;
     border: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     cursor: pointer;
 }
 
 .Qmanagebtn{
   display: block;
     width: fit-content;
-    background-color: #85e69dd8; /* Green background */
-    color: white; /* White text */
+    background-color: #9fdfaf; /* Green background */
+    color: rgb(15, 2, 2); /* White text */
     font-size: 15px; /* Larger text size */
     border-radius: 10px; /* Rounded corners */
     margin-left: 10px;
@@ -109,16 +109,18 @@
     padding: 8px;
     outline: none;
     border: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     cursor: pointer;
 }
+
+ 
 
 .Qgeneratebtn{
   display: block;
     width: fit-content;
-    background-color: #af0909; /* Green background */
-    color: white; /* White text */
+    background-color: #9fdfaf; /* Green background */
+    color: rgb(15, 12, 12); /* White text */
     font-size: 15px; /* Larger text size */
     border-radius: 10px; /* Rounded corners */
     margin-left: 640px;
@@ -128,8 +130,8 @@
     padding: 8px;
     outline: none;
     border: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     cursor: pointer;
 }
   
@@ -231,6 +233,7 @@ h7 {
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Card shadow */
   background-color: #fff; /* White background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .QEditIcon {
@@ -248,10 +251,10 @@ h7 {
 
 .QlocationIcon{
   position: absolute;
-  padding-left: 15px;
+   
   padding-bottom: 10px;
    font-size: 24px; /* Icon size */
-  color: #0d5aad; /* Blue color for the edit icon */
+  color: #0f0f0f; /* Blue color for the edit icon */
   cursor: pointer; /* Show pointer on hover */
   transition: color 0.3s ease; /* Smooth color transition */
 }
@@ -276,12 +279,12 @@ h7 {
      padding: 8px;
     outline: none;
     border: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     cursor: pointer;
 }
 
- 
+  
  
 
  

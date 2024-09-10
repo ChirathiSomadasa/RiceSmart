@@ -280,7 +280,7 @@ const generateReport = () => {
                 </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.disease}</p>
                 <p><strong>Symptoms   </strong><br></br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.description}</p><br></br>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}<MdOutlineLocationOn className="QlocationIcon"/></p>
+                <p><MdOutlineLocationOn className="QlocationIcon"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}</p>
                  <div>
                   <h4>Solutions:</h4>
                   { 
