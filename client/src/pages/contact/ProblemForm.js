@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './ProblemForm.css';
-import serviceImage from 'F:/RiceSmart/RiceSmart/client/src/images/Contact/14.jpeg';
+import { useAuthEmail, useAuthPassword } from '../../auth'
 
 function AddProblem() {
     const navigate = useNavigate();
@@ -14,6 +14,8 @@ function AddProblem() {
     const [location, setLocation] = useState('');
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
+    const authEmail = useAuthEmail();
+  const authPassword = useAuthPassword();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,7 +51,10 @@ function AddProblem() {
         }
             */
 
-
+        if(authEmail == null || authPassword == null){
+            return("No login");
+            
+          }else{
     return (
         <div className='QAddProblemForm'>
             <div className='Qaddproblem_photo'>
@@ -89,6 +94,7 @@ function AddProblem() {
 
         
     );
+}
 }
 
 export default AddProblem;

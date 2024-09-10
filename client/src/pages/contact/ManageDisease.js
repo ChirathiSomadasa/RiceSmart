@@ -3,11 +3,14 @@ import React from 'react';
 import './ManageDisease.css';
 import axios from 'axios';
 import { MdDeleteOutline,MdEdit } from "react-icons/md";
+import { useAuthEmail, useAuthPassword } from '../../auth'
 
 
 function Contact() {
   const [contactData, setContactData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const authEmail = useAuthEmail();
+  const authPassword = useAuthPassword();
 
 
 useEffect(() => {
@@ -63,6 +66,11 @@ function handleKeyPress(event) {
     handleSearch();  // Trigger search when "Enter" key is pressed
   }
 }
+
+if(authEmail == null || authPassword == null){
+  return("No login");
+  
+}else{
   return (
     <div>
               <div class="SStoreSearch">
@@ -115,6 +123,7 @@ function handleKeyPress(event) {
   
 
   );
+}
 }
 
 export default Contact;
