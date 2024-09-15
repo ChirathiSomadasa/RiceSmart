@@ -15,7 +15,7 @@ function AddProblem() {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
     const authEmail = useAuthEmail();
-  const authPassword = useAuthPassword();
+    const authPassword = useAuthPassword();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,14 +34,14 @@ function AddProblem() {
         }
     };
 
-        if(authEmail == null || authPassword == null){
-            return("No login");
-            
-          }else{
-    return (
-        <div className='QAddProblemForm'>
-            <div className='Qaddproblem_photo'>
-                <br></br><br></br>
+    if (authEmail == null || authPassword == null) {
+        return ("No login");
+
+    } else {
+        return (
+            <div className='QAddProblemForm'>
+                <div className='Qaddproblem_photo'>
+                    <br></br><br></br>
                     <form className="PAproductForm" onSubmit={handleSubmit}>
                         <h2 className="PAtopic">Add Disease</h2>
                         <div className="PAform-group">
@@ -54,7 +54,7 @@ function AddProblem() {
                         </div>
                         <div className="PAform-group">
                             <label>Category:</label>
-                            <select id="productCategory" className="PAinarea"   value={category} onChange={(e) => setCategory(e.target.value)} required>
+                            <select id="productCategory" className="PAinarea" value={category} onChange={(e) => setCategory(e.target.value)} required>
                                 <option>Select Category</option>
                                 <option>Sowing Season</option>
                                 <option>Growing Season</option>
@@ -73,11 +73,11 @@ function AddProblem() {
                     {successMessage && <p>{successMessage}</p>}
                 </div>
             </div>
-        
 
-        
-    );
-}
+
+
+        );
+    }
 }
 
 export default AddProblem;
