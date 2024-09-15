@@ -1,69 +1,126 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import './NotificationBell.css';
+import { useAuthEmail } from '../../auth'; // Adjust the import path as needed
+
+
 
 const NotificationBell = () => {
-  const [notifications, setNotifications] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedNotification, setSelectedNotification] = useState(null);
+    const [notifications, setNotifications] = useState([]);
+    const [selectedNotification, setSelectedNotification] = useState(null); // To track the selected notification for the modal
+    const authEmail = useAuthEmail();
+    const navigate = useNavigate(); // Initialize useNavigate
 
-  // WebSocket setup to receive notifications
-  useEffect(() => {
-    const ws = new WebSocket('ws://localhost:5001');
+    useEffect(() => {
+        const fetchNotifications = async () => {
+            try {
+                if (authEmail) {
+                    const response = await axios.get(`http://localhost:5001/notification/getNotifications/${authEmail}`);
+                    console.log('API Response:', response.data);
+                    const filteredNotifications = response.data.filter(notification => notification.email === authEmail);
+                    setNotifications(filteredNotifications);
+                }
+            } catch (error) {
+                console.error('Error fetching notifications:', error);
+            }
+        };
+    
+        fetchNotifications();
+    }, [authEmail]);
 
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setNotifications((prev) => [...prev, data.message]);
+    const deleteNotification = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5001/notification/deleteNotification/${id}`);
+            setNotifications(notifications.filter(notification => notification._id !== id));
+        } catch (error) {
+            console.error('Error deleting notification:', error);
+        }
     };
 
-    return () => {
-      ws.close();
+    
+
+    const handleSeeMore = async (notification) => {
+        try {
+            // Set the selected notification for the modal
+            setSelectedNotification(notification);
+    
+            // Delete the notification immediately
+            await axios.delete(`http://localhost:5001/notification/deleteNotification/${notification._id}`);
+            setNotifications(notifications.filter(n => n._id !== notification._id));
+    
+            // Navigate to the contact page
+            navigate('/contact');
+    
+            // Set a timer to automatically delete the notification after 3 days (259200000 milliseconds)
+            const timerId = setTimeout(async () => {
+                try {
+                    await axios.delete(`http://localhost:5001/notification/deleteNotification/${notification._id}`);
+                    setNotifications(notifications.filter(n => n._id !== notification._id));
+                } catch (error) {
+                    console.error('Error automatically deleting notification:', error);
+                }
+            }, 259200000); // 3 days in milliseconds
+    
+            // Clean up the timer when the component unmounts or before setting a new timer
+            return () => clearTimeout(timerId);
+        } catch (error) {
+            console.error('Error handling see more:', error);
+        }
     };
-  }, []);
+    
+    
+    const closeModal = () => {
+        setSelectedNotification(null); // Close the modal
+    };
 
-  // Toggle notification dropdown
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+    return (
+        <div className="notification-bell-container">
+            <div className="bell-icon">
+                <i className="fas fa-bell"></i>
+            </div>
 
-  // Handle notification click
-  const handleNotificationClick = (notification) => {
-    setSelectedNotification(notification);
-  };
+            <div className="notification-list-container">
+                {notifications.length > 0 ? (
+                    <ul className="notification-list">
+                        {notifications.map((notification, index) => (
+                            <li key={index} className="notification-card">
+                                <div className="notification-card-content">
+                                <div className="warning-message">
+                            ⚠️ <strong>Warning:</strong> The information provided is for public health awareness. Please take necessary precautions!
+                        </div>
+                               <div className='details'>
+                                    <h4>Disease:</h4>
+                                    <p>{notification.disease}</p>
+                                    
+                                    <h4>Location:</h4>
+                                    <p>{notification.location}</p>
 
-  return (
-    <div className="notification-bell-container">
-      <div className="bell-icon" onClick={toggleDropdown}>
-        <i className="fas fa-bell"></i>
-        {notifications.length > 0 && <span className="notification-count">{notifications.length}</span>}
-      </div>
+                                </div>    
+                                </div>
+                                <button
+                                    className="see-more-button"
+                                    onClick={() => handleSeeMore(notification)}
+                                >
+                                    Add Solution
+                                </button>
+                                <button
+                                    className="delete-button"
+                                    onClick={() => deleteNotification(notification._id)}
+                                >
+                                    Clear
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <div className="notification-item">No new notifications</div>
+                )}
+            </div>
 
-      {isOpen && (
-        <div className="notification-dropdown">
-          {notifications.length > 0 ? (
-            notifications.map((notification, index) => (
-              <div
-                key={index}
-                className="notification-item"
-                onClick={() => handleNotificationClick(notification)}
-              >
-                {notification}
-              </div>
-            ))
-          ) : (
-            <div className="notification-item">No new notifications</div>
-          )}
+            
         </div>
-      )}
-
-      {selectedNotification && (
-        <div className="notification-detail">
-          <h2>Notification Details</h2>
-          <p>{selectedNotification}</p>
-          <button onClick={() => setSelectedNotification(null)}>Close</button>
-        </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default NotificationBell;

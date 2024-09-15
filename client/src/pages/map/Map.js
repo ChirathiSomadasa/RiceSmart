@@ -12,11 +12,6 @@ import DiseaseLocationsList from './DiseaseLocationsList';
 delete L.Icon.Default.prototype._getIconUrl;
 
 
-// L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-//   iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-//   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-// });
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
@@ -38,8 +33,8 @@ function HeatmapLayer({ points }) {
         maxZoom: 0,
         gradient: {
           // 0.1: 'blue',
-          .2: 'green',
-          .3: 'orange',
+          0.4: 'green',
+          0.5: 'yellow',
           1: 'red'
         }
       }).addTo(map);
@@ -91,7 +86,7 @@ function Map() {
           const coordinates = await getCoordinatesForLocation(location.location);
           if (coordinates) {
             // return { ...location, coordinates };
-            return { ...location, coordinates, intensity: location.intensity || 0.5 }; // Add intensity for the heatmap
+            return { ...location, coordinates}; // Add intensity for the heatmap //  , intensity: location.intensity || 0.5 
           }
           return null;
         }));
@@ -108,7 +103,7 @@ function Map() {
   }, []); // Empty dependency array ensures this runs once when the component mounts
 
 
-  const heatmapPoints = locations.map(location => [...location.coordinates, location.intensity]);
+  const heatmapPoints = locations.map(location => [...location.coordinates]);  //, location.intensity
 
 
   return (
@@ -125,7 +120,7 @@ function Map() {
             <Popup>
               {location.location} <br />
               {location.disease} - 
-              Intensity: {location.intensity}
+              {/* Intensity: {location.intensity} */}
             </Popup>
           </Marker>
         ))}

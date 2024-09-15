@@ -148,3 +148,5 @@ const diseaseLocationRoutes = require('./routes/map/diseaseLocation');
 app.use('/api', diseaseLocationRoutes);
 const locationNotificationRoutes = require('./routes/map/notification');
 app.use('/api_loc', locationNotificationRoutes);
+const notificationRoute =require('./routes/map/notification_route');
+app.use("/notification", notificationRoute);
