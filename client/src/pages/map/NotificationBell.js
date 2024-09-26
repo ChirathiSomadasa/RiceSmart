@@ -114,7 +114,7 @@ const NotificationBell = () => {
                         ))}
                     </ul>
                 ) : (
-                    <div className="notification-item">No new notifications</div>
+                    <div className="notification-item">No newwwww notifications</div>
                 )}
             </div>
 
