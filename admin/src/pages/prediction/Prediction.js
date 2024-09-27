@@ -12,7 +12,7 @@ function Predictions() {
 
     
     useEffect(() => {
-        axios.get("http://localhost:5001/api/admin/predictions")
+        axios.get("http://localhost:5001/prediction/api/admin/predictions")
             .then((response) => {
                 const { data, status } = response.data;
                 if (status === "success") {
