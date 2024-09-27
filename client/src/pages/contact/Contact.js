@@ -279,7 +279,12 @@ function Contact() {
               </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.disease}</p>
               <p><strong>Symptoms   </strong><br></br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.description}</p><br></br>
-              <p><MdOutlineLocationOn className="QlocationIcon" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}</p>
+                <p>
+                  <Link to={`/map?location=${encodeURIComponent(contact.location)}`} className="QlocationLink">
+                    <MdOutlineLocationOn className="QlocationIcon" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span className="underlined-text">{contact.location}</span>
+                  </Link>
+                </p>
               <div>
                 <h4>Solutions:</h4>
                 {

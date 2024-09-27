@@ -25,6 +25,18 @@
   text-align: center; /* Center-align the content */
 }
 
+.notification-list-container {
+  /* border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 50px;*/
+  width: auto; 
+  height: 80vh;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
 .notification-list {
   list-style: none;
   padding: 0;
@@ -32,7 +44,13 @@
 }
 
 .notification-item {
-  padding: 10px;
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+  align-items: center; 
+  padding: 100px;
+  text-align: center;
+  font-size: 28px;
+  color: #ff1a1a;
   border-bottom: 1px solid #ddd;
 }
 
@@ -42,16 +60,18 @@
 
 /* New Styles for Hover Effect */
 .notification-card {
-  margin-bottom: 10px; /* Space between cards */
-  border: 1px solid #ddd; /* Border around the card */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  background-color: white; /* Card background color */
-  padding: 15px; /* Padding inside the card */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background color and shadow */
-  width: 1400px;
-  height: 230px;
-  margin-left: 50px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: background-color 0.3s, box-shadow 0.3s; 
+  align-items: center;
+  width: 1300px;
+  height: auto;
+  /* margin-bottom: 20px; */
+  /* margin-left: 50px; */
+  padding: 15px;
+  
 }
 
 .notification-card:hover {
@@ -61,17 +81,32 @@
 
 .notification-card-content h4 {
   margin: 0 0 5px; /* Space below headings */
-  font-size: 14px;
+  font-size: 16px;
   color: #140364; /* Heading color */
 }
 
 .notification-card-content p {
   margin: 0 0 10px; /* Space below paragraphs */
-  font-size: 12px;
+  padding-left: 50px;
+  font-size: 14px;
   color: #010101; /* Text color */
 }
-/*****************************
-*****************/
+
+
+.underlined-text {
+  text-decoration: none;        /* Start without underline */
+  cursor: pointer;              /* Pointer cursor */
+  color: blue;                  /* Optional: Make it blue */
+  transition: color 0.3s ease, text-decoration-color 0.3s ease; /* Smooth transition */
+}
+
+.underlined-text:hover {
+  text-decoration: underline;   /* Add underline on hover */
+  text-decoration-color: blue;  /* Optional: underline color matches the text */
+  color: darkblue;              /* Change text color slightly on hover */
+}
+
+
 .delete-button {
   background-color: #ff4d4d;
   color: white;
@@ -80,12 +115,13 @@
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  margin-top: 10px;
+  margin: 20px;
+  /* margin-top: 10px; */
   transition: background-color 0.3s ease;
 }
 
 .delete-button:hover {
-  background-color: #ff1a1a;
+  background-color: #ff0000;
 }
 /* Modal overlay and content styles */
 .modal-overlay {
@@ -151,7 +187,7 @@
   margin-bottom: 20px;
   padding: 10px;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   border-radius: 5px;
 }
 .warning-message {

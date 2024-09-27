@@ -118,9 +118,8 @@ function Map() {
         {locations.map((location, index) => (
           <Marker key={index} position={location.coordinates}>
             <Popup>
-              {location.location} <br />
-              {location.disease} - 
-              {/* Intensity: {location.intensity} */}
+              {location.location} <br/>
+              {location.disease} - {location.category}
             </Popup>
           </Marker>
         ))}

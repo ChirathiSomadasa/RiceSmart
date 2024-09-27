@@ -283,8 +283,22 @@ h7 {
     padding-right: 15px;
     cursor: pointer;
 }
+.QlocationLink {
+  text-decoration: none; /* Remove underline */
+}
 
   
- 
+.underlined-text {
+  text-decoration: none;        /* Start without underline */
+  cursor: pointer;              /* Pointer cursor */
+  color: blue;                  /* Optional: Make it blue */
+  transition: color 0.3s ease, text-decoration-color 0.3s ease; /* Smooth transition */
+}
+
+.underlined-text:hover {
+  text-decoration: underline;   /* Add underline on hover */
+  text-decoration-color: blue;  /* Optional: underline color matches the text */
+  color: darkblue;              /* Change text color slightly on hover */
+}
 
  
