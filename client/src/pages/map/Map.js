@@ -107,7 +107,7 @@ function Map() {
 
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh', padding: '50px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto', padding: '50px 40px 40px 40px' }}>
       <MapContainer center={position} zoom={8} style={{ height: '500px', width: '800px', border: '2px solid #ccc', borderRadius: '10px' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
