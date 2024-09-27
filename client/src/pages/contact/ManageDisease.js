@@ -6,7 +6,7 @@ import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { useAuthEmail, useAuthPassword } from '../../auth'
 
 
-function Contact() {
+function ManageDisease() {
   const [contactData, setContactData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const authEmail = useAuthEmail();
@@ -129,4 +129,4 @@ function Contact() {
   }
 }
 
-export default Contact;
+export default ManageDisease;
