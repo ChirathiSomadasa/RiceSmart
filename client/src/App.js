@@ -13,9 +13,9 @@ import Predictions from './pages/predictions/Predictions';
 import PredictionResult from './pages/predictions/PredictionResult';
 import EditResult from './pages/predictions/EditResult';
 import SignOut from './pages/signout/SignOut';
-
 import Map from './pages/map/Map';
 import NotificationBell from './pages/map/NotificationBell'
+import ManageMySolution from './pages/contact/ManageMySolution';
    
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
     <Route path="/contact/UpdateContact/:id" element={<UpdateContact/>}/>
     <Route path="/contact/AddSolution/:id" element={<AddSolution/>}/>
     <Route path="/contact/ManageDisease" element={<ManageDisease/>}/>
+    <Route path="/contact/ManageMySolution" element={<ManageMySolution/>}/>
     <Route path="/predictions" element={<Predictions />} />
     <Route path="/predictionResult" element={<PredictionResult />} />
     <Route path="/EditResult/:id" element={<EditResult />} />

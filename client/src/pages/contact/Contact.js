@@ -22,6 +22,10 @@ function Contact() {
     window.location.href = '/contact/ManageDisease';
   };
 
+  const handleMySolution = () => {
+    window.location.href = '/contact/ManageMySolution';
+  };
+
   useEffect(() => {
 
     axios.get('http://localhost:5001/')
@@ -262,6 +266,10 @@ function Contact() {
         </Link>
         <Link to="/Contact/ManageDisease">
           <div><button type="primary" onClick={handleDisease} className="Qmanagebtn">My Diseases
+          </button></div>
+        </Link>
+        <Link to="/Contact/ManageMySolution">
+          <div><button type="primary" onClick={handleMySolution} className="Qsolbtn">My Solutions
           </button></div>
         </Link>
         <Link >
