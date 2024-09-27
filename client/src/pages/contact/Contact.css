@@ -301,6 +301,14 @@ h7 {
     cursor: pointer;
 }
 
+ul{
+  margin-left: 15px;
+}
+
+li{
+  list-style-type:    disc ;
+  margin-left: 15px;
+}
   
  
 
