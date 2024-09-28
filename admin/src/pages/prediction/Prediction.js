@@ -16,8 +16,32 @@ function Predictions() {
             .then((response) => {
                 const { data, status } = response.data;
                 if (status === "success") {
+
+                    for(var i = 0; i < response.data.data.length; i++){
+                        var item = response.data.data[i];
+                        
+                        let calculatedStatus = '';
+                        let calculatedRecommendation = '';
+    
+                        if (item.estimatedYield > 3000 && item.yieldVariability < 10) {
+                            calculatedStatus = 'Good';
+                            calculatedRecommendation = 'Continue with the current practices.';
+                        } else if (item.estimatedYield >= 2000 && item.estimatedYield <= 3000 && item.yieldVariability >= 10) {
+                            calculatedStatus = 'Moderate';
+                            calculatedRecommendation = 'Consider improving irrigation and monitoring weather conditions.';
+                        } else {
+                            calculatedStatus = 'Poor';
+                            calculatedRecommendation = 'Review agricultural practices, consider new irrigation methods, and prepare for weather variability.';
+                        }
+    
+                        item.status = calculatedStatus;
+                        item.recommendation = calculatedRecommendation;
+    
+                    }
+
                     setPredictions(data);
                     setFilteredPredictionData(data);
+                    
                 } else {
                     alert("Error - " + response.data.message);
                 }
