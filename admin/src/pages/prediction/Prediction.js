@@ -71,8 +71,8 @@ function Predictions() {
                         <tr key={index}>
                             <td>{prediction.user_name}</td>
                             <td>{prediction.variety}</td>
-                            <td>{prediction.estimated_yield}</td>
-                            <td>{prediction.yield_variability}</td>
+                            <td>{prediction.estimatedYield}</td>
+                            <td>{prediction.yieldVariability}</td>
                             <td>{prediction.geographicLocation}</td>
                             <td>{prediction.irrigationPractices}</td>
                             <td>{prediction.weatherConditions}</td>
