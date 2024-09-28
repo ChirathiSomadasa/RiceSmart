@@ -181,61 +181,7 @@ function Predictions() {
 
 
                 <div className='yiled_data'>
-                    <div className='instructions'>
-                        <div className='instruction_2'>
-                            <h1>Follow the instructions below to fill the form</h1>
-
-                            <h4>1. Variety (Type of Rice)</h4>
-                            <ul>
-                                <li><p><b>What to do: </b>Enter the name of the rice variety you're growing.</p></li>
-                                <li><p><b>Format: </b>You can use these types.</p><p>basmathi, kurulu thuda, heenati, haramas, rathhal,maavee,pachchaperumal, red Rice, black Rice, Sticky Rice, Samba, Keeri Samba, Nadu, Kakulu.</p></li>
-                                <li><p><b>Example: </b>If you are growing Samba rice, enter "samba".</p></li>
-                            </ul>
-
-
-
-                            <h4>2. Estimated Yield (kg/ha)</h4>
-                            <ul>
-                                <li><p><b>What to do: </b>Enter the expected yield of rice in kilograms per hectare based on your current estimate.</p></li>
-                                <li><p><b>Format: </b>Only enter whole numbers.</p></li>
-                                <li><p><b>Example: </b>If you expect 3000 kg/ha, enter "3000".</p></li>
-                            </ul>
-
-
-                            <h4>3. Yield Variability (kg/ha)</h4>
-                            <ul>
-                                <li><p><b>What to do: </b>Enter the variability in your estimated yield, which indicates how much fluctuation you expect in the yield.</p></li>
-                                <li><p><b>Format: </b> Only enter whole numbers.</p></li>
-                                <li><p><b>Example: </b>If your yield could fluctuate by 200 kg/ha, enter "200".</p></li>
-                            </ul>
-
-
-
-                            <h4>4. Geographic Location</h4>
-                            <ul>
-                                <li><p><b>What to do: </b> Enter the name of your location or the area where your farm is located.</p></li>
-                                <li><p><b>Format: </b> Only use letters (A-Z) and spaces; no numbers or special characters are allowed.</p></li>
-                                <li><p><b>Example: </b>If your farm is located in Kurunegala, enter "kurunegala".</p></li>
-                            </ul>
-
-
-                            <h4>5. Irrigation Practices</h4>
-                            <ul>
-                                <li><p><b>What to do: </b> Select the irrigation method you are currently using on your farm.</p></li>
-                                <li><p><b>Options: </b> Drip irrigation, Flood irrigation, Sprinkler irrigation, Surface irrigation</p></li>
-                                <li><p><b>Example: </b>If you're using a sprinkler system to irrigate, select "Sprinkler irrigation" from the dropdown.</p></li>
-                            </ul>
-
-                            <h4>6. Weather Conditions</h4>
-                            <ul>
-                                <li><p><b>What to do: </b>  Select the type of weather conditions expected during your farming season.</p></li>
-                                <li><p><b>Options: </b> High rainfall expected, Dry season, Mild temperatures, Strong winds forecasted</p></li>
-                                <li><p><b>Example: </b>If you expect high rainfall, choose "High rainfall expected" from the list.</p></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div className='yiled_form_container'>
+                    <div className='cp'><div className='yiled_form_container'>
                         <form onSubmit={handleYieldSubmit} className='form'>
                             <h2 className='yield_topic'>YIELD PREDICTION</h2>
 
@@ -338,7 +284,9 @@ function Predictions() {
                             </div>
                         )}
 
-                    </div>
+                    </div> </div>
+
+
                 </div>
             </div>
         );
