@@ -22,6 +22,10 @@ function Contact() {
     window.location.href = '/contact/ManageDisease';
   };
 
+  const handleLocationClick =() =>{
+    window.location.href = '/map/Map';
+  }
+
   useEffect(() => {
 
     axios.get('http://localhost:5001/')
@@ -280,10 +284,8 @@ function Contact() {
               <p><strong>Symptoms   </strong><br></br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.description}</p><br></br>
                 <p>
-                  <Link to={`/map?location=${encodeURIComponent(contact.location)}`} className="QlocationLink">
-                    <MdOutlineLocationOn className="QlocationIcon" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span className="underlined-text">{contact.location}</span>
-                  </Link>
+                <MdOutlineLocationOn className="QlocationIcon" onClick={() => handleLocationClick(contact.location)} // Pass the location data
+                />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}
                 </p>
               <div>
                 <h4>Solutions:</h4>
