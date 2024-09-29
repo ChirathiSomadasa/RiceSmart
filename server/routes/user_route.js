@@ -79,5 +79,19 @@ router.route("/register").post((req, res) => {
 
 });
 
+// fetch users for notification system
+router.route("/users").get((req, res) => {
+    User.find({}).then((users) => {
+
+        console.log(users);
+        if (users.length > 0) {
+            res.send({ status: "success", users: users });
+        } else {
+            res.send({ status: "no_users", message: "No users found." });
+        }
+    }).catch((e) => {
+        res.send({ status: "failed", message: "Something went wrong. Please try again." });
+    });
+});
 
 module.exports = router;

@@ -3,24 +3,25 @@ import './Predictions.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuthEmail, useAuthPassword } from '../../auth'
+import YiledImage from '../../images/yield/yield2.jpg';
 
 function Predictions() {
 
     const authEmail = useAuthEmail();
     const authPassword = useAuthPassword();
 
-    
+
 
     const validRiceVarieties = [
-        'basmathi', 
-        'kurulu thuda', 
-        'heenati', 
-        'haramas', 
-        'rathhal', 
+        'basmathi',
+        'kurulu thuda',
+        'heenati',
+        'haramas',
+        'rathhal',
         'maavee',
         'pachchaperumal',
-        'red rice', 
-        'black rice', 
+        'red rice',
+        'black rice',
         'sticky Rice',
         'samba',
         'keeri samba',
@@ -30,15 +31,15 @@ function Predictions() {
     ];
 
     const [yieldData, setYieldData] = useState({
-        auth_email :authEmail,
+        auth_email: authEmail,
         auth_password: authPassword,
-        variety: '', 
-        estimatedYield: '', 
-        yieldVariability: '', 
-        geographicLocation: '', 
-        historicalData: '', 
-        irrigationPractices: '', 
-        weatherConditions: '', 
+        variety: '',
+        estimatedYield: '',
+        yieldVariability: '',
+        geographicLocation: '',
+        historicalData: '',
+        irrigationPractices: '',
+        weatherConditions: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -136,9 +137,9 @@ function Predictions() {
         }
     };
 
-    if(authEmail == null || authPassword == null){
-        return("No login");
-    }else{
+    if (authEmail == null || authPassword == null) {
+        return (<div className='pre_log'>You must log into the system in order to add a prediction</div>);
+    } else {
         return (
             <div>
                 <div className='predic_parallax'>
@@ -146,124 +147,102 @@ function Predictions() {
                         <h1>Empowering Farmers with Smart Yield Predictions</h1>
                     </div>
                 </div>
-            
-                <div className='yiled_data'>
-                    <div className='instructions'>
-                        <div className='instruction_2'>
-                            <h1>Follow the instructions below to fill the form</h1>
-    
-                            <h4>1. Variety (Type of Rice)</h4>
-                                <ul>
-                                    <li><p><b>What to do: </b>Enter the name of the rice variety you're growing.</p></li>
-                                    <li><p><b>Valid options: </b>You can use these types.</p><p>basmathi, kurulu thuda, heenati, haramas, rathhal,maavee,pachchaperumal, red Rice, black Rice, Sticky Rice, Samba, Keeri Samba, Nadu, Kakulu.</p></li>
-                                    <li><p><b>Example: </b>If you are growing Samba rice, enter "Samba".</p></li>
-                                </ul>
-                            
-    
-                           
-                                <h4>2. Estimated Yield (kg/ha)</h4>
-                                <ul>
-                                    <li><p><b>What to do: </b>Enter the expected yield of rice in kilograms per hectare based on your current estimate.</p></li>
-                                    <li><p><b>Format: </b>Only enter whole numbers.</p></li>
-                                    <li><p><b>Example: </b>If you expect 3000 kg/ha, enter "3000".</p></li>
-                                </ul>
-                            
-                           
-                                <h4>3. Yield Variability (kg/ha)</h4>
-                                <ul>
-                                    <li><p><b>What to do: </b>Enter the variability in your estimated yield, which indicates how much fluctuation you expect in the yield.</p></li>
-                                    <li><p><b>Format: </b> Only enter whole numbers.</p></li>
-                                    <li><p><b>Example: </b>If your yield could fluctuate by 200 kg/ha, enter "200".</p></li>
-                                </ul>
-                            
-    
-                           
-                                <h4>4. Geographic Location</h4>
-                                <ul>
-                                    <li><p><b>What to do: </b> Enter the name of your location or the area where your farm is located.</p></li>
-                                    <li><p><b>Format: </b> Only use letters (A-Z) and spaces; no numbers or special characters are allowed.</p></li>
-                                    <li><p><b>Example: </b>If your farm is located in Kurunegala, enter "Kurunegala".</p></li>
-                                </ul>
-    
-                                
-                                <h4>5. Irrigation Practices</h4>
-                                <ul>
-                                    <li><p><b>What to do: </b> Select the irrigation method you are currently using on your farm.</p></li>
-                                    <li><p><b>Options: </b> Drip irrigation, Flood irrigation, Sprinkler irrigation, Surface irrigation</p></li>
-                                    <li><p><b>Example: </b>If you're using a sprinkler system to irrigate, select "Sprinkler irrigation" from the dropdown.</p></li>
-                                </ul>
-    
-                                <h4>6. Weather Conditions</h4>
-                                <ul>
-                                    <li><p><b>What to do: </b>  Select the type of weather conditions expected during your farming season.</p></li>
-                                    <li><p><b>Options: </b> High rainfall expected, Dry season, Mild temperatures, Strong winds forecasted</p></li>
-                                    <li><p><b>Example: </b>If you expect high rainfall, choose "High rainfall expected" from the list.</p></li>
-                                </ul>
-                           
-                        </div>
+
+                <div className='yield1_topic'> <h1>Yield Prediction</h1></div>
+
+                <div className='yiled'>
+
+                    <div className='yiled_des'>
+                        <p>Step into the future of agriculture with our cutting-edge
+                            Yield Prediction Management system, designed to revolutionize how you plan
+                            and manage your farming operations. With a simple input of your field data,
+                            you can compare current conditions with historical trends to receive detailed
+                            and personalized crop recommendations tailored to maximize your yields. Whether
+                            you're managing small farms or large-scale fields, our system adapts to your specific needs.<br></br><br></br>
+
+                            Our system analyzes key factors such as irrigation practices,
+                            climate conditions,Geographic Location, estimated Yield and yield variability to guide you on the best times for
+                            Generate insightful reports to track farm success rates and make
+                            informed decisions that lead to higher yields and sustainable farming. <br></br><br></br>
+
+                            Furthermore, you can generate comprehensive reports that track the success of your fields,
+                            helping you monitor growth patterns, identify areas of improvement, and plan for future planting cycles.
+                            By utilizing these insightful reports, you can pinpoint how many farms have successfully grown
+                            crops under similar conditions, equipping you with the knowledge to improve performance across the board.
+                            Make informed decisions today that will lead to long-term success, sustainability, and higher yields.
+
+                        </p>
+
                     </div>
-                    <div className='yiled_form_container'>
+
+                    <div className='yield_photo'><img src={YiledImage} alt="yiled" /></div>
+                </div>
+
+
+
+                <div className='yiled_data'>
+                    <div className='cp'><div className='yiled_form_container'>
                         <form onSubmit={handleYieldSubmit} className='form'>
                             <h2 className='yield_topic'>YIELD PREDICTION</h2>
-    
+
                             <label className='yiled_label'>Variety </label><br />
-                            <input 
-                                className='input_yiled' 
-                                type='text' 
-                                name='variety' 
-                                value={yieldData.variety} 
-                                onChange={handleYieldChange} 
-                                placeholder='Enter Variety' 
+                            <input
+                                className='input_yiled'
+                                type='text'
+                                name='variety'
+                                value={yieldData.variety}
+                                onChange={handleYieldChange}
+                                placeholder='Enter Variety'
                                 required
                             />
                             {errors.variety && <div className='error_message'>{errors.variety}</div>}
                             <br />
-                            
+
                             <label className='yiled_label'>Estimated Yield (kg/ha) </label><br />
-                            <input 
-                                className='input_yiled' 
-                                type='text' 
-                                name='estimatedYield' 
-                                value={yieldData.estimatedYield} 
-                                onChange={handleYieldChange} 
-                                placeholder='Enter Estimated Yield' 
+                            <input
+                                className='input_yiled'
+                                type='text'
+                                name='estimatedYield'
+                                value={yieldData.estimatedYield}
+                                onChange={handleYieldChange}
+                                placeholder='Enter Estimated Yield'
                                 required
                             />
                             {errors.estimatedYield && <div className='error_message'>{errors.estimatedYield}</div>}
                             <br />
-                            
+
                             <label className='yiled_label'>Yield Variability (kg/ha)  </label><br />
-                            <input 
-                                className='input_yiled' 
-                                type='text' 
-                                name='yieldVariability' 
-                                value={yieldData.yieldVariability} 
-                                onChange={handleYieldChange} 
-                                placeholder='Enter Yield Variability' 
+                            <input
+                                className='input_yiled'
+                                type='text'
+                                name='yieldVariability'
+                                value={yieldData.yieldVariability}
+                                onChange={handleYieldChange}
+                                placeholder='Enter Yield Variability'
                                 required
                             />
                             {errors.yieldVariability && <div className='error_message'>{errors.yieldVariability}</div>}
                             <br />
-                            
+
                             <label className='yiled_label'>Geographic Location </label><br />
-                            <input 
-                                className='input_yiled' 
-                                type='text' 
-                                name='geographicLocation' 
-                                value={yieldData.geographicLocation} 
-                                onChange={handleYieldChange} 
-                                placeholder='Enter Geographic Location' 
+                            <input
+                                className='input_yiled'
+                                type='text'
+                                name='geographicLocation'
+                                value={yieldData.geographicLocation}
+                                onChange={handleYieldChange}
+                                placeholder='Enter Geographic Location'
                                 required
                             />
                             {errors.geographicLocation && <div className='error_message'>{errors.geographicLocation}</div>}
                             <br />
-                            
+
                             <label className='yiled_label'>Irrigation Practices</label><br />
-                            <select 
-                                className='select_yiled' 
-                                name='irrigationPractices' 
-                                value={yieldData.irrigationPractices} 
-                                onChange={handleYieldChange} 
+                            <select
+                                className='select_yiled'
+                                name='irrigationPractices'
+                                value={yieldData.irrigationPractices}
+                                onChange={handleYieldChange}
                                 required
                             >
                                 <option value=''>Select an option</option>
@@ -271,15 +250,19 @@ function Predictions() {
                                 <option value='Flood irrigation'>Flood irrigation</option>
                                 <option value='Sprinkler irrigation'>Sprinkler irrigation</option>
                                 <option value='Surface irrigation'>Surface irrigation</option>
+                                <option value='Localized irrigation'>Localized irrigation</option>
+                                <option value='Centre Pivot irrigation'>Centre Pivot irrigation</option>
+                                <option value='Sub irrigation'>Sub irrigation</option>
+                                <option value='Manual irrigation'>Manual irrigation</option>
                             </select>
                             <br />
-                            
+
                             <label className='yiled_label'>Weather Conditions</label><br />
-                            <select 
-                                className='select_yiled' 
-                                name='weatherConditions' 
-                                value={yieldData.weatherConditions} 
-                                onChange={handleYieldChange} 
+                            <select
+                                className='select_yiled'
+                                name='weatherConditions'
+                                value={yieldData.weatherConditions}
+                                onChange={handleYieldChange}
                                 required
                             >
                                 <option value=''>Select an option</option>
@@ -289,9 +272,9 @@ function Predictions() {
                                 <option value='Strong winds forecasted'>Strong winds forecasted</option>
                             </select>
                             <br />
-                            
+
                             <button className='yiled_button' type='submit'>SUBMIT</button>
-    
+
                         </form>
                         {resultData && (
                             <div className='result_display'>
@@ -300,12 +283,14 @@ function Predictions() {
                                 <div className='result_btn'><button className='ok_button' onClick={handleOkClick}>OK</button></div>
                             </div>
                         )}
-                       
-                    </div>
+
+                    </div> </div>
+
+
                 </div>
             </div>
         );
     }
-    
+
 }
 export default Predictions;

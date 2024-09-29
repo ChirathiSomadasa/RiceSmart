@@ -124,4 +124,25 @@ router.delete('/api/predictions/:id', async (req, res) => {
     }
 });
 
+
+router.get('/api/admin/predictions', async (req, res) => {
+    try {
+        const predictions = await Prediction.find({});
+        res.status(200).json({
+            message: 'All predictions retrieved successfully',
+            status: 'success',
+            data: predictions
+        });
+    } catch (error) {
+        console.error('Error retrieving predictions:', error);
+        res.status(500).json({
+            message: 'Error retrieving predictions',
+            status: 'error',
+            error: error.message
+        });
+    }
+});
+
+
+
 module.exports = router;

@@ -44,7 +44,7 @@
 .welcome {
 
     width: 1200px;
-    height: 700px;
+    height: 600px;
     margin: auto;
 
 }
@@ -79,7 +79,7 @@
 }
 
 .about-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/yield/about.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/yield/bg1.jpg);
     height: 50%;
     background-position: center;
     background-repeat: no-repeat;
