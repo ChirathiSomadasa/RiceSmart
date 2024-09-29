@@ -1,0 +1,25 @@
+.disposal-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #4843b7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #16015c;
+  }
+  

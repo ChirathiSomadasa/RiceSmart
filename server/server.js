@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const ContactModel = require('./models/contact');
 const Prediction = require('./models/prediction');
 const User = require('./models/User');
+const router = require("./routes/router");
 
 var predictionRoute = require("./routes/prediction_route");
 var userRoute = require("./routes/user_route");
@@ -16,6 +17,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json()); 
+
+// Routes
+app.use(router);
 
 // Authentication Middleware
 app.use(async (req, res, next) => {
