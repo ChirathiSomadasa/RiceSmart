@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../../images/logo.png';
 
 
+
 function Header() {
 
   var menu = [
@@ -21,6 +22,11 @@ function Header() {
       name: "Yield Prediction",
       icon: "grass",
       navigate: "prediction",
+    },
+    {
+      name: "Fertilizers & Pesticides",
+      icon: "agriculture",
+      navigate: "fertilizers",
     },
     
   ];
@@ -98,6 +104,7 @@ function Header() {
                     <div onClick={() => onSubMenuClick(submenu.navigate)} key={submenu.name} className='sidenav-item-sub-main'>
                       <p>{submenu.name}</p>
                     </div>
+                    
 
                   )}
 
