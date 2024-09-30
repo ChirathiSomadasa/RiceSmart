@@ -26,11 +26,10 @@ function Contact() {
     window.location.href = '/contact/ManageMySolution';
   };
 
-  const handleLocationClick = () => {
+  const handleLocationClick =() =>{
     window.location.href = '/map/Map';
-  };
+  }
 
-  
 
   useEffect(() => {
 
@@ -293,8 +292,11 @@ function Contact() {
               </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.disease}</p>
               <p><strong>Symptoms   </strong><br></br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.description}</p><br></br>
-              <p><MdOutlineLocationOn className="QlocationIcon" onClick={() => handleLocationClick(contact.location)} // Pass the location data
-                  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}</p>
+
+                <p>
+                <MdOutlineLocationOn className="QlocationIcon" onClick={() => handleLocationClick(contact.location)} // Pass the location data
+                />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}
+                </p>
               <div>
                 <h4>Solutions:</h4>
                 {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import './NotificationBell.css';
+import { MdOutlineLocationOn } from "react-icons/md";
 import { useAuthEmail } from '../../auth'; // Adjust the import path as needed
 
 
@@ -86,24 +87,33 @@ const NotificationBell = () => {
                         {notifications.map((notification, index) => (
                             <li key={index} className="notification-card">
                                 <div className="notification-card-content">
-                                <div className="warning-message">
-                            ⚠️ <strong>Warning:</strong> The information provided is for public health awareness. Please take necessary precautions!
-                        </div>
-                               <div className='details'>
-                                    <h4>Disease:</h4>
-                                    <p>{notification.disease}</p>
-                                    
-                                    <h4>Location:</h4>
-                                    <p>{notification.location}</p>
+                                    <div className="warning-message">
+                                        ⚠️ <strong>Warning:</strong> The information provided is for public awareness. Please take necessary precautions!
+                                    </div>
+                                    <div className='details'>
+                                        <h4>Disease:</h4>
+                                        <p>{notification.disease}</p>
 
-                                </div>    
+                                        <h4>Disease category:</h4>
+                                        <p>{notification.category}</p>
+                                        
+                                        <h4>Disease description:</h4>
+                                        <p>{notification.description}</p>
+                                        
+                                        <h4>Location:</h4>
+                                        <p className="clickable-location" onClick={() => navigate('/map', { state: { location: notification.location } })}>
+                                            <MdOutlineLocationOn className="QlocationIcon" />
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <span className="underlined-text">{notification.location}</span>
+                                        </p>
+                                    </div>    
                                 </div>
-                                <button
+                                {/* <button
                                     className="see-more-button"
                                     onClick={() => handleSeeMore(notification)}
                                 >
                                     Add Solution
-                                </button>
+                                </button> */}
                                 <button
                                     className="delete-button"
                                     onClick={() => deleteNotification(notification._id)}
@@ -114,7 +124,9 @@ const NotificationBell = () => {
                         ))}
                     </ul>
                 ) : (
-                    <div className="notification-item">No newwwww notifications</div>
+                    <div className="notification-item">
+                        <strong>No New Notifications</strong>
+                    </div>
                 )}
             </div>
 

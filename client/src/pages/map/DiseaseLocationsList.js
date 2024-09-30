@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './DiseaseLocationsList.css'; // Import the CSS file
+
 
 const DiseaseLocationsList = () => {
     const [locations, setLocations] = useState([]);
@@ -31,17 +33,17 @@ const DiseaseLocationsList = () => {
 
     return (
 
-        <div>
-        <h2>Disease Locations</h2>
-        <ul>
-            {locations.map((location, index) => (
-            <li key={index} style={{padding: '10px'}}>
-                <strong>Disease:</strong> {location.disease}<br />
-                <strong>Category:</strong> {location.category}<br />
-                <strong>Location:</strong> {location.location}
-            </li>
-            ))}
-        </ul>
+        <div className="disease-locations-container">
+            <h2>Disease Locations</h2>
+            <ul className="disease-locations-list">
+                {locations.map((location, index) => (
+                    <li key={index} className="disease-location-item">
+                        <strong className="disease-location-label">Disease :</strong> {location.disease}<br />
+                        <strong className="disease-location-label">Category :</strong> {location.category}<br />
+                        <strong className="disease-location-label">Location :</strong> {location.location}
+                    </li>
+                ))}
+            </ul>
         </div>
         
     );

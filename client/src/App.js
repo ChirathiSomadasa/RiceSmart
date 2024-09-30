@@ -35,7 +35,7 @@ function App() {
     <Route path="/predictionResult" element={<PredictionResult />} />
     <Route path="/EditResult/:id" element={<EditResult />} />
     <Route path="/signout" element={<SignOut />} />
-
+    <Route path="/map/Map" element={<Map/>}/>
     <Route path="/map" element={<Map />} />
     <Route path="/notification" element={<NotificationBell />} />
     </Routes>
