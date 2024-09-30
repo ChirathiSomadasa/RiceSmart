@@ -86,9 +86,15 @@ function AddDetails() {
 
         switch (name) {
             case 'receiverName':
-                if (!value) newErrors.receiverName = "Receiver's Name is required.";
-                else delete newErrors.receiverName;
+                if (!value) {
+                    newErrors.receiverName = "Receiver's Name is required.";
+                } else if (!/^[a-zA-Z\s]*$/.test(value)) {
+                    newErrors.receiverName = "Receiver's Name must contain only letters and spaces.";
+                } else {
+                    delete newErrors.receiverName;
+                }
                 break;
+            
 
             case 'phoneNumber':
                 if (!value) newErrors.phoneNumber = "Phone Number is required.";
@@ -329,7 +335,7 @@ function AddDetails() {
                             {errors.unit && <span className="error-text">{errors.unit}</span>}
                         </div>
                         <div className="form-group">
-                            <label>Price(In Rupees):</label>
+                            <label>Price:</label>
                             <input
                                 type="text"
                                 name="price"

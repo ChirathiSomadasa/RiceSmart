@@ -64,9 +64,15 @@ function EditDetails() {
 
         switch (name) {
             case 'receiverName':
-                if (!value) newErrors.receiverName = "Receiver Name is required.";
-                else delete newErrors.receiverName;
-                break;
+            if (!value) {
+            newErrors.receiverName = "Receiver's Name is required.";
+                         } else if (!/^[a-zA-Z\s]*$/.test(value)) {
+             newErrors.receiverName = "Receiver's Name must contain only letters and spaces.";
+                 } else {
+                 delete newErrors.receiverName;
+    }
+    break;
+
             case 'phoneNumber':
                 if (!value) newErrors.phoneNumber = "Phone Number is required.";
                 else if (!/^\d{10}$/.test(value)) newErrors.phoneNumber = "Phone Number must be exactly 10 digits.";

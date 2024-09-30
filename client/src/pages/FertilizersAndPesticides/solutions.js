@@ -133,18 +133,19 @@ function Solutions() {
 
     return (
         <div className="search-fertilizer-container">
-            <div className="form-box">
+            <div className="form-boxSolution">
                 <label>You are looking for: </label>
                 <select onChange={handleSelectionChange} value={selection}>
                     <option value="">Select...</option>
                     <option value="Fertilizer">Fertilizer</option>
                     <option value="Pesticide">Pesticide</option>
                 </select>
-
+                
                 {selection === 'Fertilizer' && (
                     <form onSubmit={handleSubmit}>
-                        <label>Crop Type:</label>
-                        <select name="crop Type" onChange={handleInputChange} required>
+                    <div class="form-rowSolution">
+                        <label className="labelSolution">Crop Type:</label>
+                        <select className="selectSolution" name="crop Type" onChange={handleInputChange} required>
                             <option value="">Select Crop Type</option>
                             <option value="Suwandel">Suwandel</option>
                             <option value="Kalu Heenati">Kalu Heenati</option>
@@ -153,55 +154,72 @@ function Solutions() {
                             <option value="Kuruluthuda">Kuruluthuda</option>
                             <option value="Water Lilly Rice">Water Lilly Rice</option>
                         </select>
-
-                        <label>Soil Type:</label>
-                        <select name="soil Type" onChange={handleInputChange} required>
+                        </div>
+                       
+                        <div class="form-rowSolution">
+                        <label className="labelSolution">Soil Type:</label>
+                        <select className="selectSolution" name="soil Type" onChange={handleInputChange} required>
                             <option value="">Select Soil Type</option>
                             <option value="Reddish Brown Earth">Reddish Brown Earth</option>
                             <option value="Alluvial Soil">Alluvial Soil</option>
                             <option value="Red Yellow Podzolic Soil">Red Yellow Podzolic Soil</option>
                             <option value="Grumusol Soil">Grumusol Soil</option>
                         </select>
+                        </div>
+                        
 
-                        <label>Nutrient Requirement:</label>
-                        <select name="nutrient Requirement" onChange={handleInputChange} required>
+                        <div class="form-rowSolution">
+                        <label className="labelSolution">Nutrient Requirement:</label>
+                        <select className="selectSolution" name="nutrient Requirement" onChange={handleInputChange} required>
                             <option value="">Select Nutrient Requirement</option>
                             <option value="Nitrogen">Nitrogen</option>
                             <option value="Phosphorus">Phosphorus</option>
                             <option value="Potassium">Potassium</option>
                             <option value="Calcium">Calcium</option>
                         </select>
-
-                        <label>Local Climate Condition:</label>
-                        <select name="climate Condition" onChange={handleInputChange} required>
+                        </div>
+                        
+                      
+                        <div class="form-rowSolution">
+                        <label className="labelSolution">Local Climate Condition:</label>
+                        <select className="selectSolution" name="climate Condition" onChange={handleInputChange} required>
                             <option value="">Select Climate Condition</option>
                             <option value="Dry">Dry</option>
                             <option value="Rainy">Rainy</option>
                         </select>
-
-                        <button type="submit">Proceed</button>
+                        <button type="submit" className="buttonSolution">Proceed</button>
+                        </div>
+                        
+                        
                     </form>
+                    
                 )}
 
                 {selection === 'Pesticide' && (
                     <form onSubmit={handleSubmit}>
-                        <label>Pest Identification:</label>
-                        <select name="pest Id" onChange={handleInputChange} required>
+                        <div class="form-rowSolution">
+                        <label className="labelSolution">Pest Identification:</label>
+                        <select className="selectSolution" name="pest Id" onChange={handleInputChange} required>
                             <option value="">Select Pest</option>
                             <option value="Brown Plant Hopper">Brown Plant Hopper</option>
                             <option value="Rice Gall Midge">Rice Gall Midge</option>
                             <option value="Rice Leaf Folder">Rice Leaf Folder</option>
                             <option value="Rice Stem Borer">Rice Stem Borer</option>
                         </select>
+                        </div>
 
-                        <label>Weather Condition:</label>
-                        <select name="weather Condition" onChange={handleInputChange} required>
+
+                        <div class="form-rowSolution">
+                        <label className="labelSolution">Weather Condition:</label>
+                        <select className="selectSolution" name="weather Condition" onChange={handleInputChange} required>
                             <option value="">Select Weather Condition</option>
                             <option value="Dry">Dry</option>
                             <option value="Rainy">Rainy</option>
                         </select>
+                        <button type="submit" className='buttonSolution'>Proceed</button>
+                        </div>
 
-                        <button type="submit">Proceed</button>
+                        
                     </form>
                 )}
 
@@ -213,6 +231,7 @@ function Solutions() {
                         alt="Loading..." 
                         />
                     </div>
+                    
                 )}
 
                 {!loading && solution && (

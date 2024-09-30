@@ -9,6 +9,17 @@ function Refill() {
   
     return (
         <div className="detail-container">
+            <div className="refillcontainer">
+  <h2 className="refill-title"><span className="emoji">🌱</span> Need a Refill? We've Got You Covered!</h2>
+  <p className="refill-info">
+    Running low on fertilizer? No worries! Request your refill with just a click.
+  </p>
+  <div className="refill-details">
+    <p><strong><span className="emoji">💰</span> Pricing:</strong> The price is for the product only—container not included!</p>
+    <p><strong><span className="emoji">🚚</span> Delivery Charge:</strong> Just 250 rupees to bring it right to your doorstep.</p>
+  </div>
+</div>
+
             <button
                 type="button"
                 className="add_button"
@@ -23,18 +34,7 @@ function Refill() {
             >
                 View Details 
             </button>
-            <div className="status-container">
-              <h2>Your Status</h2>
-                <img 
-                    className="status-video" 
-                    src={nodataGif} 
-                    alt="No refill request"
-                />
-              
-                <div className="status-message">
-                    You have not submitted any refill request
-                </div>
-            </div>
+            
         </div>
     );
 }

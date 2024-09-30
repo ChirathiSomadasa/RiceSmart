@@ -125,8 +125,56 @@ router.put('/details/:id', async (req, res) => {
             message: 'Error updating detail',
             error: error.message
         });
+//approve
+ // Approve Route
+router.put('/details/approve/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const updatedDetail = await details.findByIdAndUpdate(
+            id,
+            { status: 'approved' }, // Update status to approved
+            { new: true } // Return the updated document
+        );
+        if (!updatedDetail) {
+            return res.status(404).json({ error: 'Detail not found' });
+        }
+        res.json({ message: 'Detail approved successfully', detail: updatedDetail });
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while approving the detail' });
     }
 });
+  
+
+
+  //reject      
+router.put('/details/reject/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const updatedDetail = await details.findByIdAndUpdate(
+            id,
+            { status: 'rejected' }, // Update status to rejected
+            { new: true } // Return the updated document
+        );
+        if (!updatedDetail) {
+            return res.status(404).json({ error: 'Detail not found' });
+        }
+        res.json({ message: 'Detail rejected successfully', detail: updatedDetail });
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while rejecting the detail' });
+    }
+});
+
+    }
+}
+
+
+
+
+
+
+);
 
 
 

@@ -39,10 +39,15 @@ const detailSchema = new mongoose.Schema({
     price: { 
         type: Number, 
         required: true 
+    },
+    status: { 
+        type: String, 
+        enum: ['pending', 'approved', 'rejected'], 
+        default: 'pending' 
     }
 });
 
-// Optional: Index on phoneNumber for quick lookups
+
 detailSchema.index({ phoneNumber: 1 });
 
 const Detail = mongoose.model("Detail", detailSchema);
