@@ -78,8 +78,6 @@ function Header() {
                 <HeaderNavButton id="contact" activeId={activePage} name="Farmers' Q&A" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="f" activeId={activePage} name="Fertilizer & pesticides" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="M" activeId={activePage} name="Map" onClick={(id) => { navItemClick(id) }} />
-               
-
                 <HeaderNavButton id="store" activeId={activePage} name="" onClick={(id) => { navItemClick(id) }} />
                 <HeaderNavButton id="contact" activeId={activePage} name="" onClick={(id) => { navItemClick(id) }} />
 

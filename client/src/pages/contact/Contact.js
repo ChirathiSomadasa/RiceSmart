@@ -106,7 +106,7 @@ function Contact() {
       doc.text(subtitle, subtitleX, 60);
 
       // Table with diseases and solutions
-      const header = [['Disease', 'Category', 'Description', 'Location', 'Solutions']];
+      const header = [['Disease', 'Category', 'Symptoms', 'Location', 'Solutions']];
       const data = dataToGenerate.map(contact => [
         contact.disease,
         contact.category,

@@ -16,7 +16,7 @@ function ManageMySolution() {
             .then(result => setContactData(result.data))
             .catch(err => console.log(err));
     }, []);
-
+ 
     const handleDeleteSolution = (contactId, solutionIndex) => {
         if (window.confirm("Are you sure you want to delete this solution?")) {
             const updatedContacts = contactData.map(contact => {
@@ -37,6 +37,7 @@ function ManageMySolution() {
         }
     };
 
+    
     const handleEditSolution = (contactId, solutionIndex) => {
         const updatedSolution = prompt("Enter the updated solution:");
         if (updatedSolution) {

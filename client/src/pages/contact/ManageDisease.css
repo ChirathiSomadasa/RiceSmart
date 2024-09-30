@@ -100,7 +100,6 @@ h2{
 }
 
 .SContactStore {
-  
     flex-direction: column; /* Stack cards vertically */
     align-items: center;
     width: 1200px;
