@@ -6,6 +6,7 @@ import jsPDF from 'jspdf';
 import Logo from '../../images/logo.png';  
 import 'jspdf-autotable';
 
+
 function Predictions() {
     const [predictions, setPredictions] = useState([]);
     const [searchQuery, setSearchQuery] = useState(''); 

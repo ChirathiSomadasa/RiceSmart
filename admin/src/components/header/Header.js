@@ -22,7 +22,16 @@ function Header() {
       icon: "grass",
       navigate: "prediction",
     },
-    
+    {
+      name: "Diseases",
+      icon: "healing", // Icon for Questions
+      navigate: "contact/Contact", // Define your navigation route for Questions
+    },
+    {
+      name: "Solutions",
+      icon: "lightbulb", // Icon for Answers
+      navigate: "contact/Solution", // Define your navigation route for Answers
+    },
   ];
 
   const[openNavMenu,setOpenNavMenu] = useState(false);
