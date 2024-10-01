@@ -53,7 +53,7 @@ function PredictionResult() {
                 setPredictions(response.data.data);
                 setLoading(false);
             } catch (err) {
-                setError('Failed to load predictions');
+                setError('Failed to load predictions.You must login to the system.');
                 setLoading(false);
             }
         };
@@ -242,7 +242,7 @@ function PredictionResult() {
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return <div className='pre_log'>{error}</div>;
     }
 
     return (

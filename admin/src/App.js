@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/header/Header';
 import Prediction from './pages/prediction/Prediction';
 import Fertilizer from './pages/fertilizers/fertilizer';
+import User from './pages/user/User';
 
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
         <Routes>
         <Route path="/prediction" Component={Prediction} />
         <Route path="/fertilizers" Component={Fertilizer} />
+        <Route path="/user" Component={User} />
+
         </Routes>
 
       </div>
