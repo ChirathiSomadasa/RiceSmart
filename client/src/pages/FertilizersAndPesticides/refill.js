@@ -1,8 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Refill.css';
-import Processing from '../../images/fertilizers/process.gif';
-import nodataGif from '../../images/fertilizers/nodata.gif'; 
+
 
 function Refill() {
   const navigate = useNavigate();
