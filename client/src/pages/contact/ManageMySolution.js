@@ -4,12 +4,14 @@ import './ManageMySolution.css'; // Ensure CSS file contains relevant styles
 import axios from 'axios';
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { useAuthEmail, useAuthPassword } from '../../auth';
+import { useNavigate } from 'react-router-dom';
 
 function ManageMySolution() {
     const [contactData, setContactData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const authEmail = useAuthEmail();
     const authPassword = useAuthPassword();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:5001/')
@@ -64,7 +66,8 @@ function ManageMySolution() {
 
 
     if (authEmail == null || authPassword == null) {
-        return "No login";
+        navigate('/login');
+        return null;
     } else {
         return (
             <div>

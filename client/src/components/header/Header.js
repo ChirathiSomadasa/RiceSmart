@@ -35,7 +35,7 @@ function Header() {
         navigate("/signout");
     }
     function onProfileButtonClick() {
-        navigate("/profile");
+        navigate("/profile/Profile");
     }
 
     return (

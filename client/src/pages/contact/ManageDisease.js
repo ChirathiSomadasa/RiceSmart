@@ -4,6 +4,7 @@ import './ManageDisease.css';
 import axios from 'axios';
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { useAuthEmail, useAuthPassword } from '../../auth'
+import { useNavigate } from 'react-router-dom';
 
 
 function ManageDisease() {
@@ -11,6 +12,7 @@ function ManageDisease() {
   const [searchQuery, setSearchQuery] = useState("");
   const authEmail = useAuthEmail();
   const authPassword = useAuthPassword();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -69,7 +71,8 @@ function ManageDisease() {
   }
 
   if (authEmail == null || authPassword == null) {
-    return ("No login");
+    navigate('/login');
+    return null;
 
 
   } else {

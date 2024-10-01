@@ -16,6 +16,7 @@ import SignOut from './pages/signout/SignOut';
 import Map from './pages/map/Map';
 import NotificationBell from './pages/map/NotificationBell'
 import ManageMySolution from './pages/contact/ManageMySolution';
+import Profile from './pages/profile/Profile';
    
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
     <Route path="/map/Map" element={<Map/>}/>
     <Route path="/map" element={<Map />} />
     <Route path="/notification" element={<NotificationBell />} />
+    <Route path="/profile/Profile" element={<Profile/>}/>
     </Routes>
   </BrowserRouter>
   );
