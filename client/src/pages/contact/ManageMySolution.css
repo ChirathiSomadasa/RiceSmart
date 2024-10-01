@@ -61,4 +61,7 @@
   }
   
 
-   
+  .thead{
+    font-weight: 400 !important;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+   }

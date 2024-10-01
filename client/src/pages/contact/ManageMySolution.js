@@ -89,9 +89,9 @@ function ManageMySolution() {
                                 // Only render the row if there are solutions available
                                 contact.solutions && contact.solutions.length > 0 && (
                                     <tr key={contact._id}>
-                                        <td>{contact.category}</td>
-                                        <td>{contact.description}</td>
-                                        <td>
+                                        <td className='thead'>{contact.category}</td>
+                                        <td className='thead'>{contact.description}</td>
+                                        <td className='thead'>
                                             <ul>
                                                 {contact.solutions.map((sol, index) => (
                                                     <li key={index} className="solution-item">

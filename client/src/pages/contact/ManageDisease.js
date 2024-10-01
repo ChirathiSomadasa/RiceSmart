@@ -102,11 +102,11 @@ function ManageDisease() {
             <tbody>
               {contactData.map((contact) => (
                 <tr key={contact._id}>
-                  <td>{contact.category} </td>
-                  <td>{contact.disease}</td>
-                  <td>{contact.description}</td>
-                  <td> {contact.location}</td>
-                  <td>
+                  <td className='thead'>{contact.category} </td>
+                  <td className='thead'>{contact.disease}</td>
+                  <td className='thead'>{contact.description}</td>
+                  <td className='thead'> {contact.location}</td>
+                  <td className='thead'>
                     <ul>
                       {contact.solutions.map((sol, index) => (
                         <li key={index}>{sol.solution}</li>
