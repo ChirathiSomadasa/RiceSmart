@@ -40,45 +40,7 @@ function Fertilizer() {
         );
         setFilteredDetails(filtered);
     }, [searchTerm, details]);
-
-   
-
-     // Handle reject
-     const handleReject = async (id) => {
-        const isConfirmed = window.confirm("Are you sure you want to reject this detail?");
-        
-        if (isConfirmed) {
-            try {
-                await axios.delete(`http://localhost:5001/details/${id}`); // Assuming you want to delete on reject
-                fetchDetails(); // Refresh the details list
-                alert("Detail rejected successfully!"); // Notify the user
-            } catch (error) {
-                console.error("Error rejecting detail:", error);
-                alert("An error occurred while rejecting the detail.");
-            }
-        } else {
-            alert("Rejection canceled.");
-        }
-    };
-
-     // Handle approve
-     const handleApprove = async (id) => {
-        const isConfirmed = window.confirm("Are you sure you want to approve this detail?");
-        
-        if (isConfirmed) {
-            try {
-                await axios.put(`http://localhost:5001/details/approve/${id}`);
-                fetchDetails(); // Refresh the details list
-                alert("Detail approved successfully!");
-            } catch (error) {
-                console.error("Error approving detail:", error);
-                alert("Approval canceled due to unknown problem...try again later");
-            }
-        } else {
-            alert("Approval canceled.");
-        }
-    };
-    
+ 
 
     // Handle search input change
     const handleSearchChange = (event) => {
@@ -105,7 +67,7 @@ function Fertilizer() {
                 {
                     table: {
                         headerRows: 1,
-                        widths: ['*', '*', '*', '*', '*', '*', '*', '*'],
+                        widths: ['*', '*', '*', '*', '*', '*', '*', '*' , '*'],
                         body: [
                             [
                                 { text: 'Receiver\'s Name', fillColor: '#A5D6A7', bold: true },
@@ -115,7 +77,8 @@ function Fertilizer() {
                                 { text: 'Product Name', fillColor: '#A5D6A7', bold: true },
                                 { text: 'Brand', fillColor: '#A5D6A7', bold: true },
                                 { text: 'Amount', fillColor: '#A5D6A7', bold: true },
-                                { text: 'Total Price', fillColor: '#A5D6A7', bold: true }
+                                { text: 'Total Price', fillColor: '#A5D6A7', bold: true },
+                                { text: 'Status', fillColor: '#A5D6A7', bold: true }
                             ],
                             ...filteredDetails.map((detail) => [
                                 { text: detail.receiverName, fillColor: '#E5EFE5' },
@@ -125,7 +88,8 @@ function Fertilizer() {
                                 {text:detail.productName, fillColor: '#E5EFE5'},
                                 {text:detail.brand, fillColor: '#E5EFE5'},
                                 {text:detail.amount, fillColor: '#E5EFE5'},
-                                {text:detail.price, fillColor: '#E5EFE5'}
+                                {text:detail.price, fillColor: '#E5EFE5'},
+                                {text:detail.status, fillColor: '#E5EFE5'}
                             ])
                         ]
                     },
@@ -173,6 +137,39 @@ const loadImage = (src) => {
     });
 };
 
+const handleApprove = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to approve this detail?");
+    if (!confirmed) return; // Exit if the user clicks "Cancel"
+
+    try {
+        const response = await axios.put(`http://localhost:5001/details/${id}/approve`);
+        const updatedDetails = details.map(detail => detail._id === id ? response.data.data : detail);
+        setDetails(updatedDetails);
+        setFilteredDetails(updatedDetails);
+        alert("Detail approved successfully!"); // Show success message
+    } catch (error) {
+        console.error("Error approving detail:", error);
+        alert("An error occurred while approving the detail."); // Show error message
+    }
+};
+
+const handleReject = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to reject this detail?");
+    if (!confirmed) return; // Exit if the user clicks "Cancel"
+
+    try {
+        const response = await axios.put(`http://localhost:5001/details/${id}/reject`);
+        const updatedDetails = details.map(detail => detail._id === id ? response.data.data : detail);
+        setDetails(updatedDetails);
+        setFilteredDetails(updatedDetails);
+        alert("Detail rejected successfully!"); // Show success message
+    } catch (error) {
+        console.error("Error rejecting detail:", error);
+        alert("An error occurred while rejecting the detail."); // Show error message
+    }
+};
+
+
 
     return (
         <div className="view-all">
@@ -183,11 +180,11 @@ const loadImage = (src) => {
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                className="search-input"/>
+                className="search-inputadmin"/>
             
             <button
                 type="button"
-                className="search-button"
+                className="search-buttonadmin"
                 onClick={() => setSearchTerm(searchTerm)}
             >
                 Search
@@ -201,9 +198,9 @@ const loadImage = (src) => {
                 Download Report
             </button>
 
-            <h1 className="topic">All Details</h1>
+            <h1 className="topic">Manage Refill-Request User Details</h1>
 
-            <table className="detail-table">
+            <table className="detail-tableadmin">
                 <thead>
                     <tr>
                         <th>Receiver's Name</th>
@@ -214,7 +211,9 @@ const loadImage = (src) => {
                         <th>Brand</th>
                         <th>Amount</th>
                         <th>Total Price</th>
+                        <th>Status</th>
                         <th>Action</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -228,6 +227,7 @@ const loadImage = (src) => {
                             <td>{detail.brand}</td>
                             <td>{detail.amount}</td>
                             <td>{detail.price}</td>
+                            <td>{detail.status}</td>
                             <td>
                                 <button className="action-button1 reject" onClick={() => handleReject(detail._id)}>reject</button>
                                 <button className="action-button1 approve" onClick={() => handleApprove(detail._id)} >Approve</button>

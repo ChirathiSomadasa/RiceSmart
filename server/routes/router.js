@@ -125,57 +125,46 @@ router.put('/details/:id', async (req, res) => {
             message: 'Error updating detail',
             error: error.message
         });
-//approve
- // Approve Route
-router.put('/details/approve/:id', async (req, res) => {
-    const { id } = req.params;
 
-    try {
-        const updatedDetail = await details.findByIdAndUpdate(
-            id,
-            { status: 'approved' }, // Update status to approved
-            { new: true } // Return the updated document
-        );
-        if (!updatedDetail) {
-            return res.status(404).json({ error: 'Detail not found' });
-        }
-        res.json({ message: 'Detail approved successfully', detail: updatedDetail });
-    } catch (error) {
-        res.status(500).json({ error: 'An error occurred while approving the detail' });
-    }
-});
-  
+        
 
-
-  //reject      
-router.put('/details/reject/:id', async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const updatedDetail = await details.findByIdAndUpdate(
-            id,
-            { status: 'rejected' }, // Update status to rejected
-            { new: true } // Return the updated document
-        );
-        if (!updatedDetail) {
-            return res.status(404).json({ error: 'Detail not found' });
-        }
-        res.json({ message: 'Detail rejected successfully', detail: updatedDetail });
-    } catch (error) {
-        res.status(500).json({ error: 'An error occurred while rejecting the detail' });
     }
 });
 
+// Approve a detail by ID
+router.put('/details/:id/approve', async (req, res) => {
+    try {
+        const updatedDetail = await details.findByIdAndUpdate(
+            req.params.id,
+            { status: 'approved' },
+            { new: true, runValidators: true }
+        );
+        if (!updatedDetail) {
+            return res.status(404).json({ message: 'Detail not found' });
+        }
+        res.status(200).json({ message: 'Detail approved successfully', data: updatedDetail });
+    } catch (error) {
+        res.status(500).json({ message: 'Error approving detail', error: error.message });
     }
-}
+});
 
 
-
-
-
-
-);
-
+// Reject a detail by ID
+router.put('/details/:id/reject', async (req, res) => {
+    try {
+        const updatedDetail = await details.findByIdAndUpdate(
+            req.params.id,
+            { status: 'rejected' },
+            { new: true, runValidators: true }
+        );
+        if (!updatedDetail) {
+            return res.status(404).json({ message: 'Detail not found' });
+        }
+        res.status(200).json({ message: 'Detail rejected successfully', data: updatedDetail });
+    } catch (error) {
+        res.status(500).json({ message: 'Error rejecting detail', error: error.message });
+    }
+});
 
 
 module.exports = router;

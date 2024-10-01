@@ -229,7 +229,7 @@ function Disposal() {
         <button className='disposal-submit' type="submit">Search</button>
       </form>
 
-      <div className="button-container">
+      <div className="button-container1">
         {locations.map((location, index) => (
           <button key={index} onClick={() => handleLocationSelect(location)}>
             {location.name}

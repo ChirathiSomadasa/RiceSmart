@@ -14,7 +14,7 @@
       margin-bottom: 20px;
     }
     
-    .search-button {
+    .search-buttonadmin {
       padding: 10px;
       background-color: #027413;
       color: rgb(255, 255, 255);
@@ -25,12 +25,12 @@
       font-weight: bolder;
       text-align: center;
       width: 150px; 
-      margin-right: 100px;
+      margin-right: 600px;
      
   }
-  .search-input{
+  .search-inputadmin{
     padding: 10px;
-    border: none;
+    border: 2px solid black;;
     border-radius: 4px;
     font-size: 16px;
     font-weight: bolder;
@@ -56,28 +56,34 @@
     
   }
   
-   .download-button:hover, .search-button:hover {
+   .download-button:hover {
       background-color: #16015c;
   }
+
+  .search-buttonadmin:hover {
+    background-color: #01480e;
+}
     
-    .detail-table {
+    .detail-tableadmin {
       width: 100%;
       margin: 0 auto;
       border-collapse: collapse;
+      background: #f9f9f9bd;
      
     }
     
-    .detail-table th, .detail-table td {
-      border: 1px solid #9c9b9b;
+    .detail-tableadimn th, .detail-tableadimn td {
+      border: 1px solid #656565;
       padding: 8px;
       text-align: center;
       padding: 12px;
       width: 10%;
-      background: #ffffff;
+      
     }
     
-    .detail-table th {
-      background-color: #18632d;
+    .detail-tableadmin th {
+      background-color: #c0c3c0;
+      
   
     }
     
@@ -91,11 +97,6 @@
       font-size: 16px;
     }
     
-    .view {
-      background-color: blue;
-      
-     
-    }
     
     .reject {
       background-color: red;
