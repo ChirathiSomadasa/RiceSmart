@@ -144,7 +144,7 @@
     padding: 20px;
   }
   
-  .cards-container {
+  .fcards-container {
     display: flex;
     width: 80%;
     margin: 0 auto;
@@ -152,7 +152,7 @@
     gap: 20px; 
 }
 
-.card {
+.fcard {
     flex: 0 0 50%; 
     transition: transform 0.6s ease-in-out;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -162,7 +162,7 @@
 }
 
   
-  .card img {
+  .fcard img {
     width: 200px;
     height: auto; 
     border-radius: 5px;
@@ -170,16 +170,16 @@
 }
 
   
-  .card-content {
+  .fcard-content {
     padding: 5px;
   }
   
-  .card h2 {
+  .fcard h2 {
     font-size: 1.5rem;
     margin: 10px 0;
   }
   
-  .card p {
+  .fcard p {
     font-size: 1rem;
     color: #666;
   }

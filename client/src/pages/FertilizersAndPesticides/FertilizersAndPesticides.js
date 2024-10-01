@@ -91,15 +91,15 @@ function FertilizersAndPesticides() {
         <div className="fertilizer-slider-container">
           
           {/* Slider Wrapper */}
-          <div className="cards-container">
+          <div className="fcards-container">
             {fertilizers.map((fertilizer, index) => (
               <div
                 key={index}
-                className={`card ${index === currentIndex ? 'active' : ''}`} // Active card styling
+                className={`fcard ${index === currentIndex ? 'active' : ''}`} // Active card styling
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }} // Slide effect
               >
                 <img src={fertilizer.image} alt={fertilizer.name} />
-                <div className="card-content">
+                <div className="fcard-content">
                   <h2>{fertilizer.name}</h2>
                   <p>{fertilizer.description}</p>
                 </div>

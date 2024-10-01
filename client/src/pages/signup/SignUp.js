@@ -67,7 +67,7 @@ function SignUp() {
       <div className="authentication">
         <div className="authentication-form card p-2">
           <h1 className="card-title">CREATE AN ACCOUNT</h1>
-          <Form layout="vertical" onFinish={onFinishSignIn}>
+          <Form className='signup-form-credentials' layout="vertical" onFinish={onFinishSignIn}>
             
             <Form.Item
               label="First Name"

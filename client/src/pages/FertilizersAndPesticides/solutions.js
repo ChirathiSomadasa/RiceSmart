@@ -113,7 +113,6 @@ function Solutions() {
         setTimeout(() => {
             let selectedProduct;
             if (selection === 'Fertilizer') {
-                // Filter out already used products
                 const availableFertilizers = fertilizers.filter(f => !usedProducts.includes(f.name));
                 selectedProduct = availableFertilizers.length ? getRandomProduct(availableFertilizers) : null;
             } else {
@@ -133,105 +132,132 @@ function Solutions() {
 
     return (
         <div className="search-fertilizer-container">
-            <div className="form-boxSolution">
-                <label>You are looking for: </label>
-                <select onChange={handleSelectionChange} value={selection}>
-                    <option value="">Select...</option>
-                    <option value="Fertilizer">Fertilizer</option>
-                    <option value="Pesticide">Pesticide</option>
-                </select>
-                
+            <div c>
+                <table className='solution-table'>
+                    <thead>
+                        <tr>
+                            <th>You are looking for:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select onChange={handleSelectionChange} value={selection}>
+                                    <option value="">Select...</option>
+                                    <option value="Fertilizer">Fertilizer</option>
+                                    <option value="Pesticide">Pesticide</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 {selection === 'Fertilizer' && (
                     <form onSubmit={handleSubmit}>
-                    <div class="form-rowSolution">
-                        <label className="labelSolution">Crop Type:</label>
-                        <select className="selectSolution" name="crop Type" onChange={handleInputChange} required>
-                            <option value="">Select Crop Type</option>
-                            <option value="Suwandel">Suwandel</option>
-                            <option value="Kalu Heenati">Kalu Heenati</option>
-                            <option value="Maa-Wee">Maa-Wee</option>
-                            <option value="Pachchaperumal">Pachchaperumal</option>
-                            <option value="Kuruluthuda">Kuruluthuda</option>
-                            <option value="Water Lilly Rice">Water Lilly Rice</option>
-                        </select>
-                        </div>
-                       
-                        <div class="form-rowSolution">
-                        <label className="labelSolution">Soil Type:</label>
-                        <select className="selectSolution" name="soil Type" onChange={handleInputChange} required>
-                            <option value="">Select Soil Type</option>
-                            <option value="Reddish Brown Earth">Reddish Brown Earth</option>
-                            <option value="Alluvial Soil">Alluvial Soil</option>
-                            <option value="Red Yellow Podzolic Soil">Red Yellow Podzolic Soil</option>
-                            <option value="Grumusol Soil">Grumusol Soil</option>
-                        </select>
-                        </div>
-                        
-
-                        <div class="form-rowSolution">
-                        <label className="labelSolution">Nutrient Requirement:</label>
-                        <select className="selectSolution" name="nutrient Requirement" onChange={handleInputChange} required>
-                            <option value="">Select Nutrient Requirement</option>
-                            <option value="Nitrogen">Nitrogen</option>
-                            <option value="Phosphorus">Phosphorus</option>
-                            <option value="Potassium">Potassium</option>
-                            <option value="Calcium">Calcium</option>
-                        </select>
-                        </div>
-                        
-                      
-                        <div class="form-rowSolution">
-                        <label className="labelSolution">Local Climate Condition:</label>
-                        <select className="selectSolution" name="climate Condition" onChange={handleInputChange} required>
-                            <option value="">Select Climate Condition</option>
-                            <option value="Dry">Dry</option>
-                            <option value="Rainy">Rainy</option>
-                        </select>
-                        <button type="submit" className="buttonSolution">Proceed</button>
-                        </div>
-                        
-                        
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className="labelSolution">Crop Type:</td>
+                                    <td>
+                                        <select className="selectSolution" name="crop Type" onChange={handleInputChange} required>
+                                            <option value="">Select Crop Type</option>
+                                            <option value="Suwandel">Suwandel</option>
+                                            <option value="Kalu Heenati">Kalu Heenati</option>
+                                            <option value="Maa-Wee">Maa-Wee</option>
+                                            <option value="Pachchaperumal">Pachchaperumal</option>
+                                            <option value="Kuruluthuda">Kuruluthuda</option>
+                                            <option value="Water Lilly Rice">Water Lilly Rice</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="labelSolution">Soil Type:</td>
+                                    <td>
+                                        <select className="selectSolution" name="soil Type" onChange={handleInputChange} required>
+                                            <option value="">Select Soil Type</option>
+                                            <option value="Reddish Brown Earth">Reddish Brown Earth</option>
+                                            <option value="Alluvial Soil">Alluvial Soil</option>
+                                            <option value="Red Yellow Podzolic Soil">Red Yellow Podzolic Soil</option>
+                                            <option value="Grumusol Soil">Grumusol Soil</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="labelSolution">Nutrient Requirement:</td>
+                                    <td>
+                                        <select className="selectSolution" name="nutrient Requirement" onChange={handleInputChange} required>
+                                            <option value="">Select Nutrient Requirement</option>
+                                            <option value="Nitrogen">Nitrogen</option>
+                                            <option value="Phosphorus">Phosphorus</option>
+                                            <option value="Potassium">Potassium</option>
+                                            <option value="Calcium">Calcium</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="labelSolution">Local Climate Condition:</td>
+                                    <td>
+                                        <select className="selectSolution" name="climate Condition" onChange={handleInputChange} required>
+                                            <option value="">Select Climate Condition</option>
+                                            <option value="Dry">Dry</option>
+                                            <option value="Rainy">Rainy</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="2">
+                                        <button type="submit" className="buttonSolution">Proceed</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </form>
-                    
                 )}
 
                 {selection === 'Pesticide' && (
                     <form onSubmit={handleSubmit}>
-                        <div class="form-rowSolution">
-                        <label className="labelSolution">Pest Identification:</label>
-                        <select className="selectSolution" name="pest Id" onChange={handleInputChange} required>
-                            <option value="">Select Pest</option>
-                            <option value="Brown Plant Hopper">Brown Plant Hopper</option>
-                            <option value="Rice Gall Midge">Rice Gall Midge</option>
-                            <option value="Rice Leaf Folder">Rice Leaf Folder</option>
-                            <option value="Rice Stem Borer">Rice Stem Borer</option>
-                        </select>
-                        </div>
-
-
-                        <div class="form-rowSolution">
-                        <label className="labelSolution">Weather Condition:</label>
-                        <select className="selectSolution" name="weather Condition" onChange={handleInputChange} required>
-                            <option value="">Select Weather Condition</option>
-                            <option value="Dry">Dry</option>
-                            <option value="Rainy">Rainy</option>
-                        </select>
-                        <button type="submit" className='buttonSolution'>Proceed</button>
-                        </div>
-
-                        
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className="labelSolution">Pest Identification:</td>
+                                    <td>
+                                        <select className="selectSolution" name="pest Id" onChange={handleInputChange} required>
+                                            <option value="">Select Pest</option>
+                                            <option value="Brown Plant Hopper">Brown Plant Hopper</option>
+                                            <option value="Rice Gall Midge">Rice Gall Midge</option>
+                                            <option value="Rice Leaf Folder">Rice Leaf Folder</option>
+                                            <option value="Rice Stem Borer">Rice Stem Borer</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="labelSolution">Weather Condition:</td>
+                                    <td>
+                                        <select className="selectSolution" name="weather Condition" onChange={handleInputChange} required>
+                                            <option value="">Select Weather Condition</option>
+                                            <option value="Dry">Dry</option>
+                                            <option value="Rainy">Rainy</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="2">
+                                        <button type="submit" className='buttonSolution'>Proceed</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </form>
                 )}
 
                 {loading && (
                     <div className="loading">
                         <img 
-                        className="status-video" 
-                        src={Loading_screen} 
-                        alt="Loading..." 
+                            className="status-video" 
+                            src={Loading_screen} 
+                            alt="Loading..." 
                         />
                     </div>
-                    
                 )}
 
                 {!loading && solution && (

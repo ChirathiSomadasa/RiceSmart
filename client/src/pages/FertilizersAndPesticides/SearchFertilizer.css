@@ -283,6 +283,30 @@ h3 {
     margin-bottom: 15px;
 }
 
+.solution-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.solution-table th, .solution-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    
+}
+
+.solution-table th {
+    background-color: #008000;
+    color: white;
+}
+
+.solution-table td {
+    background-color: #fff;
+    color: #333;
+    
+    
+}
 .application-table {
     width: 100%;
     border-collapse: collapse;
@@ -299,12 +323,6 @@ h3 {
     background-color: #008000;
     color: white;
 }
-
-.application-table td {
-    background-color: #fff;
-    color: #333;
-}
-
 /* Features and Benefits */
 .features-benefits {
     list-style-type: disc;
@@ -336,53 +354,15 @@ h3 {
     }
 }
 
-
-
-.form-boxSolution {
-    width: 60%;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f9f9f973;
-    width: auto;
-    flex-direction: column; 
-    display: flex;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-     
-    
-}
-
-.form-rowSolution {
-    
-    margin-left: 10px;
-    width:fit-content;
-    align-items: center;
-    
-    
-   
-   
-}
-
-
-.form-row label {
-    margin-right: 20px;
-    font-weight: bold;
-    color: #333;
-    text-align: right;
-    
-}
-
 .labelSolution {
-    margin-left: 20px;
     font-weight: bold;
-    color: #333;
-    text-align: right;
-    
+    color: #333;    
 }
 
 
+
 .selectSolution {
-    width: 100%;
+   
     padding: 8px;
     margin-top: 10px;
     border: 1px solid #ccc;
@@ -390,31 +370,9 @@ h3 {
     background-color: #fff;
     font-size: 14px;
     text-align: left; 
-    align-items: center;
-}
-
-.selectSolution {
-    
-    padding: 8px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    font-size: 14px;
-    text-align: left; 
-    margin-left: 60px;
-    
-
 }
 
 .form-row input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    align-items: flex-start;
-}
-.form-rowSolution input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;

@@ -50,7 +50,7 @@ function Login() {
         <div className='authentication-form-login card p-2'>
           <h1 className='card-title'>LOGIN</h1>
 
-          <Form layout='vertical' onFinish={onFinishLogin}>
+          <Form className='login-form-credentials' layout='vertical' onFinish={onFinishLogin}>
             <Form.Item
               label='Email'
               name='email'
