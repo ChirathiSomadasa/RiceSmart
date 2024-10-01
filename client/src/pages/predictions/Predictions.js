@@ -163,7 +163,7 @@ function Predictions() {
                 <div className='cpp'>
                     <div className='yiled_form_containerp'>
                         <form onSubmit={handleYieldSubmit} className='formp'>
-                            <h2 className='yield_topic'>YIELD PREDICTION</h2>
+                            <h2 className='yield_topic'>Yield Prediction</h2>
 
                             <label className='yiled_labelp'>Variety </label><br />
                             <input
@@ -225,15 +225,15 @@ function Predictions() {
                                 onChange={handleYieldChange}
                                 required
                             >
-                                <option value=''>Select an option</option>
-                                <option value='Drip irrigation'>Drip irrigation</option>
-                                <option value='Flood irrigation'>Flood irrigation</option>
-                                <option value='Sprinkler irrigation'>Sprinkler irrigation</option>
-                                <option value='Surface irrigation'>Surface irrigation</option>
-                                <option value='Localized irrigation'>Localized irrigation</option>
-                                <option value='Centre Pivot irrigation'>Centre Pivot irrigation</option>
-                                <option value='Sub irrigation'>Sub irrigation</option>
-                                <option value='Manual irrigation'>Manual irrigation</option>
+                                <option value=''>Select an Option</option>
+                                <option value='Drip irrigation'>Drip Irrigation</option>
+                                <option value='Flood irrigation'>Flood Irrigation</option>
+                                <option value='Sprinkler irrigation'>Sprinkler Irrigation</option>
+                                <option value='Surface irrigation'>Surface Irrigation</option>
+                                <option value='Localized irrigation'>Localized Irrigation</option>
+                                <option value='Centre Pivot irrigation'>Centre Pivot Irrigation</option>
+                                <option value='Sub irrigation'>Sub Irrigation</option>
+                                <option value='Manual irrigation'>Manual Irrigation</option>
 
                             </select>
                             <br />
@@ -247,10 +247,10 @@ function Predictions() {
                                 required
                             >
                                 <option value=''>Select an option</option>
-                                <option value='High rainfall expected'>High rainfall expected</option>
-                                <option value='Dry season'>Dry season</option>
-                                <option value='Mild temperatures'>Mild temperatures</option>
-                                <option value='Strong winds forecasted'>Strong winds forecasted</option>
+                                <option value='High rainfall expected'>High Rainfall Expected</option>
+                                <option value='Dry season'>Dry Season</option>
+                                <option value='Mild temperatures'>Mild Temperatures</option>
+                                <option value='Strong winds forecasted'>Strong Winds Forecasted</option>
 
                             </select>
                             <br />
