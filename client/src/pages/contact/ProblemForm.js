@@ -105,7 +105,7 @@ function AddProblem() {
                 }
             }
         };
-
+ 
         checkMatchingCoordinates();
     }, [location, cityCoordinates, contactData]);
 
