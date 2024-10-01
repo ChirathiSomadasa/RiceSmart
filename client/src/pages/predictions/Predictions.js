@@ -159,15 +159,15 @@ function Predictions() {
                 <div className='yield_photo'><img src={YieldImage} alt="yield" /></div>
             </div>
 
-            <div className='yiled_data'>
-                <div className='cp'>
-                    <div className='yiled_form_container'>
-                        <form onSubmit={handleYieldSubmit} className='form'>
+            <div className='yiled_datap'>
+                <div className='cpp'>
+                    <div className='yiled_form_containerp'>
+                        <form onSubmit={handleYieldSubmit} className='formp'>
                             <h2 className='yield_topic'>YIELD PREDICTION</h2>
 
-                            <label className='yiled_label'>Variety </label><br />
+                            <label className='yiled_labelp'>Variety </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='variety'
                                 value={yieldData.variety}
@@ -175,12 +175,12 @@ function Predictions() {
                                 placeholder='Enter Variety'
                                 required
                             />
-                            {errors.variety && <div className='error_message'>{errors.variety}</div>}
+                            {errors.variety && <div className='error_messagep'>{errors.variety}</div>}
                             <br />
 
-                            <label className='yiled_label'>Estimated Yield (kg/ha) </label><br />
+                            <label className='yiled_labelp'>Estimated Yield (kg/ha) </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='estimatedYield'
                                 value={yieldData.estimatedYield}
@@ -188,12 +188,12 @@ function Predictions() {
                                 placeholder='Enter Estimated Yield'
                                 required
                             />
-                            {errors.estimatedYield && <div className='error_message'>{errors.estimatedYield}</div>}
+                            {errors.estimatedYield && <div className='error_messagep'>{errors.estimatedYield}</div>}
                             <br />
 
-                            <label className='yiled_label'>Yield Variability (kg/ha)  </label><br />
+                            <label className='yiled_labelp'>Yield Variability (kg/ha)  </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='yieldVariability'
                                 value={yieldData.yieldVariability}
@@ -201,12 +201,12 @@ function Predictions() {
                                 placeholder='Enter Yield Variability'
                                 required
                             />
-                            {errors.yieldVariability && <div className='error_message'>{errors.yieldVariability}</div>}
+                            {errors.yieldVariability && <div className='error_messagep'>{errors.yieldVariability}</div>}
                             <br />
 
-                            <label className='yiled_label'>Geographic Location </label><br />
+                            <label className='yiled_labelp'>Geographic Location </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='geographicLocation'
                                 value={yieldData.geographicLocation}
@@ -214,12 +214,12 @@ function Predictions() {
                                 placeholder='Enter Geographic Location'
                                 required
                             />
-                            {errors.geographicLocation && <div className='error_message'>{errors.geographicLocation}</div>}
+                            {errors.geographicLocation && <div className='error_messagep'>{errors.geographicLocation}</div>}
                             <br />
 
-                            <label className='yiled_label'>Irrigation Practices</label><br />
+                            <label className='yiled_labelp'>Irrigation Practices</label><br />
                             <select
-                                className='select_yiled'
+                                className='select_yiledp'
                                 name='irrigationPractices'
                                 value={yieldData.irrigationPractices}
                                 onChange={handleYieldChange}
@@ -238,9 +238,9 @@ function Predictions() {
                             </select>
                             <br />
 
-                            <label className='yiled_label'>Weather Conditions</label><br />
+                            <label className='yiled_labelp'>Weather Conditions</label><br />
                             <select
-                                className='select_yiled'
+                                className='select_yiledp'
                                 name='weatherConditions'
                                 value={yieldData.weatherConditions}
                                 onChange={handleYieldChange}
@@ -255,15 +255,15 @@ function Predictions() {
                             </select>
                             <br />
 
-                            <button className='yiled_button' type='submit'>SUBMIT</button>
+                            <button className='yiled_buttonp' type='submit'>SUBMIT</button>
                         </form>
 
                         {resultData && (
-                            <div className='result_display'>
+                            <div className='result_displayp'>
                                 <h3>Status: {resultData.status}</h3>
                                 <p>Recommendation: {resultData.recommendation}</p>
-                                <div className='result_btn'>
-                                    <button className='ok_button' onClick={handleOkClick}>OK</button>
+                                <div className='result_btnp'>
+                                    <button className='ok_buttonp' onClick={handleOkClick}>OK</button>
                                 </div>
                             </div>
                         )}

@@ -41,7 +41,6 @@
 }
 .instruction_2{
     
-   
     width: 100%;
     height: 1140px;
     background-color: #e2ffe7;
@@ -61,7 +60,6 @@
 
 .instruction_2 h4{
 
-
     padding-left: 10px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
@@ -69,13 +67,11 @@
 
 .instruction_2 p{
 
-   
    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
-
 }
 
-.yield_topic{
+.yield_topicp{
 
     color: black;
     text-align: center;
@@ -84,7 +80,7 @@
     font-weight: bold;
 }
 
-.yiled_label{
+.yiled_labelp{
 
     color: black;
     font-size: 14px;
@@ -93,19 +89,18 @@
 }
 
 
-.yiled_form_container {
+.yiled_form_containerp {
   
     background-color: #e3f8ed00;
     width: 40%;
     min-height: 800px;
-    float: left;
     margin-top: 20px;
     align-items: center;
     margin-left: 450px;
     
 }
 
-.cp{
+.cpp{
 
     width: 100%;
     height: 1200px;
@@ -115,54 +110,51 @@
     background-image: url(../../images/yield/signup.jpg);
 }
 
-.form {
+.formp {
     background-color: rgba(144, 141, 141, 0.353);
     padding-top: 50px;
     padding-left: 30px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width:95%;
-    height: 850px;
+    width:95% !important;
+    height: 850px !important;
     backdrop-filter:blur(50px);
-    align-items: center;
+    align-items: center !important;
     
 }
 
 
-.input_yiled{
-    width: 90%;
-    padding: 8px;
-   
-    margin-bottom: 20px;
-    border-radius: 10px;
+.input_yiledp{
+    width: 90% !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    border-radius: 10px !important;
     border: none;
-    padding: 15px;
 }
 
-.text_yiled{
+.text_yiledp{
 
-    width: 90%;
-    height: 50px;
-    padding: 15px;
-   
-    margin-bottom:20px ;
-    border-radius: 10px;
+    width: 90% !important;
+    height: 50px !important;
+    padding: 15px !important;
+    margin-bottom:20px !important;
+    border-radius: 10px !important;
     border: none;
 
 }
 
-.select_yiled{
+.select_yiledp{
 
-    width: 95%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    width: 95% !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    border-radius: 10px !important;
     border: none;
-    padding: 15px;
+    
 
 }
-.yiled_button {
-    width:95%;
+.yiled_buttonp {
+    width:95% !important;
     background-color: #000000;
     color: white;
     font-weight: bold;
@@ -176,18 +168,18 @@
     
 }
 
-.yiled_button:hover {
+.yiled_buttonp:hover {
     background-color: #464746;
 }
 
 
-.error_message{
+.error_messagep{
 
     color: red;
     font-size: 14px;
 }
 
-.result_display{
+.result_displayp{
 
 width:500px;
 height: 150px;
@@ -196,12 +188,12 @@ padding: 45px;
 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
 }
-.result_btn{
+.result_btnp{
 
     padding-left: 200px;
 
 }
-.ok_button{
+.ok_buttonp{
 
     margin: 0;
     width: 100px;
