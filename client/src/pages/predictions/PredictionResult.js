@@ -17,6 +17,7 @@ function PredictionResult() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [searchQuery, setSearchQuery] = useState(''); 
+    const [search, setSearch] = useState(false); // Track if search button is clicked
     const navigate = useNavigate();
     
 
@@ -216,26 +217,31 @@ function PredictionResult() {
         };
     };
 
-
-    const handleSearch = (event) => {
-        setSearchQuery(event.target.value);
+    const handleSearch = () => {
+        // Set the search state to true when the search button is clicked
+        setSearch(true);
     };
 
-    const filteredPredictions = predictions.filter(prediction => {
-        const query = searchQuery.toLowerCase();
+    const handleClearSearch = () => {
+        setSearchQuery(''); // Clear search input and show all predictions
+        setSearch(false); // Reset the search state
+    };
 
-        // Convert numerical values to strings for comparison
-        const estimatedYieldStr = prediction.estimatedYield.toString();
-        const yieldVariabilityStr = prediction.yieldVariability.toString();
-
-        return (
-            prediction.variety.toLowerCase().includes(query) ||
-            prediction.status.toLowerCase().includes(query) ||
-            prediction.geographicLocation.toLowerCase().includes(query) ||
-            estimatedYieldStr.includes(query) || // Search in Estimated Yield
-            yieldVariabilityStr.includes(query)  // Search in Yield Variability
-        );
-    });
+    // Filter predictions based on search query, but only if search button was clicked
+    const filteredPredictions = search
+        ? predictions.filter(prediction => {
+            const query = searchQuery.toLowerCase();
+            const estimatedYieldStr = prediction.estimatedYield.toString();
+            const yieldVariabilityStr = prediction.yieldVariability.toString();
+            return (
+                prediction.variety.toLowerCase().includes(query) ||
+                prediction.status.toLowerCase().includes(query) ||
+                prediction.geographicLocation.toLowerCase().includes(query) ||
+                estimatedYieldStr.includes(query) || 
+                yieldVariabilityStr.includes(query)
+            );
+        })
+        : predictions;
 
     if (loading) {
         return <div>Loading...</div>;
@@ -249,17 +255,19 @@ function PredictionResult() {
          <div className='result'>
             <h1>Prediction Results</h1>
             <div className='filter_bar'>
-                <input 
-                    className='search_bar' 
-                    placeholder="Search" 
-                    type="text"  
-                    value={searchQuery} 
-                    onChange={handleSearch} 
-                />
-                <button className='report_yield' onClick={handleGenerateReport}>Generate Status Report</button>
+    <input 
+        className='search_bar' 
+        placeholder="Search" 
+        type="text"  
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)} // This will filter predictions as user types
+    />
+   <button className='search_btn' onClick={handleSearch}>Search</button> {/* Search button */}
+    <button className='clear_btn' onClick={handleClearSearch}>Clear Search</button>
+    <button className='report_yields' onClick={handleGenerateReport}>Generate Status Report</button>
+    <button className='report_yieldc' onClick={handleCurrentGenerateReport}>Generate Current Report</button>
+</div>
 
-                <button className='report_yield' onClick={handleCurrentGenerateReport}>Generate Current Report</button>
-            </div>
             <div className='result_data'>
                 {filteredPredictions.length === 0 ? (
                     <p>No prediction results available.</p>

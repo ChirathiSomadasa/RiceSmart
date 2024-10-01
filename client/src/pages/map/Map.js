@@ -108,7 +108,7 @@ function Map() {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto', padding: '50px 40px 40px 40px' }}>
-      <MapContainer center={position} zoom={8} style={{ height: '500px', width: '800px', border: '2px solid #ccc', borderRadius: '10px' }}>
+      <MapContainer center={position} zoom={8} style={{ height: '730px', width: '800px', border: '2px solid #ccc', borderRadius: '10px' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -130,7 +130,7 @@ function Map() {
 
       </MapContainer>
 
-      <div style={{ marginLeft: '20px', paddingLeft: '10px', border: '2px solid #ccc', width: '500px', height: '500px', overflowY: 'auto', borderRadius: '10px' }}>
+      <div style={{ marginLeft: '20px', border: '2px solid #ccc', width: '500px', height: '730px', overflowY: 'auto', borderRadius: '10px' }}>
         <DiseaseLocationsList />
       </div>
 
