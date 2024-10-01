@@ -1,33 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Predictions.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useAuthEmail, useAuthPassword } from '../../auth'
-import YiledImage from '../../images/yield/yield2.jpg';
+import { useAuthEmail, useAuthPassword } from '../../auth';
+import YieldImage from '../../images/yield/yield2.jpg';
 
 function Predictions() {
 
     const authEmail = useAuthEmail();
     const authPassword = useAuthPassword();
-
-
+    const navigate = useNavigate();
 
     const validRiceVarieties = [
-        'basmathi',
-        'kurulu thuda',
-        'heenati',
-        'haramas',
-        'rathhal',
-        'maavee',
-        'pachchaperumal',
-        'red rice',
-        'black rice',
-        'sticky Rice',
-        'samba',
-        'keeri samba',
-        'nadu',
-        'kakulu'
-
+        'basmathi', 'kurulu thuda', 'heenati', 'haramas', 'rathhal', 
+        'maavee', 'pachchaperumal', 'red rice', 'black rice', 
+        'sticky Rice', 'samba', 'keeri samba', 'nadu', 'kakulu'
     ];
 
     const [yieldData, setYieldData] = useState({
@@ -44,14 +31,20 @@ function Predictions() {
 
     const [errors, setErrors] = useState({});
     const [resultData, setResultData] = useState(null); // State for status and recommendation
-    const navigate = useNavigate();
+
+    // Redirect to login if not authenticated
+    useEffect(() => {
+        if (!authEmail || !authPassword) {
+            navigate('/login');  // Redirect to login if auth credentials are missing
+        }
+    }, [authEmail, authPassword, navigate]);
 
     const handleYieldChange = (e) => {
         const { name, value } = e.target;
         let errorMsg = '';
 
         if (name === 'variety') {
-            if (!validRiceVarieties.includes(value)) {
+            if (!validRiceVarieties.includes(value.toLowerCase())) {
                 errorMsg = 'Please enter a valid rice variety';
             }
         } else if (name === 'geographicLocation') {
@@ -72,7 +65,7 @@ function Predictions() {
         e.preventDefault();
 
         const formErrors = {};
-        if (!validRiceVarieties.includes(yieldData.variety)) {
+        if (!validRiceVarieties.includes(yieldData.variety.toLowerCase())) {
             formErrors.variety = 'Please enter a valid rice variety';
         }
         if (!yieldData.geographicLocation.match(/^[a-zA-Z\s]*$/)) {
@@ -90,7 +83,6 @@ function Predictions() {
             return;
         }
 
-        // Determine status and recommendation based on input data
         let calculatedStatus = '';
         let calculatedRecommendation = '';
 
@@ -105,9 +97,6 @@ function Predictions() {
             calculatedRecommendation = 'Review agricultural practices, consider new irrigation methods, and prepare for weather variability.';
         }
 
-        console.log(calculatedStatus);
-
-        // Combine all data to pass to the results page
         const resultData = {
             ...yieldData,
             status: calculatedStatus,
@@ -121,8 +110,6 @@ function Predictions() {
                 },
             });
             setResultData(resultData);
-            console.log('Result Data:', resultData);
-
 
         } catch (error) {
             console.error('Error during form submission:', error);
@@ -132,28 +119,23 @@ function Predictions() {
 
     const handleOkClick = () => {
         if (resultData) {
-            console.log('Navigating with result data:', resultData);
             navigate('/predictionResult', { state: resultData });
         }
     };
 
-    if (authEmail == null || authPassword == null) {
-        return (<div className='pre_log'>You must log into the system in order to add a prediction</div>);
-    } else {
-        return (
-            <div>
-                <div className='predic_parallax'>
-                    <div className='hero_text'>
-                        <h1>Empowering Farmers with Smart Yield Predictions</h1>
-                    </div>
+    return (
+        <div>
+            <div className='predic_parallax'>
+                <div className='hero_text'>
+                    <h1>Empowering Farmers with Smart Yield Predictions</h1>
                 </div>
+            </div>
 
-                <div className='yield1_topic'> <h1>Yield Prediction</h1></div>
+            <div className='yield1_topic'> <h1>Yield Prediction</h1></div>
 
-                <div className='yiled'>
-
-                    <div className='yiled_des'>
-                        <p>Step into the future of agriculture with our cutting-edge
+            <div className='yiled'>
+                <div className='yiled_des'>
+                <p>Step into the future of agriculture with our cutting-edge
                             Yield Prediction Management system, designed to revolutionize how you plan
                             and manage your farming operations. With a simple input of your field data,
                             you can compare current conditions with historical trends to receive detailed
@@ -173,21 +155,19 @@ function Predictions() {
 
                         </p>
 
-                    </div>
-
-                    <div className='yield_photo'><img src={YiledImage} alt="yiled" /></div>
                 </div>
+                <div className='yield_photo'><img src={YieldImage} alt="yield" /></div>
+            </div>
 
-
-
-                <div className='yiled_data'>
-                    <div className='cp'><div className='yiled_form_container'>
-                        <form onSubmit={handleYieldSubmit} className='form'>
+            <div className='yiled_datap'>
+                <div className='cpp'>
+                    <div className='yiled_form_containerp'>
+                        <form onSubmit={handleYieldSubmit} className='formp'>
                             <h2 className='yield_topic'>YIELD PREDICTION</h2>
 
-                            <label className='yiled_label'>Variety </label><br />
+                            <label className='yiled_labelp'>Variety </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='variety'
                                 value={yieldData.variety}
@@ -195,12 +175,12 @@ function Predictions() {
                                 placeholder='Enter Variety'
                                 required
                             />
-                            {errors.variety && <div className='error_message'>{errors.variety}</div>}
+                            {errors.variety && <div className='error_messagep'>{errors.variety}</div>}
                             <br />
 
-                            <label className='yiled_label'>Estimated Yield (kg/ha) </label><br />
+                            <label className='yiled_labelp'>Estimated Yield (kg/ha) </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='estimatedYield'
                                 value={yieldData.estimatedYield}
@@ -208,12 +188,12 @@ function Predictions() {
                                 placeholder='Enter Estimated Yield'
                                 required
                             />
-                            {errors.estimatedYield && <div className='error_message'>{errors.estimatedYield}</div>}
+                            {errors.estimatedYield && <div className='error_messagep'>{errors.estimatedYield}</div>}
                             <br />
 
-                            <label className='yiled_label'>Yield Variability (kg/ha)  </label><br />
+                            <label className='yiled_labelp'>Yield Variability (kg/ha)  </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='yieldVariability'
                                 value={yieldData.yieldVariability}
@@ -221,12 +201,12 @@ function Predictions() {
                                 placeholder='Enter Yield Variability'
                                 required
                             />
-                            {errors.yieldVariability && <div className='error_message'>{errors.yieldVariability}</div>}
+                            {errors.yieldVariability && <div className='error_messagep'>{errors.yieldVariability}</div>}
                             <br />
 
-                            <label className='yiled_label'>Geographic Location </label><br />
+                            <label className='yiled_labelp'>Geographic Location </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yiledp'
                                 type='text'
                                 name='geographicLocation'
                                 value={yieldData.geographicLocation}
@@ -234,12 +214,12 @@ function Predictions() {
                                 placeholder='Enter Geographic Location'
                                 required
                             />
-                            {errors.geographicLocation && <div className='error_message'>{errors.geographicLocation}</div>}
+                            {errors.geographicLocation && <div className='error_messagep'>{errors.geographicLocation}</div>}
                             <br />
 
-                            <label className='yiled_label'>Irrigation Practices</label><br />
+                            <label className='yiled_labelp'>Irrigation Practices</label><br />
                             <select
-                                className='select_yiled'
+                                className='select_yiledp'
                                 name='irrigationPractices'
                                 value={yieldData.irrigationPractices}
                                 onChange={handleYieldChange}
@@ -254,12 +234,13 @@ function Predictions() {
                                 <option value='Centre Pivot irrigation'>Centre Pivot irrigation</option>
                                 <option value='Sub irrigation'>Sub irrigation</option>
                                 <option value='Manual irrigation'>Manual irrigation</option>
+
                             </select>
                             <br />
 
-                            <label className='yiled_label'>Weather Conditions</label><br />
+                            <label className='yiled_labelp'>Weather Conditions</label><br />
                             <select
-                                className='select_yiled'
+                                className='select_yiledp'
                                 name='weatherConditions'
                                 value={yieldData.weatherConditions}
                                 onChange={handleYieldChange}
@@ -270,27 +251,27 @@ function Predictions() {
                                 <option value='Dry season'>Dry season</option>
                                 <option value='Mild temperatures'>Mild temperatures</option>
                                 <option value='Strong winds forecasted'>Strong winds forecasted</option>
+
                             </select>
                             <br />
 
-                            <button className='yiled_button' type='submit'>SUBMIT</button>
-
+                            <button className='yiled_buttonp' type='submit'>SUBMIT</button>
                         </form>
+
                         {resultData && (
-                            <div className='result_display'>
+                            <div className='result_displayp'>
                                 <h3>Status: {resultData.status}</h3>
                                 <p>Recommendation: {resultData.recommendation}</p>
-                                <div className='result_btn'><button className='ok_button' onClick={handleOkClick}>OK</button></div>
+                                <div className='result_btnp'>
+                                    <button className='ok_buttonp' onClick={handleOkClick}>OK</button>
+                                </div>
                             </div>
                         )}
-
-                    </div> </div>
-
-
+                    </div>
                 </div>
             </div>
-        );
-    }
-
+        </div>
+    );
 }
+
 export default Predictions;

@@ -75,7 +75,7 @@
 
 }
 
-.yield_topic{
+.yield_topice{
 
     color: black;
     text-align: center;
@@ -84,7 +84,7 @@
     font-weight: bold;
 }
 
-.yiled_label{
+.yiled_labele{
 
     color: black;
     font-size: 14px;
@@ -93,19 +93,18 @@
 }
 
 
-.yiled_form_container {
+.yiled_form_containere {
   
     background-color: #e3f8ed00;
     width: 40%;
     min-height: 800px;
-    float: left;
     margin-top: 20px;
     align-items: center;
     margin-left: 450px;
     
 }
 
-.cp{
+.cpe{
 
     width: 100%;
     height: 1200px;
@@ -115,7 +114,7 @@
     background-image: url(../../images/yield/signup.jpg);
 }
 
-.form {
+.forme {
     background-color: rgba(144, 141, 141, 0.353);
     padding-top: 50px;
     padding-left: 30px;
@@ -129,40 +128,37 @@
 }
 
 
-.input_yiled{
+.input_yilede{
     width: 90%;
     padding: 8px;
-   
     margin-bottom: 20px;
     border-radius: 10px;
     border: none;
     padding: 15px;
 }
 
-.text_yiled{
+.text_yilede{
 
     width: 90%;
     height: 50px;
     padding: 15px;
-   
     margin-bottom:20px ;
     border-radius: 10px;
     border: none;
 
 }
 
-.select_yiled{
+.select_yilede{
 
     width: 95%;
     padding: 8px;
-   
     margin-bottom: 20px;
     border-radius: 10px;
     border: none;
     padding: 15px;
 
 }
-.yiled_button {
+.yiled_buttone {
     width:95%;
     background-color: #000000;
     color: white;
@@ -177,18 +173,18 @@
     
 }
 
-.yiled_button:hover {
+.yiled_buttone:hover {
     background-color: #464746;
 }
 
 
-.error_message{
+.error_messagee{
 
     color: red;
     font-size: 14px;
 }
 
-.result_display{
+.result_displaye{
 
 width:500px;
 height: 150px;
@@ -197,12 +193,12 @@ padding: 45px;
 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
 }
-.result_btn{
+.result_btne{
 
     padding-left: 200px;
 
 }
-.ok_button{
+.ok_buttone{
 
     margin: 0;
     width: 100px;

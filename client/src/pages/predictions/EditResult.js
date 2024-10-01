@@ -203,15 +203,15 @@ function EditResult() {
                 <div className='yield_photo'><img src={YiledImage} alt="yiled" /></div>
             </div>
 
-            <div className='yiled_data'>
-                <div className='cp'>
-                    <div className='yiled_form_container'>
-                        <form onSubmit={handleYieldSubmit} className='form'>
-                            <h2 className='yield_topic'>YIELD PREDICTION</h2>
+            <div className='yiled_datae'>
+                <div className='cpe'>
+                    <div className='yiled_form_containere'>
+                        <form onSubmit={handleYieldSubmit} className='forme'>
+                            <h2 className='yield_topice'>YIELD PREDICTION</h2>
 
-                            <label className='yiled_label'>Variety </label><br />
+                            <label className='yiled_labele'>Variety </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yilede'
                                 type='text'
                                 name='variety'
                                 value={yieldData.variety}
@@ -219,12 +219,12 @@ function EditResult() {
                                 placeholder='Enter Variety'
                                 required
                             />
-                            {errors.variety && <div className='error_message'>{errors.variety}</div>}
+                            {errors.variety && <div className='error_messagee'>{errors.variety}</div>}
                             <br />
 
-                            <label className='yiled_label'>Estimated Yield (kg/ha) </label><br />
+                            <label className='yiled_labele'>Estimated Yield (kg/ha) </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yilede'
                                 type='text'
                                 name='estimatedYield'
                                 value={yieldData.estimatedYield}
@@ -232,12 +232,12 @@ function EditResult() {
                                 placeholder='Enter Estimated Yield'
                                 required
                             />
-                            {errors.estimatedYield && <div className='error_message'>{errors.estimatedYield}</div>}
+                            {errors.estimatedYield && <div className='error_messagee'>{errors.estimatedYield}</div>}
                             <br />
 
-                            <label className='yiled_label'>Yield Variability (kg/ha)  </label><br />
+                            <label className='yiled_labele'>Yield Variability (kg/ha)  </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yilede'
                                 type='text'
                                 name='yieldVariability'
                                 value={yieldData.yieldVariability}
@@ -245,12 +245,12 @@ function EditResult() {
                                 placeholder='Enter Yield Variability'
                                 required
                             />
-                            {errors.yieldVariability && <div className='error_message'>{errors.yieldVariability}</div>}
+                            {errors.yieldVariability && <div className='error_messagee'>{errors.yieldVariability}</div>}
                             <br />
 
-                            <label className='yiled_label'>Geographic Location </label><br />
+                            <label className='yiled_labele'>Geographic Location </label><br />
                             <input
-                                className='input_yiled'
+                                className='input_yilede'
                                 type='text'
                                 name='geographicLocation'
                                 value={yieldData.geographicLocation}
@@ -258,12 +258,12 @@ function EditResult() {
                                 placeholder='Enter Geographic Location'
                                 required
                             />
-                            {errors.geographicLocation && <div className='error_message'>{errors.geographicLocation}</div>}
+                            {errors.geographicLocation && <div className='error_messagee'>{errors.geographicLocation}</div>}
                             <br />
 
-                            <label className='yiled_label'>Irrigation Practices</label><br />
+                            <label className='yiled_labele'>Irrigation Practices</label><br />
                             <select
-                                className='select_yiled'
+                                className='select_yilede'
                                 name='irrigationPractices'
                                 value={yieldData.irrigationPractices}
                                 onChange={handleYieldChange}
@@ -281,9 +281,9 @@ function EditResult() {
                             </select>
                             <br />
 
-                            <label className='yiled_label'>Weather Conditions</label><br />
+                            <label className='yiled_labele'>Weather Conditions</label><br />
                             <select
-                                className='select_yiled'
+                                className='select_yilede'
                                 name='weatherConditions'
                                 value={yieldData.weatherConditions}
                                 onChange={handleYieldChange}
@@ -297,15 +297,15 @@ function EditResult() {
                             </select>
                             <br />
 
-                            <button className='yiled_button' type='submit'>SUBMIT</button>
+                            <button className='yiled_buttone' type='submit'>SUBMIT</button>
 
                         </form>
 
                         {resultData && (
-                            <div className='result_display'>
+                            <div className='result_displaye'>
                                 <h3>Status: {resultData.status}</h3>
                                 <p>Recommendation: {resultData.recommendation}</p>
-                                <div className='result_btn'><button className='ok_button' onClick={handleOkClick}>OK</button></div>
+                                <div className='result_btne'><button className='ok_buttone' onClick={handleOkClick}>OK</button></div>
                             </div>
                         )}
 
