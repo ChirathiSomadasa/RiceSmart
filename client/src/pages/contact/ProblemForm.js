@@ -154,8 +154,9 @@ function AddProblem() {
     
 
     if (authEmail == null || authPassword == null) {
-        return "No login";
-    } else {
+        navigate('/login');
+        return null;
+     } else {
         return (
             <div className='QAddProblemForm'>
                 <div className='Qaddproblem_photo'>

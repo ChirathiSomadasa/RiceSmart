@@ -22,9 +22,14 @@ function Contact() {
     window.location.href = '/contact/ManageDisease';
   };
 
+  const handleMySolution = () => {
+    window.location.href = '/contact/ManageMySolution';
+  };
+
   const handleLocationClick =() =>{
     window.location.href = '/map/Map';
   }
+
 
   useEffect(() => {
 
@@ -101,7 +106,7 @@ function Contact() {
       doc.text(subtitle, subtitleX, 60);
 
       // Table with diseases and solutions
-      const header = [['Disease', 'Category', 'Description', 'Location', 'Solutions']];
+      const header = [['Disease', 'Category', 'Symptoms', 'Location', 'Solutions']];
       const data = dataToGenerate.map(contact => [
         contact.disease,
         contact.category,
@@ -268,6 +273,10 @@ function Contact() {
           <div><button type="primary" onClick={handleDisease} className="Qmanagebtn">My Diseases
           </button></div>
         </Link>
+        <Link to="/Contact/ManageMySolution">
+          <div><button type="primary" onClick={handleMySolution} className="Qsolbtn">My Solutions
+          </button></div>
+        </Link>
         <Link >
           <div><button type="primary" onClick={generateReport} className="Qgeneratebtn">Generate Report
           </button></div>
@@ -283,6 +292,7 @@ function Contact() {
               </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.disease}</p>
               <p><strong>Symptoms   </strong><br></br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.description}</p><br></br>
+
                 <p>
                 <MdOutlineLocationOn className="QlocationIcon" onClick={() => handleLocationClick(contact.location)} // Pass the location data
                 />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{contact.location}
@@ -291,7 +301,7 @@ function Contact() {
                 <h4>Solutions:</h4>
                 {
                   contact.solutions.map((sol, index) => (
-                    <ul>
+                    <ul >
                       <li key={index}> {sol.solution}</li>
                     </ul>
                   ))

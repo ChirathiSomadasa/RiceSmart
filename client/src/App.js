@@ -14,8 +14,7 @@ import PredictionResult from './pages/predictions/PredictionResult';
 import EditResult from './pages/predictions/EditResult';
 import SignOut from './pages/signout/SignOut';
 import Map from './pages/map/Map';
-import NotificationBell from './pages/map/NotificationBell'
-
+import NotificationBell from './pages/map/NotificationBell';
 import FertilizersAndPesticides from './pages/FertilizersAndPesticides/FertilizersAndPesticides';
 import SearchFertilizer from './pages/FertilizersAndPesticides/searchFertilizer';
 import Refill from './pages/FertilizersAndPesticides/refill';
@@ -30,7 +29,8 @@ import Details4 from './pages/FertilizersAndPesticides/details4';
 import Details5 from './pages/FertilizersAndPesticides/details5';
 import Disposal from './pages/FertilizersAndPesticides/disposal';
 import Solutions from './pages/FertilizersAndPesticides/solutions';
-   
+import ManageMySolution from './pages/contact/ManageMySolution';
+import Profile from './pages/profile/Profile';   
 function App() {
   return (
     <BrowserRouter>
@@ -44,6 +44,7 @@ function App() {
     <Route path="/contact/UpdateContact/:id" element={<UpdateContact/>}/>
     <Route path="/contact/AddSolution/:id" element={<AddSolution/>}/>
     <Route path="/contact/ManageDisease" element={<ManageDisease/>}/>
+    <Route path="/contact/ManageMySolution" element={<ManageMySolution/>}/>
     <Route path="/predictions" element={<Predictions />} />
     <Route path="/predictionResult" element={<PredictionResult />} />
     <Route path="/EditResult/:id" element={<EditResult />} />
@@ -51,7 +52,6 @@ function App() {
     <Route path="/map/Map" element={<Map/>}/>
     <Route path="/map" element={<Map />} />
     <Route path="/notification" element={<NotificationBell />} />
-
     <Route path="/FertilizersAndPesticides" element={<FertilizersAndPesticides />} />
     <Route path="/SearchFertilizer" element={<SearchFertilizer/>}/>
     <Route path= "/refill" element={<Refill/>}/>
@@ -66,7 +66,7 @@ function App() {
     <Route path="/details5" element={<Details5/>}/>
     <Route path="/disposal" element={<Disposal/>}/>
     <Route path="/recommendform" element={<Solutions/>}/>
-    
+    <Route path="/profile/Profile" element={<Profile/>}/>
     </Routes>
   </BrowserRouter>
   );
