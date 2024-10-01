@@ -25,57 +25,54 @@
     font-size: 25px;
 }
 
-.yiled_data{
+.yiled_data {
 
-    height: 1500px;
+    height: 1200px;
     margin: 20px;
 
 }
 
-.instructions{
+.instructions {
 
-    width:60%;
+    width: 60%;
     height: 1200px;
     float: left;
-   
+
 }
-.instruction_2{
-    
-   
+
+.instruction_2 {
+
     width: 100%;
     height: 1140px;
     background-color: #e2ffe7;
     border-radius: 10px;
-    background-image: linear-gradient(#fcfceb, rgb(225, 252, 222),white);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-image: linear-gradient(#fcfceb, rgb(225, 252, 222), white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.instruction_2 h1{
+.instruction_2 h1 {
 
     text-align: center;
     padding-top: 20px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
 
 }
 
-.instruction_2 h4{
-
+.instruction_2 h4 {
 
     padding-left: 10px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
-.instruction_2 p{
+.instruction_2 p {
 
-   
-   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
 
-.yield_topice{
+.yield_topicp {
 
     color: black;
     text-align: center;
@@ -84,7 +81,7 @@
     font-weight: bold;
 }
 
-.yiled_labele{
+.yiled_labelp {
 
     color: black;
     font-size: 14px;
@@ -93,73 +90,87 @@
 }
 
 
-.yiled_form_containere {
-  
-    background-color: #e3f8ed00;
-    width: 40%;
-    min-height: 800px;
-    margin-top: 20px;
-    align-items: center;
-    margin-left: 450px;
-    
+.yield_datap {
+    padding: 50px;
 }
 
-.cpe{
-
+.cpp {
     width: 100%;
     height: 1200px;
+    /* Adjust height as needed */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(../../images/yield/signup.jpg);
-}
-
-.forme {
-    background-color: rgba(144, 141, 141, 0.353);
-    padding-top: 50px;
-    padding-left: 30px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width:95%;
-    height: 850px;
-    backdrop-filter:blur(50px);
+    background-image: url('../../images/yield/signup.jpg');
+    /* Path to your image */
+    display: flex;
+    justify-content: center;
     align-items: center;
-    
+    /* Ensures the form is centered both vertically and horizontally */
 }
 
-
-.input_yilede{
-    width: 90%;
-    padding: 8px;
-    margin-bottom: 20px;
+.yield_form_containerp {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    padding: 30px;
     border-radius: 10px;
-    border: none;
-    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    /* Limit the form width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center content inside form */
 }
 
-.text_yilede{
-
-    width: 90%;
-    height: 50px;
-    padding: 15px;
-    margin-bottom:20px ;
+.formp {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    /* Ensure the form takes full width inside the container */
+    padding: 20px;
+    backdrop-filter: blur(50px);
+    background-color: rgba(144, 141, 141, 0.353);
     border-radius: 10px;
+}
+
+.yiled_labelp {
+
+    color: black;
+    font-size: 14px;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input_yiledp {
+
+    width: 92% !important;
+    height: 40px !important;
+    padding: 15px !important;
+    margin-bottom: 10px !important;
+    border-radius: 5px !important;
     border: none;
 
 }
 
-.select_yilede{
+.select_yiledp {
 
-    width: 95%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    width: 98% !important;
+    height: 50px !important;
+    margin-bottom: 10px !important;
+    border-radius: 5px !important;
     border: none;
-    padding: 15px;
-
 }
-.yiled_buttone {
-    width:95%;
+
+.error_messagep {
+    color: red;
+    font-size: 0.875rem;
+    margin-bottom: 10px;
+}
+
+.yiled_buttonp {
+    width: 98% !important;
     background-color: #000000;
     color: white;
     font-weight: bold;
@@ -170,48 +181,48 @@
     cursor: pointer;
     border-radius: 10px;
     margin-top: 20px;
-    
+
 }
 
-.yiled_buttone:hover {
+.yiled_buttonp:hover {
     background-color: #464746;
 }
 
-
-.error_messagee{
-
-    color: red;
-    font-size: 14px;
-}
-
-.result_displaye{
-
-width:500px;
-height: 150px;
-background-color:rgb(219, 244, 190);
-padding: 45px;
-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.result_displayp {
+    width: 450px;
+    height: 150px;
+    margin-top: 20px;
+    padding: 45px;
+    background-color: rgb(219, 244, 190);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
-.result_btne{
 
-    padding-left: 200px;
+.result_btnp {
+
+    padding-left: 170px;
 
 }
-.ok_buttone{
 
-    margin: 0;
+.ok_buttonp {
+
     width: 100px;
     height: 40px;
     background-color: black;
-    border-radius: 10px;
     color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
 }
 
+.ok_buttonp:hover {
+    background-color: #454646;
+}
 
-.yield1_topic{
+.yield1_topic {
 
     text-align: center;
     justify-content: center;
@@ -226,7 +237,7 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
     width: 1500px;
     height: 600px;
-   margin-left: 150px;
+    margin-left: 150px;
 
 }
 
@@ -241,7 +252,7 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     color: rgb(102, 102, 102);
     font-weight: 100;
     background-color: rgb(249, 243, 230);
-    
+
 
 }
 
@@ -260,15 +271,15 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     object-fit: cover;
 }
 
-.pre_log{
+.pre_log {
 
     width: 600px;
     display: block;
     text-align: center;
     margin: auto;
     padding: 20px;
-   margin-top: 200px;
-   background-color: rgb(132, 5, 5);
-   color: white;
+    margin-top: 200px;
+    background-color: rgb(132, 5, 5);
+    color: white;
 
 }

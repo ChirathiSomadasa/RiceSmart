@@ -261,7 +261,7 @@ function Predictions() {
                         {resultData && (
                             <div className='result_displayp'>
                                 <h3>Status: {resultData.status}</h3>
-                                <p>Recommendation: {resultData.recommendation}</p>
+                                <h4>Recommendation: {resultData.recommendation}</h4>
                                 <div className='result_btnp'>
                                     <button className='ok_buttonp' onClick={handleOkClick}>OK</button>
                                 </div>
