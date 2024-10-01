@@ -33,11 +33,11 @@
   }
   
   .SeditIcon:hover {
-    color: #4CAF50; /* Edit icon hover color */
+    color: #15b81a; /* Edit icon hover color */
   }
   
   .SdeleteIcon:hover {
-    color: #f44336; /* Delete icon hover color */
+    color: #96170e; /* Delete icon hover color */
   }
   
   .SStoreSearch {
@@ -64,4 +64,8 @@
   .thead{
     font-weight: 400 !important;
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+   }
+
+   .topic{
+    margin-left: 20px;
    }

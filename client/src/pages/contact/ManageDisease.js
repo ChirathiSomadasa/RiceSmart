@@ -47,15 +47,43 @@ function ManageDisease() {
   };
 
 
-  function handleSearch() {
-    // Implement search logic here
-    // For example, filter productData based on searchQuery
-    const filteredContacts = contactData.filter(contact =>
-      contact.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      contact.disease.toLowerCase().includes(searchQuery.toLowerCase())
+  const [originalData, setOriginalData] = useState([]); // To store the original data
+
+useEffect(() => {
+  axios.get('http://localhost:5001/')
+    .then(result => {
+      setContactData(result.data);
+      setOriginalData(result.data); // Store original data
+    })
+    .catch(err => console.log(err))
+}, []);
+
+function handleSearch() {
+  // Trim whitespace from the search query
+  const trimmedQuery = searchQuery.trim();
+
+  if (trimmedQuery === "") {
+    // If the search query is empty, reset to original data
+    setContactData(originalData);
+  } else {
+    // Implement search logic: filter contactData based on searchQuery
+    const filteredContacts = originalData.filter(contact =>
+      contact.category.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+      contact.location.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+      contact.disease.toLowerCase().includes(trimmedQuery.toLowerCase())
     );
+
+    // Check if any contacts matched the search
+    if (filteredContacts.length === 0) {
+      alert("No results found for the given search term."); // Notify the user if no results found
+    }
+
+    // Update state with the filtered contacts
     setContactData(filteredContacts);
   }
+}
+
+  
 
   const handleEdit = (id) => {
     // Redirect to the edit page

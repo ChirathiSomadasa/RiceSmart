@@ -39,7 +39,6 @@ function ManageMySolution() {
         }
     };
 
-    
     const handleEditSolution = (contactId, solutionIndex) => {
         const updatedSolution = prompt("Enter the updated solution:");
         if (updatedSolution) {
@@ -61,21 +60,15 @@ function ManageMySolution() {
         }
     };
 
-
-
-
-
     if (authEmail == null || authPassword == null) {
         navigate('/login');
         return null;
     } else {
         return (
             <div>
-
-
                 <div className="SContactStore">
                     <br /><br />
-                    <h2>Manage Solutions</h2>
+                    <h2 className='topic'>Manage Solutions</h2>
                     <table className="SContactTable">
                         <thead>
                             <tr>
@@ -86,7 +79,6 @@ function ManageMySolution() {
                         </thead>
                         <tbody>
                             {contactData.map((contact) => (
-                                // Only render the row if there are solutions available
                                 contact.solutions && contact.solutions.length > 0 && (
                                     <tr key={contact._id}>
                                         <td className='thead'>{contact.category}</td>
@@ -94,7 +86,7 @@ function ManageMySolution() {
                                         <td className='thead'>
                                             <ul>
                                                 {contact.solutions.map((sol, index) => (
-                                                    <li key={index} className="solution-item">
+                                                    <li key={index} className="solution-item" style={{ borderBottom: '1px solid #ccc', padding: '10px 0' }}>
                                                         <span>{sol.solution}</span>
                                                         <span className="icon-container">
                                                             <MdEdit className="SeditIcon" onClick={() => handleEditSolution(contact._id, index)} />
@@ -108,7 +100,6 @@ function ManageMySolution() {
                                 )
                             ))}
                         </tbody>
-
                     </table>
                 </div>
             </div>
