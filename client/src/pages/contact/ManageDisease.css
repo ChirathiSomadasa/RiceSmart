@@ -3,7 +3,7 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(../../images/Contact/Qhome.jpg);
 
     /* Set a specific height */
-    min-height: 600px;
+    min-height: 600px !important;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -14,24 +14,24 @@
 }
 
 .Qcentered {
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    font-size: 30px;
-    color: white;
-    font-family:'Times New Roman';
+    position: absolute !important;
+    top: 50% !important;
+    left: 20% !important;
+    font-size: 30px !important;
+    color: white !important;
+    font-family:'Times New Roman' !important;
 
 }
 
 h2{
-  text-align: center;
+  text-align: center !important;
 } 
 
 .Qwelcome {
 
-  width: 1200px;
-  height: 450px;
-  margin: auto;
+  width: 1200px !important;
+  height: 450px !important;
+  margin: auto !important;
 
 }
 
@@ -39,36 +39,36 @@ h2{
 
 .Qwelcome_photo {
 
-  width: 500px;
-  height: 450px;
-  float: left;
+  width: 500px !important;
+  height: 450px !important;
+  float: left !important;
 
 }
 
 .Qwelcome_photo img {
 
-  width: 120%;
-  height: 460px;
-  object-fit: cover;
+  width: 120% !important;
+  height: 460px !important;
+  object-fit: cover !important;
 }
  
 
 .SStoreSearch{
-    float: left;
-    margin-top: 40px;
-    margin-left: 950px;
-    margin-right: 50px;
-}
+    float: left !important;
+    margin-top: 40px !important;
+    margin-left: 950px !important;
+    margin-right: 50px !important;
+} 
 
 .SSearch{
-    padding: 10px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    width: 250px;
-    margin-left: 40px;
-    background-color: #77777744;
-    padding-bottom: 10px;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    outline: none !important;
+    border: none !important;
+    width: 250px !important;
+    margin-left: 40px !important;
+    background-color: #77777744 !important;
+    padding-bottom: 10px !important;
 }
  
 
@@ -76,12 +76,12 @@ h2{
 
  
 .SdeleteIcon {
-  font-size: 24px; /* Size of the icon */
-  color: #8f0709; /* Red color */
-  cursor: pointer; /* Show pointer on hover */
-  transition: color 0.3s ease; /* Smooth color transition */
-  margin-top: 30px;
-  padding-left: 50px;
+  font-size: 24px !important; /* Size of the icon */
+  color: #8f0709 !important; /* Red color */
+  cursor: pointer !important; /* Show pointer on hover */
+  transition: color 0.3s ease !important; /* Smooth color transition */
+  margin-top: 30px !important;
+  padding-left: 50px !important;
 }
  
 
@@ -89,26 +89,32 @@ h2{
  
 
 .SeditIcon {
-    font-size: 24px; /* Size of the icon */
-    color: #0e0d0d; /* Red color */
-    cursor: pointer; /* Show pointer on hover */
-    transition: color 0.3s ease; /* Smooth color transition */
-    margin-top: 30px;
-    padding-left: 50px;
+    font-size: 24px !important; /* Size of the icon */
+    color: #0e0d0d !important; /* Red color */
+    cursor: pointer !important; /* Show pointer on hover */
+    transition: color 0.3s ease !important; /* Smooth color transition */
+    margin-top: 30px !important;
+    padding-left: 50px !important;
 
 
 }
 
 .SContactStore {
-    flex-direction: column; /* Stack cards vertically */
-    align-items: center;
-    width: 1200px;
-    margin: 70px auto;
-    height: auto;
-    font-family: 'Arial', sans-serif;
-    padding-top: 20px;
-    margin-top: 10px;
+    flex-direction: column !important; /* Stack cards vertically */
+    align-items: center !important;
+    width: 1200px !important;
+    margin: 70px auto !important;
+    height: auto !important;
+    font-family: 'Arial', sans-serif !important;
+    padding-top: 20px !important;
+    margin-top: 10px !important;
+    font-weight: 600 !important;  
   }
+
+ .thead{
+  font-weight: 400 !important;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+ }
  
  
  
