@@ -55,18 +55,21 @@ input[type="text"] {
   background-color: #048021; 
 }
 
-.button-container {
+.button-container1 {
   
   margin-bottom: 20px;
 }
 
-.button-container button  {
+.button-container1 button  {
   margin-top: 20px;
   margin: 5px; 
   background-color: #4861c6;
+  color:aliceblue;
+  padding: 10px 20px;
+  font-size:16px ;
 }
 
-.button-container button:hover {
+.button-container1 button:hover {
   background-color: #041e73;
 }
 

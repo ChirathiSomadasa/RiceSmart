@@ -89,7 +89,7 @@ function ViewAll() {
                 {
                     table: {
                         headerRows: 1,
-                        widths: ['*', '*', '*', '*', '*', '*', '*', '*'],
+                        widths: ['*', '*', '*', '*', '*', '*', '*', '*' , '*'],
                         body: [
                             [
                                 { text: 'Receiver\'s Name', fillColor: '#A5D6A7', bold: true },
@@ -99,7 +99,8 @@ function ViewAll() {
                                 { text: 'Product Name', fillColor: '#A5D6A7', bold: true },
                                 { text: 'Brand', fillColor: '#A5D6A7', bold: true },
                                 { text: 'Amount', fillColor: '#A5D6A7', bold: true },
-                                { text: 'Total Price', fillColor: '#A5D6A7', bold: true }
+                                { text: 'Total Price', fillColor: '#A5D6A7', bold: true },
+                                { text: 'Status', fillColor: '#A5D6A7', bold: true }
                             ],
                             ...filteredDetails.map((detail) => [
                                 { text: detail.receiverName, fillColor: '#E5EFE5' },
@@ -109,7 +110,8 @@ function ViewAll() {
                                 {text:detail.productName, fillColor: '#E5EFE5'},
                                 {text:detail.brand, fillColor: '#E5EFE5'},
                                 {text:detail.amount, fillColor: '#E5EFE5'},
-                                {text:detail.price, fillColor: '#E5EFE5'}
+                                {text:detail.price, fillColor: '#E5EFE5'},
+                                {text:detail.status, fillColor: '#E5EFE5'}
                             ])
                         ]
                     },
@@ -183,13 +185,6 @@ const loadImage = (src) => {
                 Search
             </button>
            
-            <button
-                type="button"
-                className="download-button"
-                onClick={handleDownloadReport}
-            >
-                Download Report
-            </button>
 
             <h1 className="topic">All Details</h1>
 
@@ -204,6 +199,7 @@ const loadImage = (src) => {
                         <th>Brand</th>
                         <th>Amount</th>
                         <th>Total Price</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -218,6 +214,7 @@ const loadImage = (src) => {
                             <td>{detail.brand}</td>
                             <td>{detail.amount}</td>
                             <td>{detail.price}</td>
+                            <td>{detail.status}</td>
                             <td>
                                 <button className="action-button delete" onClick={() => handleDelete(detail._id)}>Delete</button>
                                 <button className="action-button edit" onClick={() => handleEdit(detail._id)}>Edit</button>
