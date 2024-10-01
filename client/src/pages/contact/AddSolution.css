@@ -20,10 +20,12 @@
     background-color: #dbd4d4d2;
     border-radius: 10px;
      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', seri;
+     flex-direction: column;
   }
 
 .PAform-group {
     margin-bottom: 10px;
+    flex-direction: column;
 }
 label {
     display: block;
