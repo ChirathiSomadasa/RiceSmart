@@ -165,9 +165,8 @@
 
 .error_messagep {
     color: red;
-    font-size: 18px;
+    font-size: 0.875rem;
     margin-bottom: 10px;
-    font-weight: bold;
 }
 
 .yiled_buttonp {
