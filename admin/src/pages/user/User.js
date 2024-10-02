@@ -50,7 +50,7 @@ function User() {
 
     return (
         <div className="user-list-container">
-            <h1>Manage Yield Predictions</h1>
+            <h1>Manage Users</h1>
             <div className='user-filter-bar'>
                 <input
                     className='user-filter-search'

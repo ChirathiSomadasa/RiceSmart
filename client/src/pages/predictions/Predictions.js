@@ -163,7 +163,7 @@ function Predictions() {
                 <div className='cpp'>
                     <div className='yiled_form_containerp'>
                         <form onSubmit={handleYieldSubmit} className='formp'>
-                            <h2 className='yield_topic'>Yield Prediction</h2>
+                            <h2 className='yield_topicp'>Yield Prediction</h2>
 
                             <label className='yiled_labelp'>Variety </label><br />
                             <input

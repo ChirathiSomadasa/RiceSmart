@@ -4,13 +4,13 @@ import axios from 'axios';
 import './addDetails.css';
 
 const BRAND_PRICES = {
-    StarChemicals: 10,
-    TataRallis: 20,
-    IFFCO: 30,
-    KatyayaniOrganics: 40,
-    FMC: 50,
-    EcoGreen: 60,
-    Bayer: 70
+    StarChemicals: 100,
+    TataRallis: 200,
+    IFFCO: 300,
+    KatyayaniOrganics: 400,
+    FMC: 500,
+    EcoGreen: 600,
+    Bayer: 700
 };
 
 const UNIT_CONVERSIONS = {

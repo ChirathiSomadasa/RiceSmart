@@ -203,7 +203,7 @@ function Contact() {
                 />
                 <button className='disease-filter-search-btn' onClick={handleSearch}>Search</button>  {/* Search button */}
                 <button className='disease-filter-search-btn' onClick={handleClearSearch}>Clear Search</button> {/* Clear Search button */}
-                <button className='generate_report_disease' onClick={generateReport}>Generate Status Report</button>
+                <button className='generate_report_disease' onClick={generateReport}>Generate Report</button>
             </div>
 
             <table className="disease-table">
